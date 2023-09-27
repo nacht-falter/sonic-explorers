@@ -1,0 +1,35 @@
+/* Global styles */
+@font-face {
+  font-family: "Exo 2";
+  src: url("./assets/fonts/Exo2-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("./assets/fonts/OpenSans-VariableFont_wght.ttf");
+}
+
+.App {
+  font-family: "OpenSans", sans-serif;
+  background-color: #fbfbfb;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+  transition: all 0.1s ease-in-out;
+}
+
+a:hover {
+  color: #d939ab;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Exo 2", sans-serif;
+}

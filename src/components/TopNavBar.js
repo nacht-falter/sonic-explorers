@@ -2,26 +2,28 @@ import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import logo from "../logo.svg";
+import styles from "../styles/TopNavBar.module.css";
 
 const TopNavBar = () => {
   return (
-    <Navbar fixed="top">
+    <Navbar className={styles.TopNavBar} fixed="top">
       <Container>
         <NavLink to="/">
           <Navbar.Brand>
-            <img className="d-none d-md-inline" src={logo} alt="Logo" height="100" />
-            <h1 className="d-none d-md-inline ps-3 align-middle">Sonic Explorers</h1>
-            <img className="d-md-none" src={logo} alt="Logo" height="75" />
+            <img className={styles.Logo} src={logo} alt="Logo" height="100" />
+            <h1 className={`${styles.Title} d-inline align-middle`}>Sonic Explorers</h1>
           </Navbar.Brand>
         </NavLink>
-        <Nav className="">
+        <Nav>
           <NavLink exact to="/signin">
-            <Button variant="dark" size="sm">
+            <Button className={styles.SignInButton} variant="outline-dark" size="sm">
               Sign In
             </Button>
           </NavLink>
-          <NavLink className="align-middle" exact to="/signup">
-            Sign Up
+          <NavLink exact to="/signup">
+            <Button className={styles.SignUpButton} variant="dark" size="sm">
+              Sign Up
+            </Button>
           </NavLink>
         </Nav>
       </Container>
