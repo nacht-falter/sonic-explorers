@@ -15,8 +15,14 @@
 }
 
 .BottomNavBar a:hover {
-  background-color: #fafafa;
+  background: linear-gradient(-45deg, #f0f0f0, #fafafa);
   box-shadow: inset 0 0 3px 0 #e6e6e6;
+}
+
+.Active {
+  color: #d939ab;
+  background: linear-gradient(-45deg, #efefef, #f2f2f2);
+  box-shadow: inset 0 0 4px 0 #e6e6e6;
 }
 
 .NavItemText {
