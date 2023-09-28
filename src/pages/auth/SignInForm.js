@@ -12,8 +12,10 @@ import btnStyles from "../../styles/Button.module.css";
 import hr from "../../assets/images/hr-wave.svg";
 import image from "../../assets/images/bruno-aguirre-wOWgGnf1Gng-unsplash.jpg";
 import axios from "axios";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const SignInForm = (props) => {
+  const setCurrentUser = useSetCurrentUser();
   const { showMessage } = props;
   const [signInData, setSignInData] = useState({ username: "", password: "" });
   const { username, password } = signInData;
@@ -30,9 +32,10 @@ const SignInForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/login/", signInData);
+      const {data} = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      showMessage("success", "Successfully logged in as " + data.user.username + "!");
       history.push("/");
-      showMessage("success", "Login successful!");
     } catch (err) {
       setErrors(err.response?.data);
     }
