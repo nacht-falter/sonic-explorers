@@ -1,5 +1,7 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { axiosRequest, axiosResponse } from "../api/axiosDefaults";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -9,10 +11,11 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const history = useHistory();
 
   const handleMount = async () => {
     try {
-      const { data } = await axios.get("/dj-rest-auth/user/");
+      const { data } = await axiosResponse.get("/dj-rest-auth/user/");
       setCurrentUser(data);
     } catch (err) {
       console.error(err);
@@ -22,6 +25,46 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     handleMount();
   }, []);
+
+  useMemo(() => {
+    axiosRequest.interceptors.request.use(
+      async (config) => {
+        try {
+          await axios.post("/dj-rest-auth/token/refresh/");
+        } catch (err) {
+          setCurrentUser((prevCurrentUser) => {
+            if (prevCurrentUser) {
+              history.push("/signin");
+            }
+            return null;
+          });
+          return config;
+        }
+        return config;
+      },
+      (error) => Promise.reject(error)
+    );
+
+    axiosResponse.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        if (error.response?.status === 401) {
+          try {
+            await axios.post("/dj-rest-auth/token/refresh/");
+          } catch (err) {
+            setCurrentUser((prevCurrentUser) => {
+              if (prevCurrentUser) {
+                history.push("/signin");
+              }
+              return null;
+            });
+          }
+          return axios(error.config);
+        }
+        return Promise.reject(error);
+      }
+    );
+  }, [history]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
