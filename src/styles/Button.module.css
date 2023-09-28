@@ -1,0 +1,13 @@
+.Button {
+  background-color: #d939ab;
+  border-color: #d939ab;
+}
+
+.Button:hover {
+  background-color: #a21078;
+  border-color: #a21078;
+}
+
+.Wide {
+  width: 100%;
+}
