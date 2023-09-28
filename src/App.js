@@ -23,12 +23,13 @@ function App() {
   return (
     <div className={styles.App}>
       {message && <Message type={message.type} text={message.text} />}
-      <TopNavBar />
+      <TopNavBar showMessage={showMessage} />
       <Container className={styles.Main}>
         <Switch>
           <Route exact path="/" render={() => {}} />
           <Route exact path="/signin" render={() => <SignInForm showMessage={showMessage} />} />
           <Route exact path="/signup" render={() => <SignUpForm showMessage={showMessage} />} />
+          <Route exact path="/profiles/:id" render={() => {}} />
           <Route exact path="/feed" render={() => {}} />
           <Route exact path="/map" render={() => {}} />
           <Route exact path="/favourites" render={() => {}} />

@@ -1,10 +1,81 @@
 import React from "react";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Dropdown from "react-bootstrap/Dropdown";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 import logo from "../logo.svg";
 import styles from "../styles/TopNavBar.module.css";
+import btnStyles from "../styles/Button.module.css";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
+import axios from "axios";
 
-const TopNavBar = () => {
+const TopNavBar = (props) => {
+  const { showMessage } = props;
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("/dj-rest-auth/logout/");
+      setCurrentUser(null);
+      showMessage("success", "Successfully signed out!");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const loggedInNavItems = (
+    <Nav className="d-flex align-items-center">
+      <NavLink exact className="me-2 me-md-5" activeClassName={styles.Active} to="/sounds/create">
+        <Button className={`${btnStyles.Button} ${btnStyles.Small} d-flex align-items-center px-3 py-2 rounded-5`} variant="dark">
+          <i className="fa-solid fa-microphone-lines fs-6"></i>
+          <span className="ms-1">Upload sound</span>
+        </Button>
+      </NavLink>
+      <NavDropdown
+        className={styles.Dropdown}
+        drop="down"
+        align="end"
+        title={`${currentUser?.username}`}
+        id="userDropdownMenu"
+      >
+        <Dropdown.Item>
+          <NavLink
+            to={`/profiles/${currentUser?.profile_id}`}
+            className="d-flex align-items-center"
+            activeClassName={styles.ActiveDropdownItem}
+          >
+            <i className="fa-solid fa-user-circle fs-6 me-2"></i>My Profile
+          </NavLink>
+        </Dropdown.Item>
+        <NavDropdown.Divider />
+        <Dropdown.Item>
+          <NavLink to="/" onClick={handleSignOut} className="d-flex align-items-center">
+            <i className="fa-solid fa-right-from-bracket fs-6 me-2"></i>Sign out
+          </NavLink>
+        </Dropdown.Item>
+      </NavDropdown>
+    </Nav>
+  );
+
+  const loggedOutNavItems = (
+    <Nav>
+      <NavLink exact to="/signin" activeClassName={styles.ActiveSignInButton}>
+        <Button className={styles.SignInButton} variant="outline-dark" size="sm">
+          Sign In
+        </Button>
+      </NavLink>
+      <NavLink exact to="/signup" activeClassName={styles.ActiveSignUpButton}>
+        <Button className={styles.SignUpButton} variant="dark" size="sm">
+          Sign Up
+        </Button>
+      </NavLink>
+    </Nav>
+  );
+
   return (
     <Navbar className={styles.TopNavBar} fixed="top">
       <Container>
@@ -14,18 +85,7 @@ const TopNavBar = () => {
             <h1 className={`${styles.Title} d-inline align-middle`}>Sonic Explorers</h1>
           </Navbar.Brand>
         </NavLink>
-        <Nav>
-          <NavLink exact to="/signin">
-            <Button className={styles.SignInButton} variant="outline-dark" size="sm">
-              Sign In
-            </Button>
-          </NavLink>
-          <NavLink exact to="/signup">
-            <Button className={styles.SignUpButton} variant="dark" size="sm">
-              Sign Up
-            </Button>
-          </NavLink>
-        </Nav>
+        {currentUser ? loggedInNavItems : loggedOutNavItems}
       </Container>
     </Navbar>
   );

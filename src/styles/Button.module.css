@@ -1,5 +1,5 @@
 .Button {
-  background-color: #d939ab;
+  background-color: #d939ab; 
   border-color: #d939ab;
 }
 
@@ -10,4 +10,8 @@
 
 .Wide {
   width: 100%;
+}
+
+.Small {
+  font-size: 0.8rem;
 }
