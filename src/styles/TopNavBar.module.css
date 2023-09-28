@@ -3,6 +3,7 @@
   background-color: #ffffff;
   border-bottom: 1px solid #e6e6e6;
   box-shadow: 0 0 5px 0 #e6e6e6;
+  z-index: 2;
 }
 
 .Logo {

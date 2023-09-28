@@ -13,7 +13,8 @@ import hr from "../../assets/images/hr-wave.svg";
 import image from "../../assets/images/bruno-aguirre-wOWgGnf1Gng-unsplash.jpg";
 import axios from "axios";
 
-const SignInForm = () => {
+const SignInForm = (props) => {
+  const { showMessage } = props;
   const [signInData, setSignInData] = useState({ username: "", password: "" });
   const { username, password } = signInData;
   const [errors, setErrors] = useState({});
@@ -31,6 +32,7 @@ const SignInForm = () => {
     try {
       await axios.post("/dj-rest-auth/login/", signInData);
       history.push("/");
+      showMessage("success", "Login successful!");
     } catch (err) {
       setErrors(err.response?.data);
     }
