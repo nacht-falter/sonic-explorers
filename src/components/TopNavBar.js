@@ -11,6 +11,7 @@ import styles from "../styles/TopNavBar.module.css";
 import btnStyles from "../styles/Button.module.css";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import axios from "axios";
+import Avatar from "../components/Avatar";
 
 const TopNavBar = (props) => {
   const { showMessage } = props;
@@ -30,16 +31,19 @@ const TopNavBar = (props) => {
   const loggedInNavItems = (
     <Nav className="d-flex align-items-center">
       <NavLink exact className="me-2 me-md-5" activeClassName={styles.Active} to="/sounds/create">
-        <Button className={`${btnStyles.Button} ${btnStyles.Small} d-flex align-items-center px-3 py-2 rounded-5`} variant="dark">
+        <Button
+          className={`${btnStyles.Button} ${btnStyles.Small} d-flex align-items-center px-3 py-2 rounded-5`}
+          variant="dark"
+        >
           <i className="fa-solid fa-microphone-lines fs-6"></i>
-          <span className="ms-1">Upload sound</span>
+          <span className="ms-2">Upload sound</span>
         </Button>
       </NavLink>
       <NavDropdown
         className={styles.Dropdown}
         drop="down"
         align="end"
-        title={`${currentUser?.username}`}
+        title={<Avatar src={currentUser?.profile_avatar} text={currentUser?.username} height={25} />}
         id="userDropdownMenu"
       >
         <Dropdown.Item>
@@ -48,7 +52,7 @@ const TopNavBar = (props) => {
             className="d-flex align-items-center"
             activeClassName={styles.ActiveDropdownItem}
           >
-            <i className="fa-solid fa-user-circle fs-6 me-2"></i>My Profile
+            <Avatar src={currentUser?.profile_avatar} text="My Profile" height={20} />
           </NavLink>
         </Dropdown.Item>
         <NavDropdown.Divider />
