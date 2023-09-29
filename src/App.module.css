@@ -29,6 +29,10 @@ a:hover {
   color: #d939ab;
 }
 
+.SmallText {
+  font-size: 80%;
+}
+
 h1,
 h2,
 h3,

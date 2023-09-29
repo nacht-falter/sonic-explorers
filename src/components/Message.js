@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import Alert from "react-bootstrap/Alert";
+import appStyles from "../App.module.css";
+import styles from "../styles/Message.module.css";
 
 const Message = (props) => {
   const { type, text } = props;
   const [show, setShow] = useState(true);
 
   return (
-    <div className="position-absolute z-3 col-10 offset-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-      <Alert className="mt-5 m-2 px-5 pt-2 pb-0" variant={type} show={show} onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>{type.charAt(0).toUpperCase() + type.slice(1) + "!"}</Alert.Heading>
-        <p>{text}</p>
+    <div className="position-absolute bottom-0 mb-5 z-3 col-10 offset-1 col-sm-6 offset-sm-3 col-xl-4 offset-xl-4">
+      <Alert
+        className={`${styles.Alert} mt-3 mx-2 px-5 py-auto pb-0 text-center`}
+        variant={type}
+        show={show}
+        onClose={() => setShow(false)}
+        dismissible
+      >
+        <p className={appStyles.SmallText}>{text}</p>
       </Alert>
     </div>
   );

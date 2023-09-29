@@ -4,6 +4,7 @@
   border-top: 1px solid #e6e6e6;
   box-shadow: 0 0 5px 0 #e6e6e6;
   padding: 0;
+  z-index: 2;
 }
 
 .BottomNavBar a {
