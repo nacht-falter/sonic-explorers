@@ -8,6 +8,7 @@ import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
+import SoundCreateForm from "./pages/sounds/SoundCreateForm";
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/signin" render={() => <SignInForm showMessage={showMessage} />} />
           <Route exact path="/signup" render={() => <SignUpForm showMessage={showMessage} />} />
           <Route exact path="/profiles/:id" render={() => {}} />
+          <Route exact path="/sounds/create" render={() => <SoundCreateForm showMessage={showMessage} />} />
           <Route exact path="/feed" render={() => {}} />
           <Route exact path="/map" render={() => {}} />
           <Route exact path="/favourites" render={() => {}} />

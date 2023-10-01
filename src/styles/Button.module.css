@@ -3,9 +3,21 @@
   border-color: #d939ab;
 }
 
-.Button:hover {
-  background-color: #a21078;
+.Button:hover, .Button:active {
+  background-color: #a21078 !important;
   border-color: #a21078;
+}
+
+.YellowButton {
+  background-color: #ffc101;
+  border-color: #ffc101;
+  color: #000000;
+}
+
+.YellowButton:hover, .YellowButton:active {
+  background-color:  #ffac00 !important;
+  border-color: #ffac00;
+  color: #000000;
 }
 
 .Wide {

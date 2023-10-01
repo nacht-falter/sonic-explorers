@@ -1,0 +1,351 @@
+import React, { useRef, useState } from "react";
+
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+import Image from "react-bootstrap/Image";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Popover from "react-bootstrap/Popover";
+import Badge from "react-bootstrap/Badge";
+
+import appStyles from "../../App.module.css";
+import styles from "../../styles/SoundCreateEditForm.module.css";
+import btnStyles from "../../styles/Button.module.css";
+import Asset from "../../components/Asset";
+import { useHistory } from "react-router-dom";
+import { axiosRequest } from "../../api/axiosDefaults";
+
+function SoundCreateForm(props) {
+  const { showMessage } = props;
+  const [errors, setErrors] = useState({});
+  const [soundData, setSoundData] = useState({
+    title: "",
+    description: "",
+    audio: "",
+    image: "",
+    location: [],
+    tags: [],
+  });
+  const { title, description, audio, image, location, tags } = soundData;
+  const audioInput = useRef(null);
+  const imageInput = useRef(null);
+  const history = useHistory();
+
+  const handleChange = (e) => {
+    setSoundData({
+      ...soundData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleChangeAudio = (e) => {
+    if (e.target.files.length) {
+      URL.revokeObjectURL(audio);
+      setSoundData({
+        ...soundData,
+        audio: URL.createObjectURL(e.target.files[0]),
+      });
+    }
+  };
+
+  const handleChangeImage = (e) => {
+    if (e.target.files.length) {
+      URL.revokeObjectURL(image);
+      setSoundData({
+        ...soundData,
+        image: URL.createObjectURL(e.target.files[0]),
+      });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    console.log(formData);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("audio_file", audioInput.current.files[0]);
+    formData.append("image", imageInput.current.files[0]);
+    formData.append("latitude", parseFloat(location[0]));
+    formData.append("longitude", parseFloat(location[1]));
+    console.log(formData);
+    try {
+      showMessage("info", "Uploading sound... Please wait.");
+      const { data } = await axiosRequest.post("/sounds/", formData);
+      showMessage("success", "Sound successfully uploaded!");
+      history.push(`/sounds/${data.id}`);
+    } catch (err) {
+      setErrors(err.response?.data);
+      showMessage("warning", "Upload failed! Please try again.");
+      console.log(err.response?.data);
+    }
+  };
+
+  const audioField = (
+    <Form.Group>
+      {audio ? (
+        <>
+          {audio}
+
+          {errors.audio?.map((msg, i) => (
+            <Alert variant="warning" key={i}>
+              {msg}
+            </Alert>
+          ))}
+
+          <div>
+            <Form.Label className={`${styles.AudioUpload} ${btnStyles.Button} btn`} htmlFor="audio-upload">
+              Change audio
+            </Form.Label>
+          </div>
+        </>
+      ) : (
+        <Form.Label className={`${styles.AudioUpload} d-flex justify-content-center`} htmlFor="audio-upload">
+          <Asset icon="fa-solid fa-file-arrow-up" message="Click or tap to upload an audio file" layout="column" />
+        </Form.Label>
+      )}
+
+      <Form.Control
+        className="d-none"
+        type="file"
+        id="audio-upload"
+        accept="audio/*"
+        onChange={handleChangeAudio}
+        ref={audioInput}
+        required
+      />
+    </Form.Group>
+  );
+
+  const textFields = (
+    <>
+      <Form.Group className="mb-3">
+        <Form.Label>Title</Form.Label>
+        <Form.Control
+          className={styles.Input}
+          type="text"
+          placeholder="Enter a title for your sound"
+          name="title"
+          value={title}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
+
+      {errors.title?.map((msg, i) => (
+        <Alert variant="warning" key={i}>
+          {msg}
+        </Alert>
+      ))}
+
+      <Form.Group className="mb-3">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          className={styles.Input}
+          as="textarea"
+          rows={6}
+          placeholder="Enter a description for your sound"
+          name="description"
+          value={description}
+          onChange={handleChange}
+        />
+      </Form.Group>
+
+      {errors.description?.map((msg, i) => (
+        <Alert variant="warning" key={i}>
+          {msg}
+        </Alert>
+      ))}
+
+      <Form.Group className="mb-3">
+        <Form.Label>
+          Location
+          <OverlayTrigger
+            placement="bottom"
+            overlay={
+              <Popover id="tags-help">
+                <Popover.Header as="h3" className={styles.PopoverHeader}>
+                  How to provide location data
+                </Popover.Header>
+                <Popover.Body>
+                  <p>
+                    You can provide Geolocation data for your sound by allowing access to your location. Click on{" "}
+                    <Badge bg="secondary">Get location</Badge> to retrieve you location.
+                  </p>
+                  <p>
+                    Alternatively you can select your location on a map. Click on{" "}
+                    <Badge bg="secondary">Select location</Badge> to open the map.
+                  </p>
+                </Popover.Body>
+              </Popover>
+            }
+          >
+            <Badge pill bg="secondary" className="ms-2">
+              ?
+            </Badge>
+          </OverlayTrigger>
+        </Form.Label>
+        <Form.Control
+          className={styles.Input}
+          name="location"
+          placeholder="No location data provided"
+          value={location}
+          onChange={handleChange}
+          disabled
+        />
+
+        <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} me-2 mt-2`} variant="secondary">
+          Get location
+        </Button>
+        <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2`} variant="secondary">
+          Select location
+        </Button>
+
+        {errors.latitude?.map((msg, i) => (
+          <Alert variant="warning" key={i}>
+            {msg}
+          </Alert>
+        ))}
+        {errors.longitude?.map((msg, i) => (
+          <Alert variant="warning" key={i}>
+            {msg}
+          </Alert>
+        ))}
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>
+          Tags
+          <OverlayTrigger
+            placement="bottom"
+            overlay={
+              <Popover id="tags-help">
+                <Popover.Header as="h3" className={styles.PopoverHeader}>
+                  How to use tags
+                </Popover.Header>
+                <Popover.Body>
+                  <p>Tags are used to categorise sounds. You can provide up to 15 tags for each sound.</p>
+                  <p>
+                    While it might be tempting to just use the origin of a sound as a tag (such as{" "}
+                    <Badge bg="secondary">dog</Badge> or <Badge bg="secondary">car</Badge>) it is encouraged to use more
+                    descriptive tags that describe the sound itself (such as <Badge bg="secondary">barking</Badge> or{" "}
+                    <Badge bg="secondary">rumbling</Badge> or the mood/atmosphere of the sound (such as{" "}
+                    <Badge bg="secondary">peaceful</Badge> or <Badge bg="secondary">noisy</Badge>).
+                  </p>
+                </Popover.Body>
+              </Popover>
+            }
+          >
+            <Badge pill bg="secondary" className="ms-2">
+              ?
+            </Badge>
+          </OverlayTrigger>
+        </Form.Label>
+        <Form.Control
+          className={styles.Input}
+          placeholder="Enter tags as comma-separated values"
+          name="tags"
+          value={tags}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
+
+      {errors.tags?.map((msg, i) => (
+        <Alert variant="warning" key={i}>
+          {msg}
+        </Alert>
+      ))}
+    </>
+  );
+
+  const imageField = (
+    <Form.Group className="mb-3">
+      <Form.Label htmlFor="image-upload">
+        Image
+        <OverlayTrigger
+          placement="bottom"
+          overlay={
+            <Popover id="tags-help">
+              <Popover.Header as="h3" className={styles.PopoverHeader}>
+                Sound images
+              </Popover.Header>
+              <Popover.Body>
+                <p>If you can, take a picture of the situation in which you recorded the sound and upload it here.</p>
+                <p>If you don't provide an image, a random image based on the tags you entered will be used.</p>
+                <p>You can also upload the image later by editing your sound if you prefer.</p>
+              </Popover.Body>
+            </Popover>
+          }
+        >
+          <Badge pill bg="secondary" className="ms-2">
+            ?
+          </Badge>
+        </OverlayTrigger>
+      </Form.Label>
+      {image ? (
+        <div>
+          <Form.Label className={styles.ImagePreview} htmlFor="image-upload">
+            <Image src={image} alt="Sound image" />
+            <span className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-1 btn d-block`}>Change image</span>
+          </Form.Label>
+        </div>
+      ) : (
+        <div>
+          <Form.Label htmlFor="image-upload" className="d-block">
+            <span className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2 btn`}>Choose image</span>
+          </Form.Label>
+        </div>
+      )}
+      <Form.Control
+        className="d-none"
+        type="file"
+        id="image-upload"
+        accept="image/*"
+        onChange={handleChangeImage}
+        ref={imageInput}
+      />
+
+      {errors.image?.map((msg, i) => (
+        <Alert variant="warning" key={i}>
+          {msg}
+        </Alert>
+      ))}
+    </Form.Group>
+  );
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Row>
+        <Col lg={6}>
+          <Container>
+            <h3>Upload new sound</h3>
+            <hr />
+            {audioField}
+          </Container>
+        </Col>
+        <Col lg={6}>
+          <Container className={`${appStyles.Content}`}>
+            <hr />
+            {textFields}
+            {imageField}
+          </Container>
+          <hr />
+          <Container className="d-flex justify-content-center">
+            <Button className="btn btn-secondary me-2" onClick={history.goBack}>
+              Cancel
+            </Button>
+            <Button className={`${btnStyles.Button}`} type="submit">
+              Upload
+            </Button>
+          </Container>
+        </Col>
+      </Row>
+    </Form>
+  );
+}
+
+export default SoundCreateForm;
