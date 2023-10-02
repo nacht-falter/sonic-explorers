@@ -12,10 +12,14 @@ const TagField = ({ sendTags, showMessage }) => {
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState([]);
   const [backspaceReleased, setBackspaceReleased] = useState(false);
+  const [tagsChanged, setTagsChanged] = useState(false);
 
   useEffect(() => {
-    sendTags(tags);
-  }, [tags, sendTags]);
+    if (tagsChanged) {
+      sendTags(tags);
+      setTagsChanged(false);
+    }
+  }, [tags, tagsChanged, sendTags]);
 
   const handleTagChange = (e) => {
     setTagInput(e.target.value);
@@ -34,6 +38,7 @@ const TagField = ({ sendTags, showMessage }) => {
       } else if (trimmedInput) {
         setTags((prevState) => [...prevState, trimmedInput]);
         setTagInput("");
+        setTagsChanged(true);
       }
     }
 
@@ -44,6 +49,7 @@ const TagField = ({ sendTags, showMessage }) => {
 
       setTags(tagsCopy);
       setTagInput(poppedTag);
+      setTagsChanged(true);
     }
 
     setBackspaceReleased(false);
@@ -55,6 +61,7 @@ const TagField = ({ sendTags, showMessage }) => {
 
   const deleteTag = (index) => {
     setTags((prevState) => prevState.filter((tag, i) => i !== index));
+    setTagsChanged(true);
   };
   return (
     <Form.Group className="mb-3">
