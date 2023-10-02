@@ -93,9 +93,9 @@ const TagField = ({ sendTags, showMessage }) => {
 
       <div className={styles.TagList}>
         {tags.map((tag, index) => (
-          <span className={styles.Tag}>
+          <span className={styles.Tag} key={index}>
             {tag}
-            <span Title="Delete tag" onClick={() => deleteTag(index)}>
+            <span title="Delete tag" onClick={() => deleteTag(index)}>
               <i className="fa-solid fa-square-xmark ms-1"></i>
             </span>
           </span>
