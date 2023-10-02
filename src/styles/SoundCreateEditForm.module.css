@@ -16,3 +16,7 @@
 .AudioUpload {
   cursor: pointer;
 }
+
+.Alert {
+  font-size: 80%;
+}

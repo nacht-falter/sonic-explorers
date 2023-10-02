@@ -67,8 +67,12 @@ function SoundCreateForm(props) {
     console.log(formData);
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("audio_file", audioInput.current.files[0]);
-    formData.append("image", imageInput.current.files[0]);
+    if (audioInput.current.files.length) {
+      formData.append("audio_file", audioInput.current.files[0]);
+    }
+    if (imageInput.current.files.length) {
+      formData.append("image", imageInput.current.files[0]);
+    }
     formData.append("latitude", parseFloat(location[0]));
     formData.append("longitude", parseFloat(location[1]));
     console.log(formData);
@@ -90,12 +94,6 @@ function SoundCreateForm(props) {
         <>
           {audio}
 
-          {errors.audio?.map((msg, i) => (
-            <Alert variant="warning" key={i}>
-              {msg}
-            </Alert>
-          ))}
-
           <div>
             <Form.Label className={`${styles.AudioUpload} ${btnStyles.Button} btn`} htmlFor="audio-upload">
               Change audio
@@ -115,8 +113,19 @@ function SoundCreateForm(props) {
         accept="audio/*"
         onChange={handleChangeAudio}
         ref={audioInput}
-        required
       />
+
+      {errors.audio_file?.detail?.length ? (
+        <Alert className={styles.Alert} variant="warning">
+          {errors.audio_file?.detail}
+        </Alert>
+      ) : (
+        errors.audio_file?.map((msg, i) => (
+          <Alert className={styles.Alert} variant="warning" key={i}>
+            {msg}
+          </Alert>
+        ))
+      )}
     </Form.Group>
   );
 
@@ -136,7 +145,7 @@ function SoundCreateForm(props) {
       </Form.Group>
 
       {errors.title?.map((msg, i) => (
-        <Alert variant="warning" key={i}>
+        <Alert className={styles.Alert} variant="warning" key={i}>
           {msg}
         </Alert>
       ))}
@@ -155,7 +164,7 @@ function SoundCreateForm(props) {
       </Form.Group>
 
       {errors.description?.map((msg, i) => (
-        <Alert variant="warning" key={i}>
+        <Alert className={styles.Alert} variant="warning" key={i}>
           {msg}
         </Alert>
       ))}
@@ -167,7 +176,7 @@ function SoundCreateForm(props) {
             placement="bottom"
             overlay={
               <Popover id="tags-help">
-                <Popover.Header as="h3" className={styles.PopoverHeader}>
+                <Popover.Header as="h3"> 
                   How to provide location data
                 </Popover.Header>
                 <Popover.Body>
@@ -177,7 +186,7 @@ function SoundCreateForm(props) {
                   </p>
                   <p>
                     Alternatively you can select your location on a map. Click on{" "}
-                    <Badge bg="secondary">Select location</Badge> to open the map.
+                    <Badge bg="secondary">Select location on Map</Badge> to open the map.
                   </p>
                 </Popover.Body>
               </Popover>
@@ -197,24 +206,27 @@ function SoundCreateForm(props) {
           disabled
         />
 
-        <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} me-2 mt-2`} variant="secondary">
+        <Button
+          className={`${btnStyles.YellowButton} ${btnStyles.Small} me-2 mt-2`}
+          variant="secondary"
+        >
           Get location
         </Button>
         <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2`} variant="secondary">
-          Select location
+          Select location on Map
         </Button>
-
-        {errors.latitude?.map((msg, i) => (
-          <Alert variant="warning" key={i}>
-            {msg}
-          </Alert>
-        ))}
-        {errors.longitude?.map((msg, i) => (
-          <Alert variant="warning" key={i}>
-            {msg}
-          </Alert>
-        ))}
       </Form.Group>
+
+      {errors.latitude?.map((msg, i) => (
+        <Alert className={styles.Alert} variant="warning" key={i}>
+          {msg}
+        </Alert>
+      ))}
+      {errors.longitude?.map((msg, i) => (
+        <Alert className={styles.Alert} variant="warning" key={i}>
+          {msg}
+        </Alert>
+      ))}
 
       <Form.Group className="mb-3">
         <Form.Label>
@@ -223,7 +235,7 @@ function SoundCreateForm(props) {
             placement="bottom"
             overlay={
               <Popover id="tags-help">
-                <Popover.Header as="h3" className={styles.PopoverHeader}>
+                <Popover.Header as="h3">
                   How to use tags
                 </Popover.Header>
                 <Popover.Body>
@@ -250,12 +262,11 @@ function SoundCreateForm(props) {
           name="tags"
           value={tags}
           onChange={handleChange}
-          required
         />
       </Form.Group>
 
       {errors.tags?.map((msg, i) => (
-        <Alert variant="warning" key={i}>
+        <Alert className={styles.Alert} variant="warning" key={i}>
           {msg}
         </Alert>
       ))}
@@ -270,7 +281,7 @@ function SoundCreateForm(props) {
           placement="bottom"
           overlay={
             <Popover id="tags-help">
-              <Popover.Header as="h3" className={styles.PopoverHeader}>
+              <Popover.Header as="h3">
                 Sound images
               </Popover.Header>
               <Popover.Body>
@@ -310,7 +321,7 @@ function SoundCreateForm(props) {
       />
 
       {errors.image?.map((msg, i) => (
-        <Alert variant="warning" key={i}>
+        <Alert className={styles.Alert} variant="warning" key={i}>
           {msg}
         </Alert>
       ))}
@@ -320,16 +331,13 @@ function SoundCreateForm(props) {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col lg={6}>
-          <Container>
-            <h3>Upload new sound</h3>
-            <hr />
-            {audioField}
-          </Container>
+        <h3 className="mb-4">Upload new sound</h3>
+        <Col lg={5}>
+          <Container>{audioField}</Container>
+          <hr  className="d-lg-none"/>
         </Col>
-        <Col lg={6}>
+        <Col lg={7}>
           <Container className={`${appStyles.Content}`}>
-            <hr />
             {textFields}
             {imageField}
           </Container>

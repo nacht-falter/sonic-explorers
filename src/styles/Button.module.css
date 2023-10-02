@@ -1,9 +1,10 @@
 .Button {
-  background-color: #d939ab; 
+  background-color: #d939ab;
   border-color: #d939ab;
 }
 
-.Button:hover, .Button:active {
+.Button:hover,
+.Button:active {
   background-color: #a21078 !important;
   border-color: #a21078;
 }
@@ -14,10 +15,11 @@
   color: #000000;
 }
 
-.YellowButton:hover, .YellowButton:active {
-  background-color:  #ffac00 !important;
+.YellowButton:hover,
+.YellowButton:active {
+  background-color: #ffac00 !important;
   border-color: #ffac00;
-  color: #000000;
+  color: #000000 !important;
 }
 
 .Wide {
