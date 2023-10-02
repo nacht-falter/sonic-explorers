@@ -18,6 +18,7 @@ import Asset from "../../components/Asset";
 import { useHistory } from "react-router-dom";
 import { axiosRequest } from "../../api/axiosDefaults";
 import LocationPicker from "../../components/LocationPicker";
+import TagField from "../../components/TagField";
 
 function SoundCreateForm(props) {
   const { showMessage } = props;
@@ -70,6 +71,14 @@ function SoundCreateForm(props) {
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
+  };
+
+  // Method for getting tags from TagField component
+  const setTags = (tags) => {
+    setSoundData({
+      ...soundData,
+      tags: tags,
+    });
   };
 
   const handleChange = (e) => {
@@ -268,41 +277,6 @@ function SoundCreateForm(props) {
         </Alert>
       ))}
 
-      <Form.Group className="mb-3">
-        <Form.Label>
-          Tags
-          <OverlayTrigger
-            placement="top"
-            overlay={
-              <Popover id="tags-help">
-                <Popover.Header as="h3">How to use tags</Popover.Header>
-                <Popover.Body>
-                  <p>Tags are used to categorise sounds. You can provide up to 15 tags for each sound.</p>
-                  <p>
-                    While it might be tempting to just use the origin of a sound as a tag (such as{" "}
-                    <Badge bg="secondary">dog</Badge> or <Badge bg="secondary">car</Badge>) it is encouraged to use more
-                    descriptive tags that describe the sound itself (such as <Badge bg="secondary">barking</Badge> or{" "}
-                    <Badge bg="secondary">rumbling</Badge> or the mood/atmosphere of the sound (such as{" "}
-                    <Badge bg="secondary">peaceful</Badge> or <Badge bg="secondary">noisy</Badge>).
-                  </p>
-                </Popover.Body>
-              </Popover>
-            }
-          >
-            <Badge pill bg="secondary" className="ms-2">
-              ?
-            </Badge>
-          </OverlayTrigger>
-        </Form.Label>
-        <Form.Control
-          className={styles.Input}
-          placeholder="Enter tags as comma-separated values"
-          name="tags"
-          value={tags}
-          onChange={handleChange}
-        />
-      </Form.Group>
-
       {errors.tags?.map((msg, i) => (
         <Alert className={styles.Alert} variant="warning" key={i}>
           {msg}
@@ -376,6 +350,7 @@ function SoundCreateForm(props) {
           <Container className={`${appStyles.Content}`}>
             {textFields}
             {imageField}
+            <TagField sendTags={setTags} showMessage={showMessage} />
           </Container>
           <hr />
           <Container className="d-flex justify-content-center">
