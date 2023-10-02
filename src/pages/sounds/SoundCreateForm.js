@@ -33,6 +33,31 @@ function SoundCreateForm(props) {
   const audioInput = useRef(null);
   const imageInput = useRef(null);
   const history = useHistory();
+  const [locationStatus, setLocationStatus] = useState("No location data");
+
+  // Instructions for HTML Geolocation API: https://www.w3schools.com/html/html5_geolocation.asp
+  const getLocation = () => {
+    setLocationStatus("Retrieving location data... Please wait.");
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setSoundData({
+            ...soundData,
+            location: [position.coords.latitude, position.coords.longitude],
+          });
+          showMessage("success", "Location data received!");
+          setLocationStatus("Location data received!");
+        },
+        (error) => {
+          console.log(error);
+          showMessage("warning", "Failed to retrieve location data. Please try again.");
+          setLocationStatus("Could not retrieve location.");
+        }
+      );
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
 
   const handleChange = (e) => {
     setSoundData({
@@ -73,8 +98,8 @@ function SoundCreateForm(props) {
     if (imageInput.current.files.length) {
       formData.append("image", imageInput.current.files[0]);
     }
-    formData.append("latitude", parseFloat(location[0]));
-    formData.append("longitude", parseFloat(location[1]));
+    formData.append("latitude", location[0]);
+    formData.append("longitude", location[1]);
     console.log(formData);
     try {
       showMessage("info", "Uploading sound... Please wait.");
@@ -200,7 +225,7 @@ function SoundCreateForm(props) {
         <Form.Control
           className={styles.Input}
           name="location"
-          placeholder="No location data provided"
+          placeholder={locationStatus}
           value={location}
           onChange={handleChange}
           disabled
@@ -209,6 +234,7 @@ function SoundCreateForm(props) {
         <Button
           className={`${btnStyles.YellowButton} ${btnStyles.Small} me-2 mt-2`}
           variant="secondary"
+          onClick={getLocation}
         >
           Get location
         </Button>
