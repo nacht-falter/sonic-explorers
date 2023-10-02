@@ -20,6 +20,17 @@
   margin-bottom: 4rem;
 }
 
+/* Instructions for hiding scrollbars:
+https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 a {
   text-decoration: none;
   color: #000000;
@@ -43,6 +54,7 @@ h6 {
   font-family: "Exo 2", sans-serif;
 }
 
-input, textarea {
+input,
+textarea {
   font-size: 90% !important;
 }
