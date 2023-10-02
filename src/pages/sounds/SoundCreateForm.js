@@ -17,6 +17,7 @@ import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 import { useHistory } from "react-router-dom";
 import { axiosRequest } from "../../api/axiosDefaults";
+import LocationPicker from "../../components/LocationPicker";
 
 function SoundCreateForm(props) {
   const { showMessage } = props;
@@ -33,7 +34,20 @@ function SoundCreateForm(props) {
   const audioInput = useRef(null);
   const imageInput = useRef(null);
   const history = useHistory();
-  const [locationStatus, setLocationStatus] = useState("No location data");
+  const [locationStatus, setLocationStatus] = useState("Please provide location data for your sound");
+
+  const [showMap, setShowMap] = useState(false);
+  const handleCloseMap = () => setShowMap(false);
+  const handleShowMap = () => setShowMap(true);
+
+  const handleSelectLocation = (location) => {
+    setSoundData({
+      ...soundData,
+      location: [location.lat, location.lng],
+    });
+    showMessage("success", "Location data received!");
+    handleCloseMap();
+  };
 
   // Instructions for HTML Geolocation API: https://www.w3schools.com/html/html5_geolocation.asp
   const getLocation = () => {
@@ -46,7 +60,6 @@ function SoundCreateForm(props) {
             location: [position.coords.latitude, position.coords.longitude],
           });
           showMessage("success", "Location data received!");
-          setLocationStatus("Location data received!");
         },
         (error) => {
           console.log(error);
@@ -198,15 +211,14 @@ function SoundCreateForm(props) {
         <Form.Label>
           Location
           <OverlayTrigger
-            placement="bottom"
+            placement="top"
             overlay={
               <Popover id="tags-help">
-                <Popover.Header as="h3"> 
-                  How to provide location data
-                </Popover.Header>
+                <Popover.Header as="h3">How to provide location data</Popover.Header>
                 <Popover.Body>
+                  <p>Please provide the location where the sound was recorded.</p>
                   <p>
-                    You can provide Geolocation data for your sound by allowing access to your location. Click on{" "}
+                    You can provide geolocation data for your sound by allowing access to your location. Click on{" "}
                     <Badge bg="secondary">Get location</Badge> to retrieve you location.
                   </p>
                   <p>
@@ -231,15 +243,17 @@ function SoundCreateForm(props) {
           disabled
         />
 
+        {showMap && <LocationPicker onClose={handleCloseMap} onConfirm={handleSelectLocation} />}
+
         <Button
           className={`${btnStyles.YellowButton} ${btnStyles.Small} me-2 mt-2`}
           variant="secondary"
           onClick={getLocation}
         >
-          Get location
+          Get current location
         </Button>
-        <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2`} variant="secondary">
-          Select location on Map
+        <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2`} onClick={handleShowMap}>
+          Select location on map
         </Button>
       </Form.Group>
 
@@ -258,12 +272,10 @@ function SoundCreateForm(props) {
         <Form.Label>
           Tags
           <OverlayTrigger
-            placement="bottom"
+            placement="top"
             overlay={
               <Popover id="tags-help">
-                <Popover.Header as="h3">
-                  How to use tags
-                </Popover.Header>
+                <Popover.Header as="h3">How to use tags</Popover.Header>
                 <Popover.Body>
                   <p>Tags are used to categorise sounds. You can provide up to 15 tags for each sound.</p>
                   <p>
@@ -304,12 +316,10 @@ function SoundCreateForm(props) {
       <Form.Label htmlFor="image-upload">
         Image
         <OverlayTrigger
-          placement="bottom"
+          placement="top"
           overlay={
             <Popover id="tags-help">
-              <Popover.Header as="h3">
-                Sound images
-              </Popover.Header>
+              <Popover.Header as="h3">Sound images</Popover.Header>
               <Popover.Body>
                 <p>If you can, take a picture of the situation in which you recorded the sound and upload it here.</p>
                 <p>If you don't provide an image, a random image based on the tags you entered will be used.</p>
@@ -360,7 +370,7 @@ function SoundCreateForm(props) {
         <h3 className="mb-4">Upload new sound</h3>
         <Col lg={5}>
           <Container>{audioField}</Container>
-          <hr  className="d-lg-none"/>
+          <hr className="d-lg-none" />
         </Col>
         <Col lg={7}>
           <Container className={`${appStyles.Content}`}>
