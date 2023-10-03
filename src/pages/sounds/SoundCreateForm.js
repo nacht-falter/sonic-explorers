@@ -17,8 +17,8 @@ import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 import { useHistory } from "react-router-dom";
 import { axiosRequest } from "../../api/axiosDefaults";
-import LocationPicker from "../../components/LocationPicker";
 import TagField from "../../components/TagField";
+import LocationField from "../../components/LocationField";
 
 function SoundCreateForm(props) {
   const { showMessage } = props;
@@ -35,42 +35,14 @@ function SoundCreateForm(props) {
   const audioInput = useRef(null);
   const imageInput = useRef(null);
   const history = useHistory();
-  const [locationStatus, setLocationStatus] = useState("Please provide location data for your sound");
 
-  const [showMap, setShowMap] = useState(false);
-  const handleCloseMap = () => setShowMap(false);
-  const handleShowMap = () => setShowMap(true);
-
-  const handleSelectLocation = (location) => {
+  // Method for getting location from LocationField component
+  const setLocation = (location) => {
     setSoundData({
       ...soundData,
-      location: [location.lat, location.lng],
+      location: location,
     });
-    showMessage("success", "Location data received!");
-    handleCloseMap();
-  };
-
-  // Instructions for HTML Geolocation API: https://www.w3schools.com/html/html5_geolocation.asp
-  const getLocation = () => {
-    setLocationStatus("Retrieving location data... Please wait.");
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setSoundData({
-            ...soundData,
-            location: [position.coords.latitude, position.coords.longitude],
-          });
-          showMessage("success", "Location data received!");
-        },
-        (error) => {
-          console.log(error);
-          showMessage("warning", "Failed to retrieve location data. Please try again.");
-          setLocationStatus("Could not retrieve location.");
-        }
-      );
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
+    console.log(location);
   };
 
   // Method for getting tags from TagField component
@@ -215,73 +187,6 @@ function SoundCreateForm(props) {
           {msg}
         </Alert>
       ))}
-
-      <Form.Group className="mb-3">
-        <Form.Label>
-          Location
-          <OverlayTrigger
-            placement="top"
-            overlay={
-              <Popover id="tags-help">
-                <Popover.Header as="h3">How to provide location data</Popover.Header>
-                <Popover.Body>
-                  <p>Please provide the location where the sound was recorded.</p>
-                  <p>
-                    You can provide geolocation data for your sound by allowing access to your location. Click on{" "}
-                    <Badge bg="secondary">Get location</Badge> to retrieve you location.
-                  </p>
-                  <p>
-                    Alternatively you can select your location on a map. Click on{" "}
-                    <Badge bg="secondary">Select location on Map</Badge> to open the map.
-                  </p>
-                </Popover.Body>
-              </Popover>
-            }
-          >
-            <Badge pill bg="secondary" className="ms-2">
-              ?
-            </Badge>
-          </OverlayTrigger>
-        </Form.Label>
-        <Form.Control
-          className={styles.Input}
-          name="location"
-          placeholder={locationStatus}
-          value={location}
-          onChange={handleChange}
-          disabled
-        />
-
-        {showMap && <LocationPicker onClose={handleCloseMap} onConfirm={handleSelectLocation} />}
-
-        <Button
-          className={`${btnStyles.YellowButton} ${btnStyles.Small} me-2 mt-2`}
-          variant="secondary"
-          onClick={getLocation}
-        >
-          Get current location
-        </Button>
-        <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2`} onClick={handleShowMap}>
-          Select location on map
-        </Button>
-      </Form.Group>
-
-      {errors.latitude?.map((msg, i) => (
-        <Alert className={styles.Alert} variant="warning" key={i}>
-          {msg}
-        </Alert>
-      ))}
-      {errors.longitude?.map((msg, i) => (
-        <Alert className={styles.Alert} variant="warning" key={i}>
-          {msg}
-        </Alert>
-      ))}
-
-      {errors.tags?.map((msg, i) => (
-        <Alert className={styles.Alert} variant="warning" key={i}>
-          {msg}
-        </Alert>
-      ))}
     </>
   );
 
@@ -338,6 +243,31 @@ function SoundCreateForm(props) {
     </Form.Group>
   );
 
+  const tagErrors = (
+    <>
+      {errors.tags?.map((msg, i) => (
+        <Alert className={styles.Alert} variant="warning" key={i}>
+          {msg}
+        </Alert>
+      ))}
+    </>
+  );
+
+  const locationErrors = (
+    <>
+      {errors.latitude?.map((msg, i) => (
+        <Alert className={styles.Alert} variant="warning" key={i}>
+          {msg}
+        </Alert>
+      ))}
+      {errors.longitude?.map((msg, i) => (
+        <Alert className={styles.Alert} variant="warning" key={i}>
+          {msg}
+        </Alert>
+      ))}
+    </>
+  );
+
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
@@ -349,8 +279,15 @@ function SoundCreateForm(props) {
         <Col lg={7}>
           <Container className={`${appStyles.Content}`}>
             {textFields}
+
+            <LocationField sendLocation={setLocation} showMessage={showMessage} />
+            {locationErrors}
+
             {imageField}
+
             <TagField sendTags={setTags} showMessage={showMessage} />
+            {tagErrors}
+
           </Container>
           <hr />
           <Container className="d-flex justify-content-center">
