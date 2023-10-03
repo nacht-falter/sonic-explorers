@@ -75,7 +75,6 @@ function SoundCreateForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    console.log(formData);
     formData.append("title", title);
     formData.append("description", description);
     if (audio) {
@@ -86,7 +85,15 @@ function SoundCreateForm(props) {
     }
     formData.append("latitude", location[0]);
     formData.append("longitude", location[1]);
-    formData.append("tags", tags);
+
+    // Solution for sending array of tags from: https://stackoverflow.com/questions/39247160/javascript-formdata-to-array
+    if (tags.length) {
+      tags.forEach((tag, index) => {
+        formData.append(`tags[${index}]`, tag);
+      });
+    } else {
+      formData.append("tags", []);
+    }
     console.log(formData);
     try {
       showMessage("info", "Uploading sound... Please wait.");
@@ -170,11 +177,11 @@ function SoundCreateForm(props) {
 
   const tagErrors = (
     <>
-      {errors.tags?.map((msg, i) => (
-        <Alert className={styles.Alert} variant="warning" key={i}>
-          {msg}
+      {errors.tags && (
+        <Alert className={styles.Alert} variant="warning">
+          {errors.tags[0]}
         </Alert>
-      ))}
+      )}
     </>
   );
 
@@ -240,7 +247,7 @@ function SoundCreateForm(props) {
             <ImageField sendImage={setImage} showMessage={showMessage} />
             {imageErrors}
 
-            <TagField sendTags={setTags} />
+            <TagField sendTags={setTags} showMessage={showMessage} />
             {tagErrors}
           </Container>
           <hr />
