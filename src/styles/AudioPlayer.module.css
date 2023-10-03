@@ -1,0 +1,23 @@
+.AudioPlayer {
+  display: flex;
+  align-items: center;
+}
+
+.WaveForm {
+  flex-basis: 90%;
+}
+
+.WaveForm:hover {
+  cursor: pointer;
+}
+
+.Controls {
+  font-size: 3rem;
+  margin-right: 0.5rem;
+  width: 2.5rem;
+}
+
+.Controls:hover {
+  cursor: pointer;
+  color: #d939ab;
+}

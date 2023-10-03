@@ -3,7 +3,9 @@ import Form from "react-bootstrap/Form";
 
 import styles from "../styles/AudioField.module.css";
 import btnStyles from "../styles/Button.module.css";
+import appStyles from "../App.module.css";
 import Asset from "./Asset";
+import AudioPlayer from "./AudioPlayer";
 
 const AudioField = ({ sendAudio }) => {
   const [audio, setAudio] = useState(null);
@@ -28,7 +30,11 @@ const AudioField = ({ sendAudio }) => {
     <Form.Group>
       {audio ? (
         <>
-          {audio.name}
+          <AudioPlayer audioUrl={URL.createObjectURL(audio)} audioName={"Preview: " + audio.name} />
+          <p className={`${appStyles.SmallText} ms-2`}>
+            ⚠️ If your sound is longer than 30 seconds, it will be trimmed to the first 30 seconds. Custom trimming is
+            not available at this point.
+          </p>
 
           <div className="d-flex align-items-center">
             <Form.Label
