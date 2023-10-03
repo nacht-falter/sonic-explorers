@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import Image from "react-bootstrap/Image";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Badge from "react-bootstrap/Badge";
@@ -19,6 +18,7 @@ import { axiosRequest } from "../../api/axiosDefaults";
 import TagField from "../../components/TagField";
 import LocationField from "../../components/LocationField";
 import AudioField from "../../components/AudioField";
+import ImageField from "../../components/ImageField";
 
 function SoundCreateForm(props) {
   const { showMessage } = props;
@@ -32,7 +32,6 @@ function SoundCreateForm(props) {
     tags: [],
   });
   const { title, description, audio, image, location, tags } = soundData;
-  const imageInput = useRef(null);
   const history = useHistory();
 
   // Method for getting audio from AudioField component
@@ -40,6 +39,13 @@ function SoundCreateForm(props) {
     setSoundData({
       ...soundData,
       audio: audio,
+    });
+  };
+  // Method for getting image from ImageField component
+  const setImage = (image) => {
+    setSoundData({
+      ...soundData,
+      image: image,
     });
   };
 
@@ -66,16 +72,6 @@ function SoundCreateForm(props) {
     });
   };
 
-  const handleChangeImage = (e) => {
-    if (e.target.files.length) {
-      URL.revokeObjectURL(image);
-      setSoundData({
-        ...soundData,
-        image: URL.createObjectURL(e.target.files[0]),
-      });
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -85,8 +81,8 @@ function SoundCreateForm(props) {
     if (audio) {
       formData.append("audio_file", audio);
     }
-    if (imageInput.current.files.length) {
-      formData.append("image", imageInput.current.files[0]);
+    if (image) {
+      formData.append("image", image);
     }
     formData.append("latitude", location[0]);
     formData.append("longitude", location[1]);
@@ -146,59 +142,6 @@ function SoundCreateForm(props) {
     </>
   );
 
-  const imageField = (
-    <Form.Group className="mb-3">
-      <Form.Label htmlFor="image-upload">
-        Image
-        <OverlayTrigger
-          placement="top"
-          overlay={
-            <Popover id="tags-help">
-              <Popover.Header as="h3">Sound images</Popover.Header>
-              <Popover.Body>
-                <p>If you can, take a picture of the situation in which you recorded the sound and upload it here.</p>
-                <p>If you don't provide an image, a random image based on the tags you entered will be used.</p>
-                <p>You can also upload the image later by editing your sound if you prefer.</p>
-              </Popover.Body>
-            </Popover>
-          }
-        >
-          <Badge pill bg="secondary" className="ms-2">
-            ?
-          </Badge>
-        </OverlayTrigger>
-      </Form.Label>
-      {image ? (
-        <div>
-          <Form.Label className={styles.ImagePreview} htmlFor="image-upload">
-            <Image src={image} alt="Sound image" />
-            <span className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-1 btn d-block`}>Change image</span>
-          </Form.Label>
-        </div>
-      ) : (
-        <div>
-          <Form.Label htmlFor="image-upload" className="d-block">
-            <span className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2 btn`}>Choose image</span>
-          </Form.Label>
-        </div>
-      )}
-      <Form.Control
-        className="d-none"
-        type="file"
-        id="image-upload"
-        accept="image/*"
-        onChange={handleChangeImage}
-        ref={imageInput}
-      />
-
-      {errors.image?.map((msg, i) => (
-        <Alert className={styles.Alert} variant="warning" key={i}>
-          {msg}
-        </Alert>
-      ))}
-    </Form.Group>
-  );
-
   const audioErrors = (
     <>
       {errors.audio_file?.detail?.length ? (
@@ -212,6 +155,16 @@ function SoundCreateForm(props) {
           </Alert>
         ))
       )}
+    </>
+  );
+
+  const imageErrors = (
+    <>
+      {errors.image?.map((msg, i) => (
+        <Alert className={styles.Alert} variant="warning" key={i}>
+          {msg}
+        </Alert>
+      ))}
     </>
   );
 
@@ -284,9 +237,10 @@ function SoundCreateForm(props) {
             <LocationField sendLocation={setLocation} showMessage={showMessage} />
             {locationErrors}
 
-            {imageField}
+            <ImageField sendImage={setImage} showMessage={showMessage} />
+            {imageErrors}
 
-            <TagField sendTags={setTags} showMessage={showMessage} />
+            <TagField sendTags={setTags} />
             {tagErrors}
           </Container>
           <hr />
