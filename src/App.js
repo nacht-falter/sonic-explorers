@@ -9,6 +9,7 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import SoundCreateForm from "./pages/sounds/SoundCreateForm";
+import SoundPage from "./pages/sounds/SoundPage";
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm showMessage={showMessage} />} />
           <Route exact path="/profiles/:id" render={() => {}} />
           <Route exact path="/sounds/create" render={() => <SoundCreateForm showMessage={showMessage} />} />
+          <Route exact path="/sounds/:id" render={() => <SoundPage />} />
           <Route exact path="/feed" render={() => {}} />
           <Route exact path="/map" render={() => {}} />
           <Route exact path="/favourites" render={() => {}} />

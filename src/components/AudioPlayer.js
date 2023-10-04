@@ -57,14 +57,14 @@ const AudioPlayer = ({ audioUrl, audioName }) => {
 
   return (
     <Card>
-      <Card.Header>{audioName}</Card.Header>
+      {audioName && <Card.Header>{audioName}</Card.Header>}
       <Card.Body className={styles.AudioPlayer}>
         <span onClick={togglePlay} className={styles.Controls}>
           {isPlaying ? <i className="fa-solid fa-pause"></i> : <i className="fa-solid fa-play"></i>}
         </span>
         <div ref={containerRef} className={styles.WaveForm} />
       </Card.Body>
-      <Card.Footer className="text-muted">
+      <Card.Footer className="text-muted py-1">
         <span className={styles.Time}>Playback: {currentTime}s</span>
       </Card.Footer>
     </Card>

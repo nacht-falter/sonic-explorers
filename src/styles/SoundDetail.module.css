@@ -1,0 +1,35 @@
+.SoundImage {
+  width: 100%;
+  max-width: 100%;
+  max-height: 25vh;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  aspect-ratio: 1/1;
+}
+
+.Tag {
+  margin-right: 3px;
+  margin-bottom: 0.5rem;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background-color: #d939ab;
+  color: #333;
+  font-size: 0.8rem;
+}
+
+.Footer * {
+  margin: 0 5px;
+}
+
+.HeartLiked {
+  color: #d939ab;
+}
+
+.HeartLiked:hover {
+  color: #a21078;
+}
+
+.HeartNotLiked:hover {
+  color: #d939ab;
+}
