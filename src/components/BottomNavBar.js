@@ -13,16 +13,16 @@ const BottomNavBar = () => {
             <span className={styles.NavItemText}>Explore</span>
           </Stack>
         </NavLink>
-        <NavLink to="/feed" activeClassName={styles.Active}>
-          <Stack className="text-center">
-            <i className="fa-solid fa-radio"></i>
-            <span className={styles.NavItemText}>Feed</span>
-          </Stack>
-        </NavLink>
         <NavLink to="/map" activeClassName={styles.Active}>
           <Stack className="text-center">
             <i className="fa-solid fa-map-location"></i>
             <span className={styles.NavItemText}>Map</span>
+          </Stack>
+        </NavLink>
+        <NavLink to="/feed" activeClassName={styles.Active}>
+          <Stack className="text-center">
+            <i className="fa-solid fa-radio"></i>
+            <span className={styles.NavItemText}>Feed</span>
           </Stack>
         </NavLink>
         <NavLink to="/favourites" activeClassName={styles.Active}>
