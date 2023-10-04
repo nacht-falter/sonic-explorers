@@ -4,8 +4,6 @@ import Card from "react-bootstrap/Card";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import ListGroup from "react-bootstrap/ListGroup";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
 import { Link } from "react-router-dom";
@@ -16,6 +14,7 @@ import AudioPlayer from "../../components/AudioPlayer";
 import styles from "../../styles/SoundDetail.module.css";
 import appStyles from "../../App.module.css";
 import { axiosResponse } from "../../api/axiosDefaults";
+import SoundImage from "../../components/SoundImage";
 
 const SoundDetail = (props) => {
   const {
@@ -69,45 +68,33 @@ const SoundDetail = (props) => {
   };
 
   return (
-    <Container>
+    <Container className="mb-3">
       <Card bg="light" className={styles.Sound}>
-        <Card.Header className="d-flex justify-content-between">
-          <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_avatar} height={55} />
-            {owner}
-          </Link>
-          <span className="d-flex align-items-center">
-            <ListGroup className={appStyles.SmallText}>
-              <ListGroup.Item>Created: {created_at}</ListGroup.Item>
-            </ListGroup>
-          </span>
+        <Card.Header className="d-flex justify-content-between align-items-center">
+            <Link to={`/sounds/${id}`}>
+          <SoundImage src={image} height={75} text={title} />
+            </Link>
+          <div className={appStyles.SmallText}>
+            <Link to={`/profiles/${profile_id}`}>
+              <Avatar src={profile_avatar} height={30} text={owner} />
+            </Link>
+            <div className="mt-2">{created_at}</div>
+          </div>
         </Card.Header>
-        <Card.Body>
-          <Card.Title>{title}</Card.Title>
-          <Container className="mb-2">
-            <Row>
-              <Col sm={4} className="p-0 pb-2 pb-sm-0 pe-sm-2">
-                <Card.Img src={image} alt={title} className={styles.SoundImage} />
-              </Col>
-              <Col sm={8} className="p-0">
-                <ListGroup className={appStyles.SmallText}>
-                  {description && (
-                    <ListGroup.Item>
-                      <div className="fw-bold">Description</div>
-                      {description}
-                    </ListGroup.Item>
-                  )}
-                  <ListGroup.Item>
-                    <div className="fw-bold">Location</div>
-                    {latitude}, {longitude}
-                  </ListGroup.Item>
-                </ListGroup>
-              </Col>
-            </Row>
-          </Container>
-          <AudioPlayer audioUrl={audio_file} />
-          {tags?.length > 0 && (
-            <ListGroup className={`${appStyles.SmallText} mt-2`}>
+        <Card.Body className="pt-2">
+          <Card.Title></Card.Title>
+          <ListGroup horizontal="md" className={`${appStyles.SmallText} mb-2`}>
+            {description && (
+              <ListGroup.Item>
+                <div className="fw-bold">Description</div>
+                {description}
+              </ListGroup.Item>
+            )}
+            <ListGroup.Item>
+              <div className="fw-bold">Location</div>
+              {latitude}, {longitude}
+            </ListGroup.Item>
+            {tags?.length > 0 && (
               <ListGroup.Item>
                 <div className="fw-bold">Tags</div>
                 <div className="d-flex align-items-center mt-2">
@@ -118,32 +105,38 @@ const SoundDetail = (props) => {
                   ))}
                 </div>
               </ListGroup.Item>
-            </ListGroup>
-          )}
+            )}
+          </ListGroup>
+          <AudioPlayer audioUrl={audio_file} />
         </Card.Body>
-        <Card.Footer className={`${styles.Footer} d-flex justify-content-end align-items-center`}>
-          {is_owner ? (
-            <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own sound!</Tooltip>}>
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          ) : like_id ? (
-            <span onClick={() => handleLikeUnlike(false)}>
-              <i className={`fas fa-heart ${styles.HeartLiked}`} />
+        <Card.Footer className={`${styles.Footer} ${appStyles.SmallText} d-flex justify-content-between align-items-center`}>
+          <div>Last updated: {updated_at}</div>
+          <div>
+            <span className="me-2">
+              {is_owner ? (
+                <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own sound!</Tooltip>}>
+                  <i className="far fa-heart" />
+                </OverlayTrigger>
+              ) : like_id ? (
+                <span onClick={() => handleLikeUnlike(false)}>
+                  <i className={`fas fa-heart ${styles.HeartLiked}`} />
+                </span>
+              ) : currentUser ? (
+                <span onClick={handleLikeUnlike}>
+                  <i className={`far fa-heart ${styles.HeartNotLiked}`} />
+                </span>
+              ) : (
+                <OverlayTrigger placement="top" overlay={<Tooltip>Log in to like sounds!</Tooltip>}>
+                  <i className="far fa-heart" />
+                </OverlayTrigger>
+              )}
+              {likes_count}
             </span>
-          ) : currentUser ? (
-            <span onClick={handleLikeUnlike}>
-              <i className={`far fa-heart ${styles.HeartNotLiked}`} />
+            <span>
+              <i className="far fa-comments" />
+              {comments_count}
             </span>
-          ) : (
-            <OverlayTrigger placement="top" overlay={<Tooltip>Log in to like sounds!</Tooltip>}>
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          )}
-          {likes_count}
-          <span>
-            <i className="far fa-comments" />
-          </span>
-          {comments_count}
+          </div>
         </Card.Footer>
       </Card>
     </Container>

@@ -1,3 +1,7 @@
+.Sound {
+  border: 5px solid lightgrey;
+}
+
 .SoundImage {
   width: 100%;
   max-width: 100%;
@@ -18,8 +22,8 @@
   font-size: 0.8rem;
 }
 
-.Footer * {
-  margin: 0 5px;
+.Footer i {
+  margin-right: 5px;
 }
 
 .HeartLiked {
