@@ -15,6 +15,7 @@ import AudioPlayer from "../../components/AudioPlayer";
 
 import styles from "../../styles/SoundDetail.module.css";
 import appStyles from "../../App.module.css";
+import { axiosResponse } from "../../api/axiosDefaults";
 
 const SoundDetail = (props) => {
   const {
@@ -35,10 +36,37 @@ const SoundDetail = (props) => {
     likes_count,
     comments_count,
     soundPage,
+    setSounds,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const handleLikeUnlike = async (isLike) => {
+    const responseData = {};
+    try {
+      if (isLike) {
+        const { data } = await axiosResponse.post("/likes/", { sound: id });
+        responseData.like_id = data.id;
+        responseData.likes_count = likes_count + 1;
+      } else {
+        await axiosResponse.delete(`/likes/${like_id}`);
+        responseData.like_id = null;
+        responseData.likes_count = likes_count - 1;
+      }
+
+      setSounds((prevSounds) => ({
+        ...prevSounds,
+        results: prevSounds.results.map((sound) => {
+          return sound.id === id
+            ? { ...sound, likes_count: responseData.likes_count, like_id: responseData.like_id }
+            : sound;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Container>
@@ -91,7 +119,7 @@ const SoundDetail = (props) => {
                 </div>
               </ListGroup.Item>
             </ListGroup>
-          )} 
+          )}
         </Card.Body>
         <Card.Footer className={`${styles.Footer} d-flex justify-content-end align-items-center`}>
           {is_owner ? (
@@ -99,11 +127,11 @@ const SoundDetail = (props) => {
               <i className="far fa-heart" />
             </OverlayTrigger>
           ) : like_id ? (
-            <span onClick={() => {}}>
+            <span onClick={() => handleLikeUnlike(false)}>
               <i className={`fas fa-heart ${styles.HeartLiked}`} />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}}>
+            <span onClick={handleLikeUnlike}>
               <i className={`far fa-heart ${styles.HeartNotLiked}`} />
             </span>
           ) : (
