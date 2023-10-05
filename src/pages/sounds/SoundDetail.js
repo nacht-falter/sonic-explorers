@@ -46,6 +46,7 @@ const SoundDetail = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const [rerenderMap, setRerenderMap] = useState(false);
 
   const handleLikeUnlike = async (isLike) => {
     const responseData = {};
@@ -73,6 +74,10 @@ const SoundDetail = (props) => {
     }
   };
 
+  const handleShowDetails = () => {
+    setRerenderMap(rerenderMap ? false : true);
+  };
+
   const soundDetails = (
     <Row className="mt-2">
       <Col md={7} className="pe-md-0">
@@ -96,7 +101,7 @@ const SoundDetail = (props) => {
         </ListGroup>
       </Col>
       <Col md={5} className="pb-2 pt-1 pt-md-0">
-        <SoundDetailMap sound={{ id: id, location: [latitude, longitude] }} />
+        <SoundDetailMap sound={{ id: id, location: [latitude, longitude] }} rerender={rerenderMap} />
       </Col>
     </Row>
   );
@@ -129,7 +134,7 @@ const SoundDetail = (props) => {
           ) : (
             <Accordion className="my-2">
               <Accordion.Item eventKey="0">
-                <Accordion.Header as="span" className={`${styles.AccordionHeader} p-0`}>
+                <Accordion.Header as="span" onClick={handleShowDetails} className={`${styles.AccordionHeader} p-0`}>
                   Show Details
                 </Accordion.Header>
                 <Accordion.Body className="p-2">
