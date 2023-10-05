@@ -1,5 +1,5 @@
 .Sound {
-  border: 5px solid lightgrey;
+  border: 1px solid darkgrey;
 }
 
 .SoundImage {
@@ -36,4 +36,14 @@
 
 .HeartNotLiked:hover {
   color: #d939ab;
+}
+
+.AccordionHeader * {
+  padding: 0.5rem 1rem !important;
+  font-size: 0.8rem;
+}
+
+.AccordionHeader *[aria-expanded="true"] {
+  background-color: #f1f2f3;
+  color: #000000;
 }
