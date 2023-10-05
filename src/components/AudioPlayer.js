@@ -14,7 +14,7 @@ const AudioPlayer = ({ audioUrl, audioName }) => {
   useEffect(() => {
     wavesurfer.current = WaveSurfer.create({
       container: containerRef.current,
-      waveColor: "rgb(200, 0, 200)",
+      waveColor: "#d939ab",
       progressColor: "rgb(100, 0, 100)",
       url: audioUrl,
       plugins: [
@@ -29,7 +29,7 @@ const AudioPlayer = ({ audioUrl, audioName }) => {
       barWidth: 2,
       barGap: 1,
       barRadius: 2,
-      height: 75,
+      height: 60,
     });
 
     wavesurfer.current.on("play", () => setIsPlaying(true));
@@ -60,7 +60,7 @@ const AudioPlayer = ({ audioUrl, audioName }) => {
       {audioName && <Card.Header>{audioName}</Card.Header>}
       <Card.Body className={styles.AudioPlayer}>
         <span onClick={togglePlay} className={styles.Controls}>
-          {isPlaying ? <i className="fa-solid fa-pause"></i> : <i className="fa-solid fa-play"></i>}
+          {isPlaying ? <i className="fa-solid fa-circle-pause"></i> : <i className="fa-solid fa-circle-play"></i>}
         </span>
         <div ref={containerRef} className={styles.WaveForm} />
       </Card.Body>

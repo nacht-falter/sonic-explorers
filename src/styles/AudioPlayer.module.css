@@ -1,6 +1,7 @@
 .AudioPlayer {
   display: flex;
   align-items: center;
+  z-index: 1
 }
 
 .WaveForm {
@@ -12,9 +13,10 @@
 }
 
 .Controls {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-right: 0.5rem;
   width: 2.5rem;
+  color: #444444;
 }
 
 .Controls:hover {
