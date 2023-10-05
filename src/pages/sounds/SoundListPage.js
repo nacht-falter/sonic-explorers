@@ -13,6 +13,8 @@ import { axiosRequest } from "../../api/axiosDefaults";
 import styles from "../../styles/SoundListPage.module.css";
 
 import NoResults from "../../assets/images/no-results512.png";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 function SoundListPage({ heading, message, filter = "" }) {
   const [sounds, setSounds] = useState({ results: [] });
@@ -62,7 +64,15 @@ function SoundListPage({ heading, message, filter = "" }) {
         {hasLoaded ? (
           <>
             {sounds.results.length ? (
-              sounds.results.map((sound) => <SoundDetail key={sound.id} {...sound} setSounds={setSounds} />)
+              <InfiniteScroll
+                children={sounds.results.map((sound) => (
+                  <SoundDetail key={sound.id} {...sound} setSounds={setSounds} />
+                ))}
+                dataLength={sounds.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!sounds.next}
+                next={() => fetchMoreData(sounds, setSounds)}
+              />
             ) : (
               <Container>
                 <Asset img={NoResults} message={message} />
