@@ -54,7 +54,7 @@ function App() {
                 <SoundListPage
                   heading="Sounds by people you follow"
                   message="No results. Try searching for something else or start following someone."
-                  filter={`?following=${profileId}`}
+                  filter={`following=${profileId}&`}
                 />
               ) : (
                 <Asset spinner />
@@ -69,7 +69,7 @@ function App() {
                 <SoundListPage
                   heading="Sounds you like"
                   message="No results. Try searching for something else or like some sounds."
-                  filter={`?liked=${profileId}&ordering=-likes__created_at`}
+                  filter={`liked=${profileId}&ordering=-likes__created_at&`}
                 />
               ) : (
                 <Asset spinner />

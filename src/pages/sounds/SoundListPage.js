@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 
 import Asset from "../../components/Asset";
 import SoundDetail from "./SoundDetail";
 
 import { useLocation } from "react-router-dom";
 import { axiosRequest } from "../../api/axiosDefaults";
+import styles from "../../styles/SoundListPage.module.css";
 
 import NoResults from "../../assets/images/no-results512.png";
 
@@ -16,11 +18,12 @@ function SoundListPage({ heading, message, filter = "" }) {
   const [sounds, setSounds] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchSounds = async () => {
       try {
-        const { data } = await axiosRequest.get(`/sounds/${filter}`);
+        const { data } = await axiosRequest.get(`/sounds/?${filter}search=${query}`);
         setHasLoaded(true);
         setSounds(data);
       } catch (err) {
@@ -29,13 +32,33 @@ function SoundListPage({ heading, message, filter = "" }) {
     };
 
     setHasLoaded(false);
-    fetchSounds();
-  }, [filter, pathname]);
+    if (query) {
+      const queryTimer = setTimeout(() => {
+        fetchSounds();
+      }, 1000);
+      return () => clearTimeout(queryTimer);
+    } else {
+      fetchSounds();
+    }
+  }, [filter, query, pathname]);
 
   return (
     <Row className="h-100">
       <h3>{heading}</h3>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <Container>
+          <i className={`fas fa-search ${styles.SearchIcon}`} />
+          <Form className={styles.SearchBar} onSubmit={(event) => event.preventDefault()}>
+            <Form.Control
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              type="text"
+              className="mr-sm-2"
+              placeholder="Search for sounds, tags, or users"
+            />
+          </Form>
+        </Container>
+
         {hasLoaded ? (
           <>
             {sounds.results.length ? (
