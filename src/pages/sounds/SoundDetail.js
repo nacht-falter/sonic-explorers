@@ -20,6 +20,8 @@ import appStyles from "../../App.module.css";
 import { axiosResponse } from "../../api/axiosDefaults";
 import SoundImage from "../../components/SoundImage";
 import SoundDetailMap from "../../components/SoundDetailMap";
+import { MoreDropdown } from "../../components/MoreDropdown";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 const SoundDetail = (props) => {
   const {
@@ -44,9 +46,10 @@ const SoundDetail = (props) => {
   } = props;
 
   const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === owner;
+  const isOwner = currentUser?.username === owner;
   const history = useHistory();
   const [rerenderMap, setRerenderMap] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleLikeUnlike = async (isLike) => {
     const responseData = {};
@@ -76,6 +79,24 @@ const SoundDetail = (props) => {
 
   const handleShowDetails = () => {
     setRerenderMap(rerenderMap ? false : true);
+  };
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosResponse.delete(`/sounds/${id}`);
+      soundPage && history.goBack();
+      setShowModal(false);
+      setSounds((prevSounds) => ({
+        ...prevSounds,
+        results: prevSounds.results.filter((sound) => sound.id !== id),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const soundDetails = (
@@ -120,9 +141,12 @@ const SoundDetail = (props) => {
             <SoundImage src={image} height={75} text={title} />
           </Link>
           <div className={appStyles.SmallText}>
-            <Link to={`/profiles/${profile_id}`}>
-              <Avatar src={profile_avatar} height={30} text={owner} />
-            </Link>
+            <span className="d-flex align-items-center justify-content-between">
+              <Link to={`/profiles/${profile_id}`}>
+                <Avatar src={profile_avatar} height={30} text={owner} />
+              </Link>
+              <MoreDropdown handleShowModal={handleShowModal} isOwner={isOwner} />
+            </span>
             <div className="mt-2">{created_at}</div>
           </div>
         </Card.Header>
@@ -156,7 +180,7 @@ const SoundDetail = (props) => {
           <div>Last updated: {updated_at}</div>
           <div>
             <span className="me-2">
-              {is_owner ? (
+              {isOwner ? (
                 <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own sound!</Tooltip>}>
                   <i className="far fa-heart" />
                 </OverlayTrigger>
@@ -182,6 +206,14 @@ const SoundDetail = (props) => {
           </div>
         </Card.Footer>
       </Card>
+      <ConfirmationModal
+        show={showModal}
+        setShow={setShowModal}
+        handleMethod={handleDelete}
+        title="Delete Sound?"
+        body="Do you really want to delete this sound?"
+        type="danger"
+      />
     </Container>
   );
 };
