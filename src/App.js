@@ -82,7 +82,7 @@ function App() {
           <Route exact path="/profiles/:id" render={() => {}} />
           <Route exact path="/sounds/create" render={() => <SoundCreateForm showMessage={showMessage} />} />
           <Route exact path="/sounds/:id" render={() => <SoundPage />} />
-          <Route exact path="/sounds/:id/edit" render={() => <SoundEditForm />} />
+          <Route exact path="/sounds/:id/edit" render={() => <SoundEditForm showMessage={showMessage} />} />
           <Route exact path="/news" render={() => {}} />
           <Route render={() => <h1>404 Not Found</h1>} />
         </Switch>

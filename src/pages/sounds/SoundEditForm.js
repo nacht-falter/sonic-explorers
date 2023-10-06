@@ -133,6 +133,7 @@ function SoundEditForm(props) {
       history.push(`/sounds/${id}`);
     } catch (err) {
       setErrors(err.response?.data);
+      setButtonDisabled(false);
       showMessage("warning", "Upload failed! Please try again.");
       console.log(err.response?.data);
     }
