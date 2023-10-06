@@ -277,15 +277,14 @@ function SoundEditForm(props) {
                 <LocationField
                   sendLocation={setLocation}
                   showMessage={showMessage}
-                  previousLocation={location}
                   setButtonDisabled={setButtonDisabled}
                 />
                 {locationErrors}
 
-                <ImageField sendImage={setImage} showMessage={showMessage} previousImage={image} />
+                <ImageField sendImage={setImage} showMessage={showMessage}  />
                 {imageErrors}
 
-                <TagField sendTags={setTags} showMessage={showMessage} previousTags={tags} />
+                <TagField sendTags={setTags} showMessage={showMessage} />
                 {tagErrors}
               </Container>
               <hr />

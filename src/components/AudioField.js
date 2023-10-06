@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, memo } from "react";
 import Form from "react-bootstrap/Form";
 
 import styles from "../styles/AudioField.module.css";
@@ -7,8 +7,8 @@ import appStyles from "../App.module.css";
 import Asset from "./Asset";
 import AudioPlayer from "./AudioPlayer";
 
-const AudioField = ({ sendAudio }) => {
-  const [audio, setAudio] = useState(null);
+const AudioField = memo(({ sendAudio, previousAudio }) => {
+  const [audio, setAudio] = useState(previousAudio?.length ? previousAudio : null);
   const audioInput = useRef(null);
   const [audioChanged, setAudioChanged] = useState(false);
 
@@ -30,7 +30,10 @@ const AudioField = ({ sendAudio }) => {
     <Form.Group>
       {audio ? (
         <>
-          <AudioPlayer audioUrl={URL.createObjectURL(audio)} audioName={"Preview: " + audio.name} />
+          <AudioPlayer
+            audioUrl={audio.length ? audio : URL.createObjectURL(audio)}
+            audioName={audio.length ? "" : "Preview: " + audio.name}
+          />
           <p className={`${appStyles.SmallText} ms-2`}>
             ⚠️ If your sound is longer than 30 seconds, it will be trimmed to the first 30 seconds. Custom trimming is
             not available at this point.
@@ -61,6 +64,8 @@ const AudioField = ({ sendAudio }) => {
       />
     </Form.Group>
   );
-};
+});
 
-export default AudioField;
+// Instructions for preventing unnecessary re-renders from:
+// https://stackoverflow.com/a/59564675
+export default memo(AudioField, (prevProps, nextProps) => prevProps.previousAudio === nextProps.previousAudio);
