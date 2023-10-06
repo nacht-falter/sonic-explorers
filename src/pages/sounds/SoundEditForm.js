@@ -284,7 +284,7 @@ function SoundEditForm(props) {
                 <ImageField sendImage={setImage} showMessage={showMessage} previousImage={image} />
                 {imageErrors}
 
-                <TagField sendTags={setTags} showMessage={showMessage} />
+                <TagField sendTags={setTags} showMessage={showMessage} previousTags={tags} />
                 {tagErrors}
               </Container>
               <hr />
