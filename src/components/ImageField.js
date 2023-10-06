@@ -7,8 +7,8 @@ import Image from "react-bootstrap/Image";
 import btnStyles from "../styles/Button.module.css";
 import styles from "../styles/ImageField.module.css";
 
-const ImageField = ({ sendImage }) => {
-  const [image, setImage] = useState("");
+const ImageField = ({ sendImage, previousImage }) => {
+  const [image, setImage] = useState(previousImage?.length ? previousImage : "");
   const imageInput = useRef(null);
   const [imageChanged, setImageChanged] = useState(false);
 
@@ -51,7 +51,7 @@ const ImageField = ({ sendImage }) => {
       {image ? (
         <div>
           <Form.Label className={styles.ImagePreview} htmlFor="image-upload">
-            <Image src={URL.createObjectURL(image)} alt="Sound image" />
+            <Image src={image.length ? image : URL.createObjectURL(image)} alt="Sound image" />
             <span className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-1 btn d-block`}>Change image</span>
           </Form.Label>
         </div>
