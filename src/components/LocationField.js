@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import Form from "react-bootstrap/Form";
 import Badge from "react-bootstrap/Badge";
@@ -10,38 +10,50 @@ import btnStyles from "../styles/Button.module.css";
 import styles from "../styles/TagField.module.css";
 import LocationPicker from "./LocationPicker";
 
-const LocationField = ({ sendLocation, showMessage }) => {
-  const [locationStatus, setLocationStatus] = useState("Please provide location data for your sound");
+const LocationField = ({ sendLocation, previousLocation, showMessage, setButtonDisabled }) => {
+  const [locationStatus, setLocationStatus] = useState(
+    previousLocation ? previousLocation : "Please provide location data."
+  );
   const [locationChanged, setLocationChanged] = useState(false);
   const [showMap, setShowMap] = useState(false);
-  const [location, setLocation] = useState([]);
+  const [location, setLocation] = useState(previousLocation ? previousLocation : []);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
     if (locationChanged) {
-      sendLocation(location);
-      setLocationChanged(false);
+      setButtonDisabled(true);
+      setTimeout(() => {
+        sendLocation(location);
+        setLocationChanged(false);
+        setButtonDisabled(false);
+      }, 1500);
     }
-  }, [location, locationChanged, sendLocation]);
+  }, [location, locationChanged, sendLocation, setButtonDisabled]);
 
   const handleCloseMap = () => setShowMap(false);
   const handleShowMap = () => setShowMap(true);
 
   const handleSelectLocation = (location) => {
-    setLocation([location.lat, location.lng]);
-    setLocationChanged(true);
-    showMessage("success", "Location data received!");
-    handleCloseMap();
+    if (location) {
+      setLocation([location.lat, location.lng]);
+      setLocationChanged(true);
+      handleCloseMap();
+    } else {
+      setShowTooltip(true);
+    }
   };
 
   // Instructions for HTML Geolocation API: https://www.w3schools.com/html/html5_geolocation.asp
   const getLocation = () => {
     setLocationStatus("Retrieving location data... Please wait.");
+    setButtonDisabled(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLocation([position.coords.latitude, position.coords.longitude]);
           setLocationChanged(true);
-          showMessage("success", "Location data received!");
+          setShowTooltip(false);
+          setButtonDisabled(false);
         },
         (error) => {
           console.log(error);
@@ -81,26 +93,36 @@ const LocationField = ({ sendLocation, showMessage }) => {
           </Badge>
         </OverlayTrigger>
       </Form.Label>
-      <Form.Control
-        className={styles.Input}
-        name="location"
-        placeholder={locationStatus}
-        value={location}
-        disabled
-      />
+      <Form.Control className={styles.Input} name="location" placeholder={locationStatus} value={location} disabled />
 
-      {showMap && <LocationPicker onClose={handleCloseMap} onConfirm={handleSelectLocation} />}
+      {showMap && (
+        <LocationPicker
+          onClose={handleCloseMap}
+          onConfirm={handleSelectLocation}
+          showTooltip={showTooltip}
+          setShowTooltip={setShowTooltip}
+          currentLocation={location}
+        />
+      )}
 
-      <Button
-        className={`${btnStyles.YellowButton} ${btnStyles.Small} me-2 mt-2`}
-        variant="secondary"
-        onClick={getLocation}
-      >
-        Get current location
-      </Button>
-      <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2`} onClick={handleShowMap}>
-        Select location on map
-      </Button>
+      {!previousLocation ? (
+        <>
+          <Button
+            className={`${btnStyles.YellowButton} ${btnStyles.Small} me-2 mt-2`}
+            variant="secondary"
+            onClick={getLocation}
+          >
+            Get current location
+          </Button>
+          <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2`} onClick={handleShowMap}>
+            Select location on map
+          </Button>
+        </>
+      ) : (
+        <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2`} onClick={handleShowMap}>
+          Select new location
+        </Button>
+      )}
     </Form.Group>
   );
 };

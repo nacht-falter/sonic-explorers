@@ -277,6 +277,7 @@ function SoundEditForm(props) {
                 <LocationField
                   sendLocation={setLocation}
                   showMessage={showMessage}
+                  previousLocation={location}
                   setButtonDisabled={setButtonDisabled}
                 />
                 {locationErrors}

@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Button from "react-bootstrap/Button";
+import Overlay from "react-bootstrap/Overlay";
+import Tooltip from "react-bootstrap/Tooltip";
 import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
 import styles from "../styles/LocationPicker.module.css";
 import btnStyles from "../styles/Button.module.css";
 
-function LocationPicker({ onConfirm, onClose }) {
+function LocationPicker({ onConfirm, onClose, showTooltip, setShowTooltip, currentLocation }) {
+  const target = useRef(null);
+
   // Instructions for picking location on map from react-leaflet docs:
   // https://react-leaflet.js.org/docs/example-events/
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState(currentLocation?.length ? currentLocation : null);
   function LocationMarker() {
-    const map = useMapEvents({
+    useMapEvents({
       click(e) {
         setLocation(e.latlng);
+        setShowTooltip(false);
       },
     });
 
@@ -20,7 +25,6 @@ function LocationPicker({ onConfirm, onClose }) {
 
   const confirmLocation = () => {
     onConfirm(location);
-    onClose();
   };
 
   return (
@@ -38,9 +42,20 @@ function LocationPicker({ onConfirm, onClose }) {
           <Button className="mt-2 me-2" variant="secondary" size="sm" onClick={onClose}>
             Cancel
           </Button>
-          <Button className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2`} onClick={confirmLocation}>
+          <Button
+            ref={target}
+            className={`${btnStyles.YellowButton} ${btnStyles.Small} mt-2`}
+            onClick={confirmLocation}
+          >
             Confirm Location
           </Button>
+          <Overlay target={target.current} show={showTooltip} placement="right">
+            {(props) => (
+              <Tooltip id="location-warning" {...props}>
+                Please select a location on the map.
+              </Tooltip>
+            )}
+          </Overlay>
         </div>
       </div>
     </div>
