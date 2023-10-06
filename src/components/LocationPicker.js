@@ -15,7 +15,8 @@ function LocationPicker({ onConfirm, onClose, showTooltip, setShowTooltip, curre
   function LocationMarker() {
     useMapEvents({
       click(e) {
-        setLocation(e.latlng);
+        const { lat, lng } = e.latlng;
+        setLocation([lat, lng]);
         setShowTooltip(false);
       },
     });

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Badge from "react-bootstrap/Badge";
@@ -35,7 +35,7 @@ const LocationField = ({ sendLocation, previousLocation, showMessage, setButtonD
 
   const handleSelectLocation = (location) => {
     if (location) {
-      setLocation([location.lat, location.lng]);
+      setLocation(location);
       setLocationChanged(true);
       handleCloseMap();
     } else {
