@@ -9,6 +9,7 @@ import Alert from "react-bootstrap/Alert";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Badge from "react-bootstrap/Badge";
+import Spinner from "react-bootstrap/Spinner";
 
 import appStyles from "../../App.module.css";
 import styles from "../../styles/SoundCreateEditForm.module.css";
@@ -33,6 +34,7 @@ function SoundCreateForm(props) {
   });
   const { title, description, audio, image, location, tags } = soundData;
   const history = useHistory();
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   // Method for getting audio from AudioField component
   const setAudio = (audio) => {
@@ -74,6 +76,7 @@ function SoundCreateForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setButtonDisabled(true);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
@@ -94,14 +97,14 @@ function SoundCreateForm(props) {
     } else {
       formData.append("tags", []);
     }
-    console.log(formData);
     try {
-      showMessage("info", "Uploading sound... Please wait.");
       const { data } = await axiosRequest.post("/sounds/", formData);
       showMessage("success", "Sound successfully uploaded!");
+      setButtonDisabled(false);
       history.push(`/sounds/${data.id}`);
     } catch (err) {
       setErrors(err.response?.data);
+      setButtonDisabled(false);
       showMessage("warning", "Upload failed! Please try again.");
       console.log(err.response?.data);
     }
@@ -232,7 +235,7 @@ function SoundCreateForm(props) {
         </h3>
         <Col lg={5}>
           <Container>
-            <AudioField sendAudio={setAudio} showMessage={showMessage} />
+            <AudioField sendAudio={setAudio} />
             {audioErrors}
           </Container>
           <hr className="d-lg-none" />
@@ -241,7 +244,7 @@ function SoundCreateForm(props) {
           <Container className={`${appStyles.Content}`}>
             {textFields}
 
-            <LocationField sendLocation={setLocation} showMessage={showMessage} />
+            <LocationField sendLocation={setLocation} showMessage={showMessage} setButtonDisabled={setButtonDisabled} />
             {locationErrors}
 
             <ImageField sendImage={setImage} showMessage={showMessage} />
@@ -255,8 +258,8 @@ function SoundCreateForm(props) {
             <Button className="btn btn-secondary me-2" onClick={history.goBack}>
               Cancel
             </Button>
-            <Button className={`${btnStyles.Button}`} type="submit">
-              Upload
+            <Button className={`${btnStyles.Button}`} type="submit" disabled={buttonDisabled}>
+              {buttonDisabled ? <Spinner size="sm" /> : "Upload Sound"}
             </Button>
           </Container>
         </Col>
