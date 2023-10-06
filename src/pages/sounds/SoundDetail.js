@@ -85,6 +85,10 @@ const SoundDetail = (props) => {
     setShowModal(true);
   };
 
+  const handleEdit = () => {
+    history.push(`/sounds/${id}/edit`);
+  };
+
   const handleDelete = async () => {
     try {
       await axiosResponse.delete(`/sounds/${id}`);
@@ -145,7 +149,7 @@ const SoundDetail = (props) => {
               <Link to={`/profiles/${profile_id}`}>
                 <Avatar src={profile_avatar} height={30} text={owner} />
               </Link>
-              <MoreDropdown handleShowModal={handleShowModal} isOwner={isOwner} />
+              <MoreDropdown handleEdit={handleEdit} handleShowModal={handleShowModal} isOwner={isOwner} />
             </span>
             <div className="mt-2">{created_at}</div>
           </div>

@@ -15,7 +15,7 @@ const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
   ></i>
 ));
 
-export const MoreDropdown = ({ handleShowModal, isOwner }) => {
+export const MoreDropdown = ({ handleEdit, handleShowModal, isOwner }) => {
   return (
     <Dropdown className="ml-auto" drop="bottom">
       <Dropdown.Toggle as={DropdownIcon} />
@@ -23,6 +23,15 @@ export const MoreDropdown = ({ handleShowModal, isOwner }) => {
       <Dropdown.Menu>
         {isOwner && (
           <>
+            <Dropdown.Item
+              className={`${styles.DropdownItem} ${appStyles.SmallText}`}
+              onClick={handleEdit}
+              aria-label="edit sound"
+            >
+              <i className="fas fa-edit me-2" />
+              Edit Sound
+            </Dropdown.Item>
+            <Dropdown.Divider />
             <Dropdown.Item
               className={`${styles.DropdownItem} ${appStyles.SmallText}`}
               onClick={handleShowModal}

@@ -13,6 +13,7 @@ import SoundPage from "./pages/sounds/SoundPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import SoundListPage from "./pages/sounds/SoundListPage";
 import Asset from "./components/Asset";
+import SoundEditForm from "./pages/sounds/SoundEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -81,6 +82,7 @@ function App() {
           <Route exact path="/profiles/:id" render={() => {}} />
           <Route exact path="/sounds/create" render={() => <SoundCreateForm showMessage={showMessage} />} />
           <Route exact path="/sounds/:id" render={() => <SoundPage />} />
+          <Route exact path="/sounds/:id/edit" render={() => <SoundEditForm />} />
           <Route exact path="/news" render={() => {}} />
           <Route render={() => <h1>404 Not Found</h1>} />
         </Switch>
