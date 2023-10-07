@@ -61,12 +61,14 @@ function SoundPage() {
                 )}
                 <h5 className="mb-2">Comments</h5>
                 {comments.results.length ? (
-                  comments.results.map((comment) => <Comment key={comment.id} {...comment} />)
+                  comments.results.map((comment) => (
+                    <Comment key={comment.id} {...comment} setSound={setSound} setComments={setComments} />
+                  ))
                 ) : currentUser ? (
                   <p className="ps-2 text-muted">Be the first to comment!</p>
                 ) : (
                   <p className="ps-2 text-muted">
-                    <Link to="/login">Log in</Link> to leave a comment!
+                    <Link to="/login">Log in</Link> to comment!
                   </p>
                 )}
               </div>

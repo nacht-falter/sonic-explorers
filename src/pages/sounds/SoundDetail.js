@@ -149,7 +149,12 @@ const SoundDetail = (props) => {
               <Link to={`/profiles/${profile_id}`}>
                 <Avatar src={profile_avatar} height={30} text={owner} />
               </Link>
-              <MoreDropdown handleEdit={handleEdit} handleShowModal={handleShowModal} isOwner={isOwner} />
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleShowModal={handleShowModal}
+                isOwner={isOwner}
+                item={"sound"}
+              />
             </span>
             <div className="mt-2">{created_at}</div>
           </div>
