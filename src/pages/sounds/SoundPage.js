@@ -4,21 +4,34 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
+import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { axiosRequest } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from "../../styles/SoundPage.module.css";
+
 import SoundDetail from "./SoundDetail";
 import Asset from "../../components/Asset";
+import CommentCreateForm from "../comments/CommentCreateForm";
+import Comment from "../comments/Comment";
 
 function SoundPage() {
   const { id } = useParams();
   const [sound, setSound] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const currentUser = useCurrentUser();
+  const profileAvatar = currentUser?.profile_avatar;
+  const [comments, setComments] = useState({ results: [] });
 
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: sound }] = await Promise.all([axiosRequest.get(`/sounds/${id}`)]);
+        const [{ data: sound }, { data: comments }] = await Promise.all([
+          axiosRequest.get(`/sounds/${id}`),
+          axiosRequest.get(`/comments/?sound=${id}`),
+        ]);
         setSound({ results: [sound] });
+        setComments(comments);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -35,7 +48,29 @@ function SoundPage() {
         {hasLoaded ? (
           <>
             <SoundDetail {...sound.results[0]} setSounds={setSound} soundPage />
-            <Container>Comments</Container>
+            <Container>
+              <div className={styles.CommentSection}>
+                {currentUser && (
+                  <CommentCreateForm
+                    profileId={currentUser.profile_id}
+                    profileAvatar={profileAvatar}
+                    sound={id}
+                    setSound={setSound}
+                    setComments={setComments}
+                  />
+                )}
+                <h5 className="mb-2">Comments</h5>
+                {comments.results.length ? (
+                  comments.results.map((comment) => <Comment key={comment.id} {...comment} />)
+                ) : currentUser ? (
+                  <p className="ps-2 text-muted">Be the first to comment!</p>
+                ) : (
+                  <p className="ps-2 text-muted">
+                    <Link to="/login">Log in</Link> to leave a comment!
+                  </p>
+                )}
+              </div>
+            </Container>
           </>
         ) : (
           <Container>
