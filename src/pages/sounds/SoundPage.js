@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Spinner from "react-bootstrap/Spinner";
 
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
@@ -14,6 +15,9 @@ import SoundDetail from "./SoundDetail";
 import Asset from "../../components/Asset";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import Comment from "../comments/Comment";
+
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 function SoundPage() {
   const { id } = useParams();
@@ -61,9 +65,19 @@ function SoundPage() {
                 )}
                 <h5 className="mb-2">Comments</h5>
                 {comments.results.length ? (
-                  comments.results.map((comment) => (
-                    <Comment key={comment.id} {...comment} setSound={setSound} setComments={setComments} />
-                  ))
+                  <InfiniteScroll
+                    children={comments.results.map((comment) => (
+                      <Comment key={comment.id} {...comment} setSound={setSound} setComments={setComments} />
+                    ))}
+                    dataLength={comments.results.length}
+                    loader={
+                      <div className="text-muted text-center">
+                        <Spinner />
+                      </div>
+                    }
+                    hasMore={!!comments.next}
+                    next={() => fetchMoreData(comments, setComments)}
+                  />
                 ) : currentUser ? (
                   <p className="ps-2 text-muted">Be the first to comment!</p>
                 ) : (
