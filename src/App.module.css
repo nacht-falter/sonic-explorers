@@ -20,6 +20,11 @@
   margin-bottom: 4rem;
 }
 
+.ComponentContainer {
+  border-radius: 10px;
+  border: 1px solid darkgrey;
+}
+
 @media (min-width: 450px) {
   .Main {
     padding-top: 4.5rem;

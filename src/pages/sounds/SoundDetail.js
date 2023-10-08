@@ -139,7 +139,7 @@ const SoundDetail = (props) => {
         </Button>
       )}
 
-      <Card bg="light" className={styles.Sound}>
+      <Card bg="light" className={appStyles.ComponentContainer}>
         <Card.Header className="d-flex justify-content-between align-items-center">
           <Link to={`/sounds/${id}`}>
             <SoundImage src={image} height={75} text={title} />

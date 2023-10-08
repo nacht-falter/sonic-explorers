@@ -15,6 +15,7 @@ import styles from "../../styles/SoundListPage.module.css";
 import NoResults from "../../assets/images/no-results512.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import PopularProfiles from "../profiles/PopularProfiles";
 
 function SoundListPage({ heading, message, filter = "" }) {
   const [sounds, setSounds] = useState({ results: [] });
@@ -49,6 +50,7 @@ function SoundListPage({ heading, message, filter = "" }) {
       <h3>{heading}</h3>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Container>
+          <PopularProfiles mobile />
           <i className={`fas fa-search ${styles.SearchIcon}`} />
           <Form className={styles.SearchBar} onSubmit={(event) => event.preventDefault()}>
             <Form.Control
@@ -85,7 +87,9 @@ function SoundListPage({ heading, message, filter = "" }) {
           </Container>
         )}
       </Col>
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2"></Col>
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        <PopularProfiles />
+      </Col>
     </Row>
   );
 }

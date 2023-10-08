@@ -46,3 +46,7 @@
 .Small {
   font-size: 0.8rem;
 }
+
+.Narrow {
+  min-width: 3rem;
+}
