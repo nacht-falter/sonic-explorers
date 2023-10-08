@@ -18,6 +18,8 @@ import SoundListPage from "./pages/sounds/SoundListPage";
 import SoundEditForm from "./pages/sounds/SoundEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import UsernameForm from "./pages/profiles/UsernameForm";
+import PasswordForm from "./pages/profiles/PasswordForm";
 
 import styles from "./App.module.css";
 
@@ -96,6 +98,8 @@ function App() {
           <Route exact path="/sounds/:id/edit" render={() => <SoundEditForm showMessage={showMessage} />} />
           <Route exact path="/news" render={() => {}} />
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
+          <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
+          <Route exact path="/profiles/:id/edit/password" render={() => <PasswordForm />} />
           <Route render={() => <h1>404 Not Found</h1>} />
         </Switch>
       </Container>
