@@ -12,8 +12,10 @@ import btnStyles from "../../styles/Button.module.css";
 import hr from "../../assets/images/hr-wave.svg";
 import image from "../../assets/images/luke-porter-UGX2qdjdKkw-unsplash.jpg";
 import axios from "axios";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = (props) => {
+  useRedirect("loggedIn");
   const { showMessage } = props;
   const [signUpData, setSignUpData] = useState({ username: "", password1: "", password2: "" });
   const { username, password1, password2 } = signUpData;

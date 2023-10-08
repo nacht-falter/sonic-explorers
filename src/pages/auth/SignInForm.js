@@ -13,9 +13,11 @@ import hr from "../../assets/images/hr-wave.svg";
 import image from "../../assets/images/bruno-aguirre-wOWgGnf1Gng-unsplash.jpg";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignInForm = (props) => {
   const setCurrentUser = useSetCurrentUser();
+  useRedirect("loggedIn");
   const { showMessage } = props;
   const [signInData, setSignInData] = useState({ username: "", password: "" });
   const { username, password } = signInData;
@@ -35,7 +37,7 @@ const SignInForm = (props) => {
       const {data} = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       showMessage("success", "Successfully logged in as " + data.user.username + "!");
-      history.push("/");
+      history.goBack();
     } catch (err) {
       setErrors(err.response?.data);
     }
