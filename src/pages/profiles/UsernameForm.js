@@ -15,7 +15,7 @@ import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserCon
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
-const UsernameForm = () => {
+const UsernameForm = ({ showMessage }) => {
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
 
@@ -31,9 +31,10 @@ const UsernameForm = () => {
         setUsername(currentUser.username);
       } else {
         history.push("/");
+        showMessage("warning", "You are not allowed to change this username.");
       }
     }
-  }, [currentUser, history, id]);
+  }, [currentUser, history, id, showMessage]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

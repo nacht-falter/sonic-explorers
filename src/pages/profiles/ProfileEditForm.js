@@ -17,7 +17,7 @@ import btnStyles from "../../styles/Button.module.css";
 import Avatar from "../../components/Avatar";
 import Asset from "../../components/Asset";
 
-const ProfileEditForm = () => {
+const ProfileEditForm = ({ showMessage }) => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
@@ -48,6 +48,7 @@ const ProfileEditForm = () => {
             history.push("/");
           }
         } else {
+          showMessage("warning", "You are not allowed to edit this profile.");
           history.push("/");
         }
         setHasLoaded(true);
@@ -55,7 +56,7 @@ const ProfileEditForm = () => {
     };
 
     handleMount();
-  }, [currentUser, history, id]);
+  }, [currentUser, history, id, showMessage]);
 
   const handleChange = (event) => {
     setProfileData({

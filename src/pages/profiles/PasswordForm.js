@@ -15,7 +15,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
-const PasswordForm = () => {
+const PasswordForm = ({ showMessage }) => {
   const history = useHistory();
   const { id } = useParams();
   const currentUser = useCurrentUser();
@@ -38,10 +38,11 @@ const PasswordForm = () => {
   useEffect(() => {
     if (currentUser) {
       if (currentUser?.profile_id?.toString() !== id) {
+        showMessage("warning", "You are not allowed to change this password.");
         history.push("/");
       }
     }
-  }, [currentUser, history, id]);
+  }, [currentUser, history, id, showMessage]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

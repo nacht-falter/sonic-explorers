@@ -97,9 +97,9 @@ function App() {
           <Route exact path="/sounds/:id" render={() => <SoundPage />} />
           <Route exact path="/sounds/:id/edit" render={() => <SoundEditForm showMessage={showMessage} />} />
           <Route exact path="/news" render={() => {}} />
-          <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
-          <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
-          <Route exact path="/profiles/:id/edit/password" render={() => <PasswordForm />} />
+          <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm showMessage={showMessage} />} />
+          <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm showMessage={showMessage} />} />
+          <Route exact path="/profiles/:id/edit/password" render={() => <PasswordForm showMessage={showMessage} />} />
           <Route render={() => <h1>404 Not Found</h1>} />
         </Switch>
       </Container>
