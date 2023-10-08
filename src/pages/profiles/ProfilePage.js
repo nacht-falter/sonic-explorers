@@ -21,7 +21,7 @@ function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const currentUser = useCurrentUser();
   const { id } = useParams();
-  const setProfileData = useSetProfileData();
+  const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
   const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
   const history = useHistory();
@@ -49,7 +49,7 @@ function ProfilePage() {
         <Col lg={3} className="text-lg-start">
           <Image className={styles.ProfileAvatar} roundedCircle src={profile?.avatar} />
         </Col>
-        <Col lg={currentUser && !profile?.is_owner && !profile?.following_id ? 7 : 9}>
+        <Col lg={currentUser && !profile?.is_owner ? 6 : 9}>
           <h3 className="mt-2 mt-lg-3">{profile?.display_name ? profile?.display_name : profile?.owner}</h3>
           {profile?.description && <Col className="p-3">{profile.description}</Col>}
           <Row className="justify-content-center">
@@ -69,15 +69,23 @@ function ProfilePage() {
         </Col>
         {currentUser &&
           !profile?.is_owner &&
-          (profile?.following_id ? (
-            <Col lg={2} className="text-lg-end mt-2">
-              <Button className={`${btnStyles.Button} ${btnStyles.Narrow} ${btnStyles.Small} `} onClick={() => {}}>
+          (profile?.follow_id ? (
+            <Col lg={3} className="text-lg-end mt-2">
+              <Button
+                className={`${btnStyles.YellowButton} ${btnStyles.Narrow} ${btnStyles.Small} `}
+                onClick={() => {
+                  handleUnfollow(profile);
+                }}
+              >
                 Unfollow
               </Button>
             </Col>
           ) : (
-            <Col lg={2} className="text-lg-end mt-2">
-              <Button className={`${btnStyles.Button} ${btnStyles.Narrow} ${btnStyles.Small} `} onClick={() => {}}>
+            <Col lg={3} className="text-lg-end mt-2">
+              <Button
+                className={`${btnStyles.YellowButton} ${btnStyles.Narrow} ${btnStyles.Small} `}
+                onClick={() => handleFollow(profile)}
+              >
                 Follow
               </Button>
             </Col>
