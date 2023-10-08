@@ -14,6 +14,7 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 import SoundListPage from "./pages/sounds/SoundListPage";
 import Asset from "./components/Asset";
 import SoundEditForm from "./pages/sounds/SoundEditForm";
+import ProfilePage from "./pages/profiles/ProfilePage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -44,7 +45,12 @@ function App() {
           <Route
             exact
             path="/"
-            render={() => <SoundListPage message="Nothing to see here. Try searching for something else." />}
+            render={() => (
+              <SoundListPage
+                heading="Explore all Sounds"
+                message="Nothing to see here. Try searching for something else."
+              />
+            )}
           />
           <Route exact path="/map" render={() => {}} />
           <Route
@@ -79,7 +85,7 @@ function App() {
           />
           <Route exact path="/signin" render={() => <SignInForm showMessage={showMessage} />} />
           <Route exact path="/signup" render={() => <SignUpForm showMessage={showMessage} />} />
-          <Route exact path="/profiles/:id" render={() => {}} />
+          <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/sounds/create" render={() => <SoundCreateForm showMessage={showMessage} />} />
           <Route exact path="/sounds/:id" render={() => <SoundPage />} />
           <Route exact path="/sounds/:id/edit" render={() => <SoundEditForm showMessage={showMessage} />} />

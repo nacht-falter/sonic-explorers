@@ -18,7 +18,7 @@ const PopularProfiles = ({ mobile }) => {
           <Card.Header>
             <strong>Popular Explorers</strong>
           </Card.Header>
-          <Card.Body>
+          <Card.Body className="pt-0">
             {mobile ? (
               <div className="d-flex justify-content-between">
                 {popularProfiles.results.slice(0, 4).map((profile) => (
