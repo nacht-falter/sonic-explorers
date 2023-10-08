@@ -23,7 +23,7 @@ const PopularProfiles = ({ mobile }) => {
               <div className="d-flex justify-content-between">
                 {popularProfiles.results.slice(0, 4).map((profile) => (
                   <Link key={profile.id} to={`/profiles/${profile.id}`}>
-                    <Stack className="text-center">
+                    <Stack className="text-center mt-3">
                       <Avatar src={profile.avatar} height={30} />
                       <span>{profile.owner}</span>
                     </Stack>
