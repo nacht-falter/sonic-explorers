@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
+
+import Container from "react-bootstrap/Container";
+
+import { Route, Switch } from "react-router-dom";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
+import "./api/axiosDefaults";
+
+import Message from "./components/Message";
+import Asset from "./components/Asset";
 import TopNavBar from "./components/TopNavBar";
 import BottomNavBar from "./components/BottomNavBar";
-import Message from "./components/Message";
-import styles from "./App.module.css";
-import Container from "react-bootstrap/Container";
-import { Route, Switch } from "react-router-dom";
-import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import SoundCreateForm from "./pages/sounds/SoundCreateForm";
 import SoundPage from "./pages/sounds/SoundPage";
-import { useCurrentUser } from "./contexts/CurrentUserContext";
 import SoundListPage from "./pages/sounds/SoundListPage";
-import Asset from "./components/Asset";
 import SoundEditForm from "./pages/sounds/SoundEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+
+import styles from "./App.module.css";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -90,6 +95,7 @@ function App() {
           <Route exact path="/sounds/:id" render={() => <SoundPage />} />
           <Route exact path="/sounds/:id/edit" render={() => <SoundEditForm showMessage={showMessage} />} />
           <Route exact path="/news" render={() => {}} />
+          <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
           <Route render={() => <h1>404 Not Found</h1>} />
         </Switch>
       </Container>

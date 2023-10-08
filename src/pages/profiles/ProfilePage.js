@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 
-import Asset from "../../components/Asset";
-
-import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
@@ -14,8 +12,11 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useHistory, useParams } from "react-router";
 import { axiosRequest } from "../../api/axiosDefaults";
 import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import PopularProfiles from "./PopularProfiles";
+import Avatar from "../../components/Avatar";
+import Asset from "../../components/Asset";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -46,11 +47,19 @@ function ProfilePage() {
   const profileDetails = (
     <>
       <Row className="text-center">
-        <Col lg={3} className="text-lg-start">
-          <Image className={styles.ProfileAvatar} roundedCircle src={profile?.avatar} />
+        <Col xs={10} lg={3} className="d-lg-flex offset-1 offset-lg-0 text-lg-start align-items-center">
+          <Avatar src={profile?.avatar} height={180} />
         </Col>
-        <Col lg={currentUser && !profile?.is_owner ? 6 : 9}>
-          <h3 className="mt-2 mt-lg-3">{profile?.display_name ? profile?.display_name : profile?.owner}</h3>
+        {profile?.is_owner && (
+          <Col xs={1} className="d-lg-none d-flex justify-content-center">
+            <ProfileEditDropdown id={profile?.id} />
+          </Col>
+        )}
+        <Col lg={currentUser && !profile?.is_owner ? 6 : 8}>
+          <h3 className="mt-2 mt-lg-3 mb-1">{profile?.display_name ? profile?.display_name : profile?.owner}</h3>
+          <span className={`${appStyles.SmallText} text-muted`}>
+            {profile?.name ? profile?.name : profile?.owner}
+          </span>
           {profile?.description && <Col className="p-3">{profile.description}</Col>}
           <Row className="justify-content-center">
             <Col xs={3} className="mt-2">
@@ -67,9 +76,8 @@ function ProfilePage() {
             </Col>
           </Row>
         </Col>
-        {currentUser &&
-          !profile?.is_owner &&
-          (profile?.follow_id ? (
+        {currentUser && !profile?.is_owner ? (
+          profile?.follow_id ? (
             <Col lg={3} className="text-lg-end mt-2">
               <Button
                 className={`${btnStyles.YellowButton} ${btnStyles.Narrow} ${btnStyles.Small} `}
@@ -89,7 +97,12 @@ function ProfilePage() {
                 Follow
               </Button>
             </Col>
-          ))}
+          )
+        ) : (
+          <Col lg={1} className="d-none d-lg-flex justify-content-center">
+            <ProfileEditDropdown id={profile?.id} />
+          </Col>
+        )}
       </Row>
     </>
   );
