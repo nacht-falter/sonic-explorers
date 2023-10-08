@@ -16,6 +16,7 @@
 }
 
 .Main {
+  min-height: 100vh;
   padding-top: 6.5rem;
   margin-bottom: 4rem;
 }
@@ -28,14 +29,12 @@
 @media (min-width: 450px) {
   .Main {
     padding-top: 4.5rem;
-    margin-bottom: 4rem;
   }
 }
 
 @media (min-width: 576px) {
   .Main {
     padding-top: 6.5rem;
-    margin-bottom: 4rem;
   }
 }
 
