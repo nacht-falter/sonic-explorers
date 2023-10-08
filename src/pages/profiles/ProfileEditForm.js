@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Spinner from "react-bootstrap/Spinner";
 
 import { axiosRequest } from "../../api/axiosDefaults";
 import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserContext";
@@ -24,6 +25,7 @@ const ProfileEditForm = ({ showMessage }) => {
   const history = useHistory();
   const imageFile = useRef();
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const [profileData, setProfileData] = useState({
     name: "",
@@ -67,6 +69,7 @@ const ProfileEditForm = ({ showMessage }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setShowSpinner(true);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("display_name", display_name);
@@ -86,6 +89,8 @@ const ProfileEditForm = ({ showMessage }) => {
     } catch (err) {
       console.log(err);
       setErrors(err.response?.data);
+    } finally {
+      setShowSpinner(false);
     }
   };
 
@@ -93,11 +98,17 @@ const ProfileEditForm = ({ showMessage }) => {
     <>
       <h3 className="mb-3 d-none d-md-block fs-4">Edit profile</h3>
       <Form.Group>
-        <FloatingLabel className="mb-2" label="Name">
+        <FloatingLabel controlId="floatingName" className="mb-2" label="My name">
           <Form.Control type="text" value={display_name} onChange={handleChange} name="display_name" />
         </FloatingLabel>
-        <FloatingLabel className="mb-2" label="Username">
-          <Form.Control as="textarea" value={description} onChange={handleChange} name="description" rows={7} />
+        <FloatingLabel controlId="floatingDescription" className="mb-2" label="About me">
+          <Form.Control
+            as="textarea"
+            value={description}
+            onChange={handleChange}
+            name="description"
+            style={{ height: "100px" }}
+          />
         </FloatingLabel>
       </Form.Group>
 
@@ -112,8 +123,8 @@ const ProfileEditForm = ({ showMessage }) => {
       >
         Cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Small} ${btnStyles.Narrow} mt-2`} type="submit">
-        Save
+      <Button className={`${btnStyles.Button} ${btnStyles.Small} mt-2`} type="submit" disabled={showSpinner}>
+        {showSpinner ? <Spinner size="sm" /> : "Save changes"}
       </Button>
     </>
   );
