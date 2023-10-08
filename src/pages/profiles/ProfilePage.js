@@ -18,11 +18,18 @@ import PopularProfiles from "./PopularProfiles";
 import Avatar from "../../components/Avatar";
 import Asset from "../../components/Asset";
 
+import { fetchMoreData } from "../../utils/utils";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Sound from "../sounds/SoundDetail";
+
+import NoResults from "../../assets/images/no-results512.png"
+
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const currentUser = useCurrentUser();
   const { id } = useParams();
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
+  const [profileSounds, setProfileSounds] = useState({ results: [] });
   const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
   const history = useHistory();
@@ -30,12 +37,16 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }] = await Promise.all([axiosRequest.get(`/profiles/${id}`)]);
+        const [{ data: pageProfile }, { data: profileSounds }] = await Promise.all([
+          axiosRequest.get(`/profiles/${id}`),
+          axiosRequest.get(`/sounds/?user=${id}`),
+        ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
         console.log(pageProfile);
+        setProfileSounds(profileSounds);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -55,11 +66,9 @@ function ProfilePage() {
             <ProfileEditDropdown id={profile?.id} />
           </Col>
         )}
-        <Col lg={currentUser && !profile?.is_owner ? 6 : 8}>
+        <Col lg={currentUser && !profile?.is_owner ? 7 : 8}>
           <h3 className="mt-2 mt-lg-3 mb-1">{profile?.display_name ? profile?.display_name : profile?.owner}</h3>
-          <span className={`${appStyles.SmallText} text-muted`}>
-            {profile?.name ? profile?.name : profile?.owner}
-          </span>
+          <span className={`${appStyles.SmallText} text-muted`}>{profile?.name ? profile?.name : profile?.owner}</span>
           {profile?.description && <Col className="p-3">{profile.description}</Col>}
           <Row className="justify-content-center">
             <Col xs={3} className="mt-2">
@@ -78,7 +87,7 @@ function ProfilePage() {
         </Col>
         {currentUser && !profile?.is_owner ? (
           profile?.follow_id ? (
-            <Col lg={3} className="text-lg-end mt-2">
+            <Col lg={2} className="text-lg-end mt-2">
               <Button
                 className={`${btnStyles.YellowButton} ${btnStyles.Narrow} ${btnStyles.Small} `}
                 onClick={() => {
@@ -89,7 +98,7 @@ function ProfilePage() {
               </Button>
             </Col>
           ) : (
-            <Col lg={3} className="text-lg-end mt-2">
+            <Col lg={2} className="text-lg-end mt-2">
               <Button
                 className={`${btnStyles.YellowButton} ${btnStyles.Narrow} ${btnStyles.Small} `}
                 onClick={() => handleFollow(profile)}
@@ -107,6 +116,27 @@ function ProfilePage() {
     </>
   );
 
+  const profileSoundList = (
+    <>
+      <hr />
+      <p className="text-center">{profile?.display_name ? profile.display_name : profile?.owner}'s sounds</p>
+      <hr />
+      {profileSounds.results.length ? (
+        <InfiniteScroll
+          children={profileSounds.results.map((sound) => (
+            <Sound key={sound.id} {...sound} setSounds={setProfileSounds} />
+          ))}
+          dataLength={profileSounds.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!profileSounds.next}
+          next={() => fetchMoreData(profileSounds, setProfileSounds)}
+        />
+      ) : (
+        <Asset img={NoResults} message={<div><p>No results found.</p><p>{`${profile?.display_name ? profile.display_name : profile?.owner}`} hasn't shared any sounds yet.</p></div>} />
+      )}
+    </>
+  );
+
   return (
     <Container>
       <Button onClick={history.goBack} variant="light" size="sm" className={`${appStyles.SmallText} mb-2`}>
@@ -115,7 +145,10 @@ function ProfilePage() {
       <Row>
         <Col lg={8}>
           {hasLoaded ? (
-            <Container className={`${appStyles.ComponentContainer} p-3`}>{profileDetails}</Container>
+            <Container className={`${appStyles.ComponentContainer} p-3`}>
+              {profileDetails}
+              {profileSoundList}
+            </Container>
           ) : (
             <Asset spinner />
           )}
