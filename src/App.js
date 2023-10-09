@@ -21,6 +21,7 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import PasswordForm from "./pages/profiles/PasswordForm";
 
 import styles from "./App.module.css";
+import NotificationPage from "./pages/notifications/NotificationPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -87,6 +88,7 @@ function App() {
           <Route exact path="/sounds/create" render={() => <SoundCreateForm showMessage={showMessage} />} />
           <Route exact path="/sounds/:id" render={() => <SoundPage />} />
           <Route exact path="/sounds/:id/edit" render={() => <SoundEditForm showMessage={showMessage} />} />
+          <Route exact path="/news" render={() => <NotificationPage showMessage={showMessage} />} />
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm showMessage={showMessage} />} />
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm showMessage={showMessage} />} />
           <Route exact path="/profiles/:id/edit/password" render={() => <PasswordForm showMessage={showMessage} />} />
