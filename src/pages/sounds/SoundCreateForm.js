@@ -20,8 +20,10 @@ import TagField from "../../components/TagField";
 import LocationField from "../../components/LocationField";
 import AudioField from "../../components/AudioField";
 import ImageField from "../../components/ImageField";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function SoundCreateForm(props) {
+  useRedirect("loggedOut")
   const { showMessage } = props;
   const [errors, setErrors] = useState({});
   const [soundData, setSoundData] = useState({

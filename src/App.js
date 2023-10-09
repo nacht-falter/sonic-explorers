@@ -7,7 +7,6 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 import "./api/axiosDefaults";
 
 import Message from "./components/Message";
-import Asset from "./components/Asset";
 import TopNavBar from "./components/TopNavBar";
 import BottomNavBar from "./components/BottomNavBar";
 import SignUpForm from "./pages/auth/SignUpForm";
@@ -63,32 +62,24 @@ function App() {
           <Route
             exact
             path="/feed"
-            render={() =>
-              profileId ? (
-                <SoundListPage
-                  heading="Sounds by people you follow"
-                  message="No results. Try searching for something else or start following someone."
-                  filter={`following=${profileId}&`}
-                />
-              ) : (
-                <Asset spinner />
-              )
-            }
+            render={() => (
+              <SoundListPage
+                heading="Sounds by people you follow"
+                message="No results. Try searching for something else or start following someone."
+                filter={`following=${profileId}&`}
+              />
+            )}
           />
           <Route
             exact
             path="/favourites"
-            render={() =>
-              profileId ? (
-                <SoundListPage
-                  heading="Sounds you like"
-                  message="No results. Try searching for something else or like some sounds."
-                  filter={`liked=${profileId}&ordering=-likes__created_at&`}
-                />
-              ) : (
-                <Asset spinner />
-              )
-            }
+            render={() => (
+              <SoundListPage
+                heading="Sounds you like"
+                message="No results. Try searching for something else or like some sounds."
+                filter={`liked=${profileId}&ordering=-likes__created_at&`}
+              />
+            )}
           />
           <Route exact path="/signin" render={() => <SignInForm showMessage={showMessage} />} />
           <Route exact path="/signup" render={() => <SignUpForm showMessage={showMessage} />} />
@@ -96,7 +87,6 @@ function App() {
           <Route exact path="/sounds/create" render={() => <SoundCreateForm showMessage={showMessage} />} />
           <Route exact path="/sounds/:id" render={() => <SoundPage />} />
           <Route exact path="/sounds/:id/edit" render={() => <SoundEditForm showMessage={showMessage} />} />
-          <Route exact path="/news" render={() => {}} />
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm showMessage={showMessage} />} />
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm showMessage={showMessage} />} />
           <Route exact path="/profiles/:id/edit/password" render={() => <PasswordForm showMessage={showMessage} />} />

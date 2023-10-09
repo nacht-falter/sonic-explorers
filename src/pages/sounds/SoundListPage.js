@@ -16,8 +16,11 @@ import NoResults from "../../assets/images/no-results512.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import LoggedOutMessage from "../../components/LoggedOutMessage";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function SoundListPage({ heading, message, filter = "" }) {
+  const currentUser = useCurrentUser();
   const [sounds, setSounds] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -45,7 +48,9 @@ function SoundListPage({ heading, message, filter = "" }) {
     }
   }, [filter, query, pathname]);
 
-  return (
+  return !currentUser && pathname !== "/" ? (
+    <LoggedOutMessage />
+  ) : (
     <Row className="h-100">
       <h3>{heading}</h3>
       <Col className="py-2 p-0 p-lg-2" lg={8}>

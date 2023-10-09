@@ -14,7 +14,7 @@ export const useRedirect = (userAuthStatus) => {
         }
       } catch (err) {
         if (userAuthStatus === "loggedOut") {
-          history.push("/signin");
+          history.push("/");
         }
       }
     };

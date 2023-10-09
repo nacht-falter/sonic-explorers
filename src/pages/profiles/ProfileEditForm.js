@@ -17,8 +17,10 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Avatar from "../../components/Avatar";
 import Asset from "../../components/Asset";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const ProfileEditForm = ({ showMessage }) => {
+  useRedirect("loggedOut");
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
