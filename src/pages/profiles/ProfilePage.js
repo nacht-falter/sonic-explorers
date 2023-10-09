@@ -22,7 +22,7 @@ import { fetchMoreData } from "../../utils/utils";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Sound from "../sounds/SoundDetail";
 
-import NoResults from "../../assets/images/no-results512.png"
+import NoResults from "../../assets/images/no-results512.png";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -45,7 +45,6 @@ function ProfilePage() {
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
-        console.log(pageProfile);
         setProfileSounds(profileSounds);
         setHasLoaded(true);
       } catch (err) {
@@ -61,7 +60,7 @@ function ProfilePage() {
         <Col xs={10} lg={3} className="d-lg-flex offset-1 offset-lg-0 text-lg-start align-items-center">
           <Avatar src={profile?.avatar} height={180} />
         </Col>
-        {profile?.is_owner && (
+        {profile?.is_owner && currentUser && (
           <Col xs={1} className="d-lg-none d-flex justify-content-center">
             <ProfileEditDropdown id={profile?.id} />
           </Col>
@@ -85,33 +84,34 @@ function ProfilePage() {
             </Col>
           </Row>
         </Col>
-        {currentUser && !profile?.is_owner ? (
-          profile?.follow_id ? (
-            <Col lg={2} className="text-lg-end mt-2">
-              <Button
-                className={`${btnStyles.YellowButton} ${btnStyles.Narrow} ${btnStyles.Small} `}
-                onClick={() => {
-                  handleUnfollow(profile);
-                }}
-              >
-                Unfollow
-              </Button>
-            </Col>
+        {currentUser &&
+          (!profile?.is_owner ? (
+            profile?.follow_id ? (
+              <Col lg={2} className="text-lg-end mt-2">
+                <Button
+                  className={`${btnStyles.YellowButton} ${btnStyles.Narrow} ${btnStyles.Small} `}
+                  onClick={() => {
+                    handleUnfollow(profile);
+                  }}
+                >
+                  Unfollow
+                </Button>
+              </Col>
+            ) : (
+              <Col lg={2} className="text-lg-end mt-2">
+                <Button
+                  className={`${btnStyles.YellowButton} ${btnStyles.Narrow} ${btnStyles.Small} `}
+                  onClick={() => handleFollow(profile)}
+                >
+                  Follow
+                </Button>
+              </Col>
+            )
           ) : (
-            <Col lg={2} className="text-lg-end mt-2">
-              <Button
-                className={`${btnStyles.YellowButton} ${btnStyles.Narrow} ${btnStyles.Small} `}
-                onClick={() => handleFollow(profile)}
-              >
-                Follow
-              </Button>
+            <Col lg={1} className="d-none d-lg-flex justify-content-center">
+              <ProfileEditDropdown id={profile?.id} />
             </Col>
-          )
-        ) : (
-          <Col lg={1} className="d-none d-lg-flex justify-content-center">
-            <ProfileEditDropdown id={profile?.id} />
-          </Col>
-        )}
+          ))}
       </Row>
     </>
   );
@@ -132,7 +132,15 @@ function ProfilePage() {
           next={() => fetchMoreData(profileSounds, setProfileSounds)}
         />
       ) : (
-        <Asset img={NoResults} message={<div><p>No results found.</p><p>{`${profile?.display_name ? profile.display_name : profile?.owner}`} hasn't shared any sounds yet.</p></div>} />
+        <Asset
+          img={NoResults}
+          message={
+            <span>
+              No results found. {`${profile?.display_name ? profile.display_name : profile?.owner}`} hasn't shared any
+              sounds yet.
+            </span>
+          }
+        />
       )}
     </>
   );
