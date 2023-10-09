@@ -59,7 +59,6 @@
   top: 130%;
 }
 
-
 .Dropdown > a {
   vertical-align: middle;
   display: inline-block;
@@ -72,25 +71,9 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.Dropdown > div > a {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.Dropdown > div > a:hover,
-.Dropdown > div > a:active {
+.Dropdown > div > span:hover,
+.Dropdown > div > span:active {
   background-color: #f0f0f0;
-}
-
-.Dropdown > div > a a {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  padding: 0.5rem 0;
-}
-
-.Dropdown > div > a:hover a {
-  color: #000000;
 }
 
 /* Button styles */

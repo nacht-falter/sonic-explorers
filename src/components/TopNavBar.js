@@ -46,7 +46,7 @@ const TopNavBar = (props) => {
         title={<Avatar src={currentUser?.profile_avatar} text={currentUser?.username} height={25} />}
         id="userDropdownMenu"
       >
-        <Dropdown.Item>
+        <Dropdown.Item as="span">
           <NavLink
             to={`/profiles/${currentUser?.profile_id}`}
             className="d-flex align-items-center"
@@ -56,7 +56,7 @@ const TopNavBar = (props) => {
           </NavLink>
         </Dropdown.Item>
         <NavDropdown.Divider />
-        <Dropdown.Item>
+        <Dropdown.Item as="span">
           <NavLink to="/" onClick={handleSignOut} className="d-flex align-items-center">
             <i className="fa-solid fa-right-from-bracket fs-6 me-2"></i>Sign out
           </NavLink>
