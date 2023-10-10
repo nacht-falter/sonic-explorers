@@ -51,3 +51,32 @@
   justify-content: center;
   align-items: center;
 }
+
+.SearchOverlay {
+  width: 50%;
+  margin-left: calc(50% - 25%);
+  margin-top: 1rem;
+  position: absolute;
+  z-index: 400;
+}
+
+.SearchBar input {
+  width: 100%;
+  border-radius: 20px;
+  color: #555555;
+  font-size: 0.9rem !important;
+  padding-left: 2.7rem;
+  margin-bottom: 1rem;
+}
+
+.SearchIcon {
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+}
+
+.SearchIcon:hover {
+  color: #d939ab;
+}
