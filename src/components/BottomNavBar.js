@@ -1,5 +1,7 @@
 import React from "react";
-import { Navbar, Container, Stack } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Stack from "react-bootstrap/Stack";
 import { NavLink } from "react-router-dom";
 import styles from "../styles/BottomNavBar.module.css";
 

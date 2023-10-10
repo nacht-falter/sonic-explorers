@@ -8,7 +8,7 @@ import ConfirmationModal from "../../components/ConfirmationModal";
 import Avatar from "../../components/Avatar";
 
 import btnStyles from "../../styles/Button.module.css";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const Notification = (props) => {
   const {

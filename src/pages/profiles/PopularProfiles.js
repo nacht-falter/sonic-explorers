@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import Avatar from "../../components/Avatar";
 import Asset from "../../components/Asset";
-import { Stack } from "react-bootstrap";
+import Stack from "react-bootstrap/Stack";
 import Profile from "./Profile";
 import appStyles from "../../App.module.css";
 import { useProfileData } from "../../contexts/ProfileDataContext";

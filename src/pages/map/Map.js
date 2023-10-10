@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 
 import { axiosRequest } from "../../api/axiosDefaults";
 import MapPopup from "./MapPopup";
-import { Spinner } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
 
 const Map = () => {
   const [sounds, setSounds] = useState({ results: [] });

@@ -11,7 +11,7 @@ import Avatar from "../../components/Avatar";
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const Report = (props) => {
   const {

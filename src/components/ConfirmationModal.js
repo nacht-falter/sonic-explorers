@@ -1,4 +1,5 @@
-import { Button, Modal } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 const ConfirmationModal = ({ handleMethod, show, setShow, title, body, type }) => {
   return (
