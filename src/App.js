@@ -23,6 +23,7 @@ import PasswordForm from "./pages/profiles/PasswordForm";
 import styles from "./App.module.css";
 import NotificationPage from "./pages/notifications/NotificationPage";
 import Map from "./pages/map/Map";
+import ReportPage from "./pages/reports/ReportPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -93,6 +94,7 @@ function App() {
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm showMessage={showMessage} />} />
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm showMessage={showMessage} />} />
           <Route exact path="/profiles/:id/edit/password" render={() => <PasswordForm showMessage={showMessage} />} />
+          <Route exact path="/reports/" render={() => <ReportPage showMessage={showMessage} />} />
           <Route render={() => <h1>404 Not Found</h1>} />
         </Switch>
       </Container>

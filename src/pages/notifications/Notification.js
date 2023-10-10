@@ -86,12 +86,26 @@ const Notification = (props) => {
             <span>
               {category !== "follow" && (
                 <Link to={`/sounds/${itemId}`} className="ms-2">
-                  <i className="fa-solid fa-arrow-right me-2"></i>Go to sound
+                <Button variant="outline-secondary" className={`${btnStyles.Small} ${btnStyles.Narrow}`}>
+                    <i className="fa-solid fa-arrow-right me-2"></i>Go to sound
+                  </Button>
+                </Link>
+              )}
+              {category === "report" && (
+                <Link to={`/reports/`} className="ms-2">
+                <Button variant="outline-secondary" className={`${btnStyles.Small} ${btnStyles.Narrow}`}>
+                    <i className="fa-solid fa-arrow-right me-2"></i>Go to reports page
+                  </Button>
                 </Link>
               )}
             </span>
             <span>
-              <Button aria-label="Delete" title="Delete" className={`btn-secondary me-2 ${btnStyles.Small} ${btnStyles.Narrow}`} onClick={handleShowModal}>
+              <Button
+                aria-label="Delete"
+                title="Delete Notification"
+                className={`btn-danger me-2 ${btnStyles.Small} ${btnStyles.Narrow}`}
+                onClick={handleShowModal}
+              >
                 <i className="fa-solid fa-trash"></i>
               </Button>
               {isRead ? (

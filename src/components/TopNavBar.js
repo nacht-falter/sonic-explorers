@@ -56,6 +56,16 @@ const TopNavBar = (props) => {
           </NavLink>
         </Dropdown.Item>
         <NavDropdown.Divider />
+        {currentUser?.is_staff && (
+          <>
+            <Dropdown.Item as="span">
+              <NavLink to="/reports/" className="d-flex align-items-center" activeClassName={styles.ActiveDropdownItem}>
+                <i className="fa-solid fa-flag me-2"></i>Reports
+              </NavLink>
+            </Dropdown.Item>
+            <NavDropdown.Divider />
+          </>
+        )}
         <Dropdown.Item as="span">
           <NavLink to="/" onClick={handleSignOut} className="d-flex align-items-center">
             <i className="fa-solid fa-right-from-bracket fs-6 me-2"></i>Sign out
