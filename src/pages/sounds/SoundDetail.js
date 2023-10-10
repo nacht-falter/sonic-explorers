@@ -120,7 +120,7 @@ const SoundDetail = (props) => {
           {tags?.length > 0 && (
             <ListGroup.Item className="flex-fill">
               <div className="fw-bold">Tags</div>
-              <div className="d-flex align-items-center mt-1">
+              <div className="d-flex align-items-center flex-wrap">
                 {tags?.map((tag, index) => (
                   <span className={styles.Tag} key={index}>
                     {tag}
@@ -146,25 +146,32 @@ const SoundDetail = (props) => {
       )}
 
       <Card bg="light" className={appStyles.ComponentContainer}>
-        <Card.Header className="d-flex justify-content-between align-items-center">
-          <Link to={`/sounds/${id}`}>
-            <SoundImage src={image} height={75} text={title} />
-          </Link>
-          <div className={appStyles.SmallText}>
-            <span className="d-flex align-items-center justify-content-between">
-              <Link to={`/profiles/${profile_id}`}>
-                <Avatar src={profile_avatar} height={30} text={owner} />
+        <Card.Header>
+          <Row gap={0}>
+            <Col xs={8}>
+              <Link to={`/sounds/${id}`} className="d-flex justify-content-start align-items-center">
+                <SoundImage src={image} height={75} />
+                <span className={styles.Title}>{title}</span>
               </Link>
-              <MoreDropdown
-                handleEdit={handleEdit}
-                handleShowModal={handleShowModal}
-                handleReport={handleReport}
-                isOwner={isOwner}
-                item={"sound"}
-              />
-            </span>
-            <div className="mt-2">{created_at}</div>
-          </div>
+            </Col>
+            <Col xs={4} className={`${appStyles.SmallText} text-end`}>
+              <div className="d-flex align-items-center justify-content-end">
+                <Link to={`/profiles/${profile_id}`}>
+                  <Avatar src={profile_avatar} height={30} text={owner} />
+                </Link>
+                {currentUser && (
+                  <MoreDropdown
+                    handleEdit={handleEdit}
+                    handleShowModal={handleShowModal}
+                    handleReport={handleReport}
+                    isOwner={isOwner}
+                    item={"sound"}
+                  />
+                )}
+              </div>
+              <div className="mt-2">{created_at}</div>
+            </Col>
+          </Row>
         </Card.Header>
 
         <Card.Body className="pt-2 pb-0">
