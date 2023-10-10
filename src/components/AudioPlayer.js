@@ -5,7 +5,7 @@ import Hover from "https://unpkg.com/wavesurfer.js@7/dist/plugins/hover.esm.js";
 import styles from "../styles/AudioPlayer.module.css";
 
 // Using Wavesurfer with React. Instructions from: https://wavesurfer.xyz/examples/?react.js
-const AudioPlayer = ({ audioUrl, audioName }) => {
+const AudioPlayer = ({ audioUrl, audioName, height=40 }) => {
   const containerRef = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   const wavesurfer = useRef(null);
@@ -14,8 +14,8 @@ const AudioPlayer = ({ audioUrl, audioName }) => {
   useEffect(() => {
     wavesurfer.current = WaveSurfer.create({
       container: containerRef.current,
-      waveColor: "#d939ab",
-      progressColor: "rgb(100, 0, 100)",
+      waveColor: "lightgrey",
+      progressColor: "#d939ab",
       url: audioUrl,
       plugins: [
         Hover.create({
@@ -29,7 +29,7 @@ const AudioPlayer = ({ audioUrl, audioName }) => {
       barWidth: 2,
       barGap: 1,
       barRadius: 2,
-      height: 60,
+      height: height,
     });
 
     wavesurfer.current.on("play", () => setIsPlaying(true));
@@ -45,7 +45,7 @@ const AudioPlayer = ({ audioUrl, audioName }) => {
     return () => {
       wavesurfer.current.destroy();
     };
-  }, [audioUrl]);
+  }, [audioUrl, height]);
 
   const togglePlay = useCallback(() => {
     if (wavesurfer.current.isPlaying()) {
@@ -56,15 +56,15 @@ const AudioPlayer = ({ audioUrl, audioName }) => {
   }, []);
 
   return (
-    <Card>
-      {audioName && <Card.Header>{audioName}</Card.Header>}
+    <Card className={styles.PlayerContainer}>
+      {audioName && <Card.Header className="bg-light">{audioName}</Card.Header>}
       <Card.Body className={styles.AudioPlayer}>
-        <span onClick={togglePlay} className={styles.Controls}>
+        <span onClick={togglePlay} className={`${styles.Controls} ${height < 50 && styles.ControlsSmall}`}>
           {isPlaying ? <i className="fa-solid fa-circle-pause"></i> : <i className="fa-solid fa-circle-play"></i>}
         </span>
         <div ref={containerRef} className={styles.WaveForm} />
       </Card.Body>
-      <Card.Footer className="text-muted py-1">
+      <Card.Footer className="bg-light text-muted py-1">
         <span className={styles.Time}>Playback: {currentTime}s</span>
       </Card.Footer>
     </Card>

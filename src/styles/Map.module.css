@@ -1,0 +1,53 @@
+.Map {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  height: calc(100vh - 80px);
+  width: 100vw;
+  z-index: 1;
+}
+
+@media (min-width: 480px) {
+  .Map {
+    top: 56px;
+    height: calc(100vh - 56px);
+  }
+}
+
+@media (min-width: 576px) {
+  .Map {
+    top: 80px;
+    height: calc(100vh - 80px);
+  }
+}
+
+@media (min-width: 768px) {
+  .Map {
+    top: 96px;
+    height: calc(100vh - 96px);
+  }
+}
+
+.Map a {
+  color: #212529;
+}
+
+.Map a:hover {
+  color: #d939ab !important;
+}
+
+/* Change LocationMarker color. Instructions from: https://stackoverflow.com/a/61982880 */
+.Map > div > div:nth-child(4) img {
+  filter: hue-rotate(110deg) !important;
+}
+
+.SpinnerOverlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  z-index: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

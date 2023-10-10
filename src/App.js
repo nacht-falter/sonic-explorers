@@ -22,6 +22,7 @@ import PasswordForm from "./pages/profiles/PasswordForm";
 
 import styles from "./App.module.css";
 import NotificationPage from "./pages/notifications/NotificationPage";
+import Map from "./pages/map/Map";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -59,7 +60,7 @@ function App() {
               />
             )}
           />
-          <Route exact path="/map" render={() => {}} />
+          <Route exact path="/map" render={() => <Map />} />
           <Route
             exact
             path="/feed"
