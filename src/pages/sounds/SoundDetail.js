@@ -22,6 +22,7 @@ import SoundImage from "../../components/SoundImage";
 import SoundDetailMap from "../../components/SoundDetailMap";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import ConfirmationModal from "../../components/ConfirmationModal";
+import ReportCreateForm from "../reports/ReportCreateForm";
 
 const SoundDetail = (props) => {
   const {
@@ -49,7 +50,8 @@ const SoundDetail = (props) => {
   const isOwner = currentUser?.username === owner;
   const history = useHistory();
   const [rerenderMap, setRerenderMap] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
 
   const handleLikeUnlike = async (isLike) => {
     const responseData = {};
@@ -82,7 +84,11 @@ const SoundDetail = (props) => {
   };
 
   const handleShowModal = () => {
-    setShowModal(true);
+    setShowDeleteModal(true);
+  };
+
+  const handleReport = () => {
+    setShowReportModal(true);
   };
 
   const handleEdit = () => {
@@ -93,7 +99,7 @@ const SoundDetail = (props) => {
     try {
       await axiosResponse.delete(`/sounds/${id}`);
       soundPage && history.goBack();
-      setShowModal(false);
+      setShowDeleteModal(false);
       setSounds((prevSounds) => ({
         ...prevSounds,
         results: prevSounds.results.filter((sound) => sound.id !== id),
@@ -152,6 +158,7 @@ const SoundDetail = (props) => {
               <MoreDropdown
                 handleEdit={handleEdit}
                 handleShowModal={handleShowModal}
+                handleReport={handleReport}
                 isOwner={isOwner}
                 item={"sound"}
               />
@@ -216,13 +223,14 @@ const SoundDetail = (props) => {
         </Card.Footer>
       </Card>
       <ConfirmationModal
-        show={showModal}
-        setShow={setShowModal}
+        show={showDeleteModal}
+        setShow={setShowDeleteModal}
         handleMethod={handleDelete}
         title="Delete Sound?"
         body="Do you really want to delete this sound?"
         type="danger"
       />
+      <ReportCreateForm show={showReportModal} setShow={setShowReportModal} soundId={id} soundTitle={title} />
     </Container>
   );
 };
