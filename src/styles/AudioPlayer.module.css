@@ -6,11 +6,11 @@
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
-  z-index: 3;
 }
 
 .WaveForm {
   flex-basis: 90%;
+  z-index: 1;
 }
 
 .WaveForm:hover {
