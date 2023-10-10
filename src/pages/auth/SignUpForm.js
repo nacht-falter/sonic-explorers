@@ -63,7 +63,7 @@ const SignUpForm = (props) => {
             </FloatingLabel>
 
             {errors.username?.map((msg, i) => (
-              <Alert variant="warning" key={i}>
+              <Alert className={styles.Alert} variant="warning" key={i}>
                 {msg}
               </Alert>
             ))}
@@ -80,7 +80,7 @@ const SignUpForm = (props) => {
             </FloatingLabel>
 
             {errors.password1?.map((msg, i) => (
-              <Alert variant="warning" key={i}>
+              <Alert className={styles.Alert} variant="warning" key={i}>
                 {msg}
               </Alert>
             ))}
@@ -97,13 +97,13 @@ const SignUpForm = (props) => {
             </FloatingLabel>
 
             {errors.password2?.map((msg, i) => (
-              <Alert variant="warning" key={i}>
+              <Alert className={styles.Alert} variant="warning" key={i}>
                 {msg}
               </Alert>
             ))}
 
             {errors.non_field_errors?.map((msg, i) => (
-              <Alert variant="warning" key={i}>
+              <Alert className={styles.Alert} variant="warning" key={i}>
                 {msg}
               </Alert>
             ))}

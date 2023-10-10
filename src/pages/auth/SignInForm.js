@@ -34,7 +34,7 @@ const SignInForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post("/dj-rest-auth/login/", signInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       showMessage("success", "Successfully logged in as " + data.user.username + "!");
       history.goBack();
@@ -66,7 +66,7 @@ const SignInForm = (props) => {
             </FloatingLabel>
 
             {errors.username?.map((msg, i) => (
-              <Alert variant="warning" key={i}>
+              <Alert className={styles.Alert} variant="warning" key={i}>
                 {msg}
               </Alert>
             ))}
@@ -83,13 +83,13 @@ const SignInForm = (props) => {
             </FloatingLabel>
 
             {errors.password?.map((msg, i) => (
-              <Alert variant="warning" key={i}>
+              <Alert className={styles.Alert} variant="warning" key={i}>
                 {msg}
               </Alert>
             ))}
 
             {errors.non_field_errors?.map((msg, i) => (
-              <Alert variant="warning" key={i}>
+              <Alert className={styles.Alert} variant="warning" key={i}>
                 {msg}
               </Alert>
             ))}
