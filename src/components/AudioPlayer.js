@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import Card from "react-bootstrap/Card";
 import WaveSurfer from "wavesurfer.js";
-import Hover from "https://unpkg.com/wavesurfer.js@7/dist/plugins/hover.esm.js";
+import Hover from "wavesurfer.js/dist/plugins/hover.js";
 import styles from "../styles/AudioPlayer.module.css";
 
 // Using Wavesurfer with React. Instructions from: https://wavesurfer.xyz/examples/?react.js
-const AudioPlayer = ({ audioUrl, audioName, height=40 }) => {
+const AudioPlayer = ({ audioUrl, audioName, height = 40 }) => {
   const containerRef = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   const wavesurfer = useRef(null);
