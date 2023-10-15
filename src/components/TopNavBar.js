@@ -12,6 +12,7 @@ import btnStyles from "../styles/Button.module.css";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import axios from "axios";
 import Avatar from "../components/Avatar";
+import { removeTokenTimestamp } from "../utils/utils";
 
 const TopNavBar = (props) => {
   const { showMessage } = props;
@@ -22,6 +23,7 @@ const TopNavBar = (props) => {
     try {
       await axios.post("/dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
       showMessage("success", "Successfully signed out!");
     } catch (err) {
       console.log(err);

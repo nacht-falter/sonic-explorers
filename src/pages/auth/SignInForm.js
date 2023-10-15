@@ -14,6 +14,7 @@ import image from "../../assets/images/bruno-aguirre-wOWgGnf1Gng-unsplash.jpg";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+import { setTokenTimestamp } from "../../utils/utils";
 
 const SignInForm = (props) => {
   const setCurrentUser = useSetCurrentUser();
@@ -36,6 +37,7 @@ const SignInForm = (props) => {
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
+      setTokenTimestamp(data);
       showMessage("success", "Successfully logged in as " + data.user.username + "!");
       history.goBack();
     } catch (err) {
