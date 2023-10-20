@@ -23,6 +23,8 @@ import SoundDetailMap from "../../components/SoundDetailMap";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import ReportCreateForm from "../reports/ReportCreateForm";
+import Asset from "../../components/Asset";
+import NoResults from "../../assets/images/no-results512.png";
 
 const SoundDetail = (props) => {
   const {
@@ -44,6 +46,7 @@ const SoundDetail = (props) => {
     comments_count,
     soundPage,
     setSounds,
+    notFound,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -137,7 +140,9 @@ const SoundDetail = (props) => {
     </Row>
   );
 
-  return (
+  return notFound ? (
+    <Asset img={NoResults} message="This sound does not exist." height={20} />
+  ) : (
     <Container className={soundPage ? "mb-2" : "mb-4"}>
       {soundPage && (
         <Button onClick={history.goBack} variant="light" size="sm" className={`${appStyles.SmallText} mb-2`}>
