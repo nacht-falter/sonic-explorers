@@ -252,7 +252,7 @@ function SoundCreateForm(props) {
             <ImageField sendImage={setImage} showMessage={showMessage} />
             {imageErrors}
 
-            <TagField sendTags={setTags} showMessage={showMessage} />
+            <TagField sendTags={setTags} showMessage={showMessage} currentTags={tags} />
             {tagErrors}
           </Container>
           <hr />

@@ -8,9 +8,9 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import styles from "../styles/TagField.module.css";
 
 // Tag field instructions from: https://blog.logrocket.com/building-a-tag-input-field-component-for-react/
-const TagField = ({ sendTags, showMessage, previousTags }) => {
+const TagField = ({ sendTags, showMessage, previousTags, currentTags }) => {
   const [tagInput, setTagInput] = useState("");
-  const [tags, setTags] = useState(previousTags?.length ? previousTags : []);
+  const [tags, setTags] = useState(previousTags?.length ? previousTags : currentTags);
   const [backspaceReleased, setBackspaceReleased] = useState(false);
   const [tagsChanged, setTagsChanged] = useState(false);
 
