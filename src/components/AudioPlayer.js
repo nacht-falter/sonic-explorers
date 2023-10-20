@@ -12,6 +12,7 @@ const AudioPlayer = ({ audioUrl, audioName, height = 40 }) => {
   const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
+    setIsPlaying(false);
     wavesurfer.current = WaveSurfer.create({
       container: containerRef.current,
       waveColor: "lightgrey",
