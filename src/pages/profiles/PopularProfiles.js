@@ -24,8 +24,8 @@ const PopularProfiles = ({ mobile }) => {
                 {popularProfiles.results.slice(0, 4).map((profile) => (
                   <Link key={profile.id} to={`/profiles/${profile.id}`}>
                     <Stack className="text-center mt-3">
-                      <Avatar src={profile.avatar} height={30} />
-                      <span>{profile.owner}</span>
+                      <Avatar src={profile.avatar} height={30} stack />
+                      <span>{profile.display_name ? profile.display_name : profile.owner}</span>
                     </Stack>
                   </Link>
                 ))}

@@ -119,8 +119,7 @@ function ProfilePage() {
   const profileSoundList = (
     <>
       <hr />
-      <p className="text-center">{profile?.display_name ? profile.display_name : profile?.owner}'s sounds</p>
-      <hr />
+      <p className="text-center"><strong>{profile?.display_name ? profile.display_name : profile?.owner}'s sounds</strong></p>
       {profileSounds.results.length ? (
         <InfiniteScroll
           children={profileSounds.results.map((sound) => (
