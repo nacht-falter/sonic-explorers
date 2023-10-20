@@ -47,6 +47,12 @@ const SignInForm = (props) => {
 
   return (
     <Row className="mx-auto">
+      {navigator.userAgent.includes("Safari") && (
+        <Alert className={styles.Alert} variant="warning" dismissible>
+          Sign in is currently not supported on Safari with Cross-Site Tracking Protection enabled. Please make sure
+          Cross-Site Tracking Protection is disabled in your Safari settings or use a different browser.
+        </Alert>
+      )}
       <Col className="my-auto py-2 p-md-4 p-lg-5" md={6}>
         <h2>Welcome back</h2>
         <p>Continue your sonic explorations</p>
