@@ -46,7 +46,7 @@ function SoundListPage({ heading, message, filter = "" }) {
     } else {
       fetchSounds();
     }
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   return !currentUser && pathname !== "/" ? (
     <LoggedOutMessage />
