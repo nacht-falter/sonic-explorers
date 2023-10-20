@@ -19,12 +19,14 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import PasswordForm from "./pages/profiles/PasswordForm";
-
-import styles from "./App.module.css";
 import NotificationPage from "./pages/notifications/NotificationPage";
 import Map from "./pages/map/Map";
 import ReportPage from "./pages/reports/ReportPage";
+import NoResults from "./assets/images/no-results512.png";
+import Asset from "./components/Asset";
 
+import styles from "./App.module.css";
+ 
 function App() {
   const currentUser = useCurrentUser();
   const [profileId, setProfileId] = useState(null);
@@ -95,7 +97,7 @@ function App() {
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm showMessage={showMessage} />} />
           <Route exact path="/profiles/:id/edit/password" render={() => <PasswordForm showMessage={showMessage} />} />
           <Route exact path="/reports/" render={() => <ReportPage showMessage={showMessage} />} />
-          <Route render={() => <h1>404 Not Found</h1>} />
+          <Route render={() => <Asset img={NoResults} message="The page you are looking for does not exist." />} />
         </Switch>
       </Container>
       <BottomNavBar />
