@@ -82,10 +82,10 @@ const Notification = (props) => {
           <Card.Text>
             <Avatar src={senderAvatar} height={30} /> {content}
           </Card.Text>
-          <Card.Text className="d-flex justify-content-between">
+          <Card.Text className="d-flex justify-content-between flex-wrap gap-2">
             <span>
               {category !== "follow" && (
-                <Link to={`/sounds/${itemId}`} className="ms-2">
+                <Link to={`/sounds/${itemId}`} className="ms-sm-2">
                 <Button variant="outline-secondary" className={`${btnStyles.Small} ${btnStyles.Narrow}`}>
                     <i className="fa-solid fa-arrow-right me-2"></i>Go to sound
                   </Button>
