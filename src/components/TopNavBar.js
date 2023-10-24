@@ -26,7 +26,7 @@ const TopNavBar = (props) => {
       removeTokenTimestamp();
       showMessage("success", "Successfully signed out!");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
