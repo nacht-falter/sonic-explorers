@@ -61,12 +61,12 @@ const AudioPlayer = ({ audioUrl, audioName, height = 40 }) => {
       {audioName && <Card.Header className="bg-light">{audioName}</Card.Header>}
       <Card.Body className={styles.AudioPlayer}>
         <span onClick={togglePlay} className={`${styles.Controls} ${height < 50 && styles.ControlsSmall}`}>
-          {isPlaying ? <i className="fa-solid fa-circle-pause"></i> : <i className="fa-solid fa-circle-play"></i>}
+          {isPlaying ? <i className="fa-solid fa-circle-pause" aria-label="pause"></i> : <i className="fa-solid fa-circle-play" aria-label="play"></i>}
         </span>
-        <div ref={containerRef} className={styles.WaveForm} />
+        <div ref={containerRef} className={styles.WaveForm} data-testid="waveform" />
       </Card.Body>
       <Card.Footer className="bg-light text-muted py-1">
-        <span className={styles.Time}>Playback: {currentTime}s</span>
+        <span className={styles.Time} data-testid="current-time">Playback: {currentTime}s</span>
       </Card.Footer>
     </Card>
   );
