@@ -43,4 +43,20 @@ export const handlers = [
       })
     );
   }),
+  rest.post(`${baseURL}dj-rest-auth/registration/`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        user: {
+          pk: 1,
+          username: "testuser",
+          email: "",
+          first_name: "",
+          last_name: "",
+          profile_id: 1,
+          profile_image: "https://res.cloudinary.com/dmmd6fle7/image/upload/default_profile_p5rke8",
+          is_staff: true,
+        },
+      })
+    );
+  }),
 ];
