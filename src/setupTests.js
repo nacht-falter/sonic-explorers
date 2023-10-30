@@ -8,7 +8,7 @@ import { handlers } from "./mocks/handlers";
 
 // Mock ResizeObserver required by wavesurfer.js
 // Solution from: https://stackoverflow.com/a/67006794
-global.ResizeObserver = require('resize-observer-polyfill');
+global.ResizeObserver = require("resize-observer-polyfill");
 
 const server = setupServer(...handlers);
 

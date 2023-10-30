@@ -58,12 +58,12 @@ function SoundEditForm(props) {
             })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
     handleMount();
-  }, [history, id, showMessage]);
+  }, [history, id, showMessage, soundData]);
 
   // Method for getting audio from AudioField component
   const setAudio = (audio) => {
@@ -135,7 +135,7 @@ function SoundEditForm(props) {
       setErrors(err.response?.data);
       setButtonDisabled(false);
       showMessage("warning", "Upload failed! Please try again.");
-      console.log(err.response?.data);
+      // console.log(err.response?.data);
     }
   };
 

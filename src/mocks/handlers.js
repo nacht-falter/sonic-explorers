@@ -62,4 +62,34 @@ export const handlers = [
   rest.post(`${baseURL}sounds/`, (req, res, ctx) => {
     return res(ctx.status(400));
   }),
+  rest.get(`${baseURL}sounds/1`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        id: 1,
+        owner: "testuser",
+        title: "Test sound",
+        description: "Test sound",
+        tags: ["tag1", "tag2"],
+        image: "test.jpg",
+        latitude: 123.123,
+        longitude: 123.123,
+        is_owner: true,
+      })
+    );
+  }),
+  rest.put(`${baseURL}sounds/1`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        id: 1,
+        owner: "testuser",
+        title: "Test sound",
+        description: "Test sound",
+        tags: ["tag1", "tag2"],
+        image: "test.jpg",
+        latitude: 123.123,
+        longitude: 123.123,
+        is_owner: true,
+      })
+    );
+  }),
 ];
