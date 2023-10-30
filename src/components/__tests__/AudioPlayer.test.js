@@ -2,12 +2,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import AudioPlayer from "../AudioPlayer";
 
-// Mock HTMLMediaElement prototype methods. Solution from:
-// https://stackoverflow.com/questions/51829319/how-to-mock-video-pause-function-using-jest
-jest.spyOn(window.HTMLMediaElement.prototype, "load").mockImplementation(() => {});
-jest.spyOn(window.HTMLMediaElement.prototype, "play").mockImplementation(() => {});
-jest.spyOn(window.HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
-
 test("renders AudioPlayer with controls and waveform", () => {
   render(<AudioPlayer audioName="Test Audio" />);
   const audioNameElement = screen.getByText("Test Audio");

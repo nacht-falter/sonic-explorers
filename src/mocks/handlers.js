@@ -68,7 +68,7 @@ export const handlers = [
         id: 1,
         owner: "testuser",
         title: "Test sound",
-        description: "Test sound",
+        description: "Test description",
         tags: ["tag1", "tag2"],
         image: "test.jpg",
         latitude: 123.123,
@@ -83,12 +83,66 @@ export const handlers = [
         id: 1,
         owner: "testuser",
         title: "Test sound",
-        description: "Test sound",
+        description: "Test description",
         tags: ["tag1", "tag2"],
         image: "test.jpg",
         latitude: 123.123,
         longitude: 123.123,
         is_owner: true,
+      })
+    );
+  }),
+  rest.get(`${baseURL}sounds/`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        count: 2,
+        next: "https://sonic-explorers-api-4c187c4cd99f.herokuapp.com/sounds/?page=2",
+        previous: null,
+        results: [
+          {
+            id: 1,
+            owner: "testuser",
+            title: "Test sound 1",
+            description: "Test description 1",
+            tags: ["tag1", "tag2"],
+            image: "test1.jpg",
+            latitude: 123.123,
+            longitude: 123.123,
+            is_owner: true,
+          },
+          {
+            id: 2,
+            owner: "testuser",
+            title: "Test sound 2",
+            description: "Test description 2",
+            tags: ["tag3", "tag4"],
+            image: "test2.jpg",
+            latitude: 123.123,
+            longitude: 123.123,
+            is_owner: true,
+          },
+        ],
+      })
+    );
+  }),
+  rest.get(`${baseURL}profiles/`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        count: 2,
+        next: "https://sonic-explorers-api-4c187c4cd99f.herokuapp.com/profiles/?page=2",
+        previous: null,
+        results: [
+          {
+            id: 1,
+            owner: "testuser1",
+            avatar: "https://res.cloudinary.com/dmmd6fle7/image/upload/default_profile_p5rke8",
+          },
+          {
+            id: 2,
+            owner: "testuser2",
+            avatar: "https://res.cloudinary.com/dmmd6fle7/image/upload/default_profile_p5rke8",
+          },
+        ],
       })
     );
   }),

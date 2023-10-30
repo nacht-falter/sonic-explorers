@@ -2,12 +2,6 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route } from "react-router-dom";
 import SoundEditForm from "../SoundEditForm";
 
-// Mock HTMLMediaElement prototype methods. Solution from:
-// https://stackoverflow.com/questions/51829319/how-to-mock-video-pause-function-using-jest
-jest.spyOn(window.HTMLMediaElement.prototype, "load").mockImplementation(() => {});
-jest.spyOn(window.HTMLMediaElement.prototype, "play").mockImplementation(() => {});
-jest.spyOn(window.HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
-
 // Jest documentation for mock functions: https://jestjs.io/docs/mock-function-api
 const showMessage = jest.fn();
 const renderSoundEditForm = () => {

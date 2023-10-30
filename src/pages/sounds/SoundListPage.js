@@ -33,7 +33,7 @@ function SoundListPage({ heading, message, filter = "" }) {
         setHasLoaded(true);
         setSounds(data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 

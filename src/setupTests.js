@@ -10,6 +10,12 @@ import { handlers } from "./mocks/handlers";
 // Solution from: https://stackoverflow.com/a/67006794
 global.ResizeObserver = require("resize-observer-polyfill");
 
+// Mock HTMLMediaElement prototype methods. Solution from:
+// https://stackoverflow.com/questions/51829319/how-to-mock-video-pause-function-using-jest
+jest.spyOn(window.HTMLMediaElement.prototype, "load").mockImplementation(() => {});
+jest.spyOn(window.HTMLMediaElement.prototype, "play").mockImplementation(() => {});
+jest.spyOn(window.HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
+
 const server = setupServer(...handlers);
 
 beforeAll(() => server.listen());
