@@ -59,4 +59,7 @@ export const handlers = [
       })
     );
   }),
+  rest.post(`${baseURL}sounds/`, (req, res, ctx) => {
+    return res(ctx.status(400));
+  }),
 ];
