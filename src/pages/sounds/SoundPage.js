@@ -38,7 +38,7 @@ function SoundPage() {
         setComments(comments);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         setHasLoaded(true);
       }
     };

@@ -146,4 +146,29 @@ export const handlers = [
       })
     );
   }),
+  rest.get(`${baseURL}comments/`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        count: 2,
+        next: null,
+        previous: null,
+        results: [
+          {
+            id: 2,
+            owner: "testuser",
+            sound: 1,
+            content: "Test comment 1",
+            is_owner: true,
+          },
+          {
+            id: 1,
+            owner: "testuser",
+            sound: 1,
+            content: "Test comment 2",
+            is_owner: true,
+          },
+        ],
+      })
+    );
+  }),
 ];

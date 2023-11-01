@@ -78,7 +78,7 @@ const SoundDetail = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -108,7 +108,7 @@ const SoundDetail = (props) => {
         results: prevSounds.results.filter((sound) => sound.id !== id),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

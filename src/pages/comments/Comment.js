@@ -44,7 +44,7 @@ const Comment = (props) => {
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -61,7 +61,7 @@ const Comment = (props) => {
         </Link>
         <span className={`${appStyles.SmallText} text-muted ms-2`}>{updatedAt}</span>
         {!showEditForm ? (
-          <p className="mb-0">{content}</p>
+          <p className="mb-0" data-testid="comment"><small>{content}</small></p>
         ) : (
           <CommentEditForm
             id={id}

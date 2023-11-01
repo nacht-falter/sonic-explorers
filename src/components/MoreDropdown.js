@@ -8,6 +8,7 @@ import { useHistory } from "react-router";
 const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
   <i
     className={`${styles.DropdownIcon} fas fa-ellipsis-v ms-2 px-2 fs-6`}
+    data-testid="dropdown-icon"
     ref={ref}
     onClick={(e) => {
       e.preventDefault();
@@ -27,7 +28,7 @@ export const MoreDropdown = ({ handleEdit, handleShowModal, handleReport, isOwne
             <Dropdown.Item
               className={`${styles.DropdownItem} ${appStyles.SmallText}`}
               onClick={handleEdit}
-              aria-label="edit {item}"
+              aria-label={`Edit ${item}`}
             >
               <i className="fas fa-edit me-2" />
               Edit {item}
@@ -36,7 +37,7 @@ export const MoreDropdown = ({ handleEdit, handleShowModal, handleReport, isOwne
             <Dropdown.Item
               className={`${styles.DropdownItem} ${appStyles.SmallText}`}
               onClick={handleShowModal}
-              aria-label="delete {item}"
+              aria-label={`Delete ${item}`}
             >
               <i className="fas fa-trash me-2" />
               Delete {item}
@@ -47,7 +48,7 @@ export const MoreDropdown = ({ handleEdit, handleShowModal, handleReport, isOwne
         <Dropdown.Item
           className={`${styles.DropdownItem} ${appStyles.SmallText}`}
           onClick={handleReport}
-          aria-label="report sound"
+          aria-label="Report sound"
         >
           <i className="fas fa-flag me-2" />
           Report {item}

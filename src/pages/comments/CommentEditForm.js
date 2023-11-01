@@ -13,7 +13,6 @@ function CommentEditForm(props) {
 
   const handleChange = (event) => {
     setFormContent(event.target.value);
-    console.log(content);
   };
 
   const handleSubmit = async (event) => {
@@ -37,7 +36,7 @@ function CommentEditForm(props) {
       }));
       setShowEditForm(false);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       setShowSpinner(false);
     }
