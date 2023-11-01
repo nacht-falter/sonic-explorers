@@ -98,42 +98,40 @@ const Report = (props) => {
           <small className="text-muted">{createdAt}</small>
         </Card.Header>
         <Card.Body>
-          <Card.Text>
-            <ListGroup className={`${appStyles.SmallText} mb-1 me-0`}>
-              <ListGroup.Item>
-                <p className="my-0">
-                  <strong>Flag</strong>
-                </p>
-                <p className="my-0">{flags[flag]}</p>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <p className="my-0">
-                  <strong>Review status</strong>
-                </p>
-                <Badge bg={reviewStatus === "open" ? "danger" : "success"} size="" className="pt-1 fs-6">
-                  <small>{reviewStatus}</small>
-                </Badge>
-              </ListGroup.Item>
-              <ListGroup.Item className="flex-fill">
-                <p className="my-0">
-                  <strong>Details</strong>
-                </p>
-                <p className="my-0">{content}</p>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <p className="my-0">
-                  <strong>Reported by</strong>
-                </p>
-                <Link to={`/profiles/${profileId}`} className="me-2">
-                  <Avatar src={profileAvatar} height={30} />
-                  {owner}
-                </Link>
-              </ListGroup.Item>
-            </ListGroup>
-            <Link to={`/sounds/${sound}`} className="ms-2">
-              <i className="fa-solid fa-arrow-right me-2"></i>Review sound
-            </Link>
-          </Card.Text>
+          <ListGroup className={`${appStyles.SmallText} mb-1 me-0`}>
+            <ListGroup.Item>
+              <p className="mt-0 mb-1">
+                <strong>Flag</strong>
+              </p>
+              <p className="mt-0 mb-1">{flags[flag]}</p>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <p className="mt-0 mb-1">
+                <strong>Review status</strong>
+              </p>
+              <Badge bg={reviewStatus === "open" ? "danger" : "success"} size="" className="pt-1 fs-6">
+                <small>{reviewStatus}</small>
+              </Badge>
+            </ListGroup.Item>
+            <ListGroup.Item className="flex-fill">
+              <p className="mt-0 mb-1">
+                <strong>Details</strong>
+              </p>
+              <p className="mt-0 mb-1">{content}</p>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <p className="mt-0 mb-1">
+                <strong>Reported by</strong>
+              </p>
+              <Link to={`/profiles/${profileId}`} className="me-2">
+                <Avatar src={profileAvatar} height={30} />
+                {owner}
+              </Link>
+            </ListGroup.Item>
+          </ListGroup>
+          <Link to={`/sounds/${sound}`} className="ms-2">
+            <i className="fa-solid fa-arrow-right me-2"></i>Review sound
+          </Link>
         </Card.Body>
         <Card.Footer className="d-flex justify-content-end align-items-center">
           <Button
