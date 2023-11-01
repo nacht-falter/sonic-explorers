@@ -96,7 +96,7 @@ export const handlers = [
     return res(
       ctx.json({
         count: 2,
-        next: "https://sonic-explorers-api-4c187c4cd99f.herokuapp.com/sounds/?page=2",
+        next: null,
         previous: null,
         results: [
           {

@@ -29,7 +29,7 @@ const Map = () => {
         setSounds(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -62,7 +62,6 @@ const Map = () => {
         sounds.results.map((sound) => (
           <Marker key={sound.id} position={[sound.latitude, sound.longitude]}>
             <Popup className={styles.Popup} minWidth={300}>
-              {" "}
               <MapPopup {...sound} />
             </Popup>
           </Marker>
