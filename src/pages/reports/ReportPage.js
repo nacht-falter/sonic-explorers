@@ -22,7 +22,7 @@ const ReportPage = ({ showMessage }) => {
         const { data } = await axiosRequest.get(`/reports/`);
         setReports(data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
       setHasLoaded(true);
     };

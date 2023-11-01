@@ -38,7 +38,7 @@ function ReportCreateForm({ soundId, soundTitle, show, setShow }) {
       setContent("");
       setShow(false);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setErrors(err.response.data);
     } finally {
       setShowSpinner(false);

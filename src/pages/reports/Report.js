@@ -43,7 +43,7 @@ const Report = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -55,7 +55,7 @@ const Report = (props) => {
         results: prevReports.results.filter((report) => report.id !== id),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       showMessage("success", "Report deleted.");
     }

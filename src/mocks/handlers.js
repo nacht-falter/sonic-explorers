@@ -227,4 +227,80 @@ export const handlers = [
       })
     );
   }),
+  rest.get(`${baseURL}reports/`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        count: 2,
+        next: null,
+        previous: null,
+        results: [
+          {
+            id: 1,
+            owner: "testuser",
+            sound: 1,
+            flag: "hate",
+            content: "Test Hate speech report",
+            is_owner: true,
+            review_status: "open",
+          },
+          {
+            id: 2,
+            owner: "testuser",
+            sound: 1,
+            flag: "illegal",
+            content: "Test Illegal/extremist content report",
+            review_status: "open",
+          },
+          {
+            id: 3,
+            owner: "testuser",
+            sound: 1,
+            flag: "violence",
+            content: "Test Violent content report",
+            review_status: "open",
+          },
+          {
+            id: 4,
+            owner: "testuser",
+            sound: 1,
+            flag: "pornographic",
+            content: "Test Pornographic Content report",
+            review_status: "open",
+          },
+          {
+            id: 5,
+            owner: "testuser",
+            sound: 1,
+            flag: "harassment",
+            content: "Test Harassment or bullying report",
+            review_status: "closed",
+          },
+          {
+            id: 6,
+            owner: "testuser",
+            sound: 1,
+            flag: "privacy",
+            content: "Test Privacy violation report",
+            review_status: "closed",
+          },
+          {
+            id: 7,
+            owner: "testuser",
+            sound: 1,
+            flag: "property",
+            content: "Test Intellectual property violation report",
+            review_status: "closed",
+          },
+          {
+            id: 8,
+            owner: "testuser",
+            sound: 1,
+            flag: "other",
+            content: "Test Other report",
+            review_status: "closed",
+          },
+        ],
+      })
+    );
+  }),
 ];
