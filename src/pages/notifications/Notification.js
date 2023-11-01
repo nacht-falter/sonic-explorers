@@ -39,7 +39,7 @@ const Notification = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -51,7 +51,7 @@ const Notification = (props) => {
         results: prevNotifications.results.filter((notification) => notification.id !== id),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       showMessage("success", "Notification deleted.");
     }

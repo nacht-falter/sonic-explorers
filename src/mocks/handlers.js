@@ -171,4 +171,60 @@ export const handlers = [
       })
     );
   }),
+  rest.get(`${baseURL}notifications/`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        count: 2,
+        next: null,
+        previous: null,
+        results: [
+          {
+            id: 1,
+            owner: "testuser",
+            sender: "testuser2",
+            is_read: false,
+            title: "Test like notification",
+            content: "Test like notification content",
+            category: "like",
+          },
+          {
+            id: 2,
+            owner: "testuser",
+            sender: "testuser2",
+            is_read: true,
+            title: "Test comment notification",
+            content: "Test comment notification content",
+            category: "comment",
+          },
+          {
+            id: 3,
+            owner: "testuser",
+            sender: "testuser2",
+            is_read: false,
+            title: "Test sound notification",
+            content: "Test sound notification content",
+            category: "sound",
+          },
+          {
+            id: 4,
+            owner: "testuser",
+            sender: "testuser2",
+            is_read: true,
+            title: "Test follow notification",
+            content: "Test follow notification content",
+            category: "follow",
+          },
+          {
+            id: 5,
+            owner: "testuser",
+            sender: "testuser2",
+            is_read: false,
+            title: "Test report notification",
+            content: "Test report notification content",
+            category: "report",
+          },
+        ],
+      })
+    );
+  }),
 ];

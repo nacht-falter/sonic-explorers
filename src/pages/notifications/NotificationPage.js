@@ -21,7 +21,7 @@ const NotificationPage = ({ showMessage }) => {
         const { data } = await axiosRequest.get(`/notifications/`);
         setNotifications(data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
       setHasLoaded(true);
     };
