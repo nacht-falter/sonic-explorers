@@ -42,17 +42,21 @@ export const MoreDropdown = ({ handleEdit, handleShowModal, handleReport, isOwne
               <i className="fas fa-trash me-2" />
               Delete {item}
             </Dropdown.Item>
-            <Dropdown.Divider />
           </>
         )}
-        <Dropdown.Item
-          className={`${styles.DropdownItem} ${appStyles.SmallText}`}
-          onClick={handleReport}
-          aria-label="Report sound"
-        >
-          <i className="fas fa-flag me-2" />
-          Report {item}
-        </Dropdown.Item>
+        {item === "sound" && (
+          <>
+            <Dropdown.Divider />
+            <Dropdown.Item
+              className={`${styles.DropdownItem} ${appStyles.SmallText}`}
+              onClick={handleReport}
+              aria-label="Report sound"
+            >
+              <i className="fas fa-flag me-2" />
+              Report {item}
+            </Dropdown.Item>
+          </>
+        )}
       </Dropdown.Menu>
     </Dropdown>
   );
