@@ -2,14 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import btnStyles from "../styles/Button.module.css";
+import appStyles from "../App.module.css";
 
 const LoggedOutMessage = () => {
   return (
-    <Card className="w-50 mx-auto m-5">
+    <Card className={`mx-auto mt-5 ${appStyles.MessageCard}`}>
       <Card.Header as="h4">You are signed out</Card.Header>
       <Card.Body>
         <Card.Text>Please sign in to view this page.</Card.Text>
-        <Link to="/signin" className={`btn ${btnStyles.Button} ${btnStyles.Narrow}`}>
+        <Link to="/signin" className={`btn text-light ${btnStyles.Button} ${btnStyles.Narrow}`}>
           Sign in
         </Link>
       </Card.Body>

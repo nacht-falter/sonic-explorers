@@ -26,6 +26,10 @@
   border: 1px solid darkgrey;
 }
 
+.MessageCard {
+  width: 100%;
+}
+
 @media (min-width: 450px) {
   .Main {
     padding-top: 4.5rem;
@@ -36,12 +40,20 @@
   .Main {
     padding-top: 6.5rem;
   }
+
+  .MessageCard {
+    width: 75%;
+  }
 }
 
 @media (min-width: 768px) {
   .Main {
     padding-top: 7.5rem;
     margin-bottom: 4rem;
+  }
+
+  .MessageCard {
+    width: 50%;
   }
 }
 
