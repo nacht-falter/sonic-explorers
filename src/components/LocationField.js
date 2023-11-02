@@ -56,13 +56,13 @@ const LocationField = ({ sendLocation, previousLocation, showMessage, setButtonD
           setButtonDisabled(false);
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
           showMessage("warning", "Failed to retrieve location data. Please try again.");
           setLocationStatus("Could not retrieve location.");
         }
       );
     } else {
-      console.log("Geolocation is not supported by this browser.");
+      // console.log("Geolocation is not supported by this browser.");
     }
   };
   return (
