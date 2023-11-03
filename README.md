@@ -113,3 +113,98 @@ The following features have not been included in the current scope of the projec
 - Gamification features:
     - Challenges for finding and recording specific sounds or going to specific places.
     - Users can earn badges for certain achievements (e.g. number of sounds uploaded, number of likes, completing challenges).
+
+## Design Process
+
+I approached the design process of the *Sonic Explorers* app from a user-centered perspective, following the five planes of user experience. The design process of the frontend application had to go hand in hand with the design process of the backend API, which is documented here: [Sonic Explorers API Design Process](https://github.com/sonic-explorers/sonic-explorers-api#design-process).
+
+### Strategy Plane
+
+*Sonic Explorers* is a social media app dedicated to recording and sharing sounds. It's target audience are people who are interested in sound and want to share their experiences with others. Its main goal is to provide a playful and engaging way of encouraging a more conscious approach to the sounds in our environment.
+
+The use of geolocation and maps is an essential part of the application. Due to the ephemeral nature of sound, recordings often feel disconnected from the original situation in which they were recorded. Adding location data to a sound can help to link sound recordings to real places and situations, which makes it easier for users to relate to them. At the same time, placing sounds on a map allows users to explore sounds from different places and discover new sounds around them. It also encourages users to get out and explore interesting sounds in the world.
+
+Tagging sounds is another important feature of the application. It allows users to organize and find sounds. It also encourages users to think about the acoustic qualities of the sounds they encounter and to reflect on them. Although it can be quite challenging to find appropriate words to describe a sound, other than the sound's source, thinking about this can be a first step to a more conscious approach to sound.
+
+The social interaction features of the application (following other users, liking and commenting on sounds) are intended to encourage users to engage with each other and to create a community of people who are interested in sound.
+
+### Scope Plane
+
+For the scope of the project, separate sets of user stories were created for the backend and the frontend part of the application. The user stories for the Sonic Explorers API can be found here: [Sonic Explorers API User Stories](https://github.com/nacht-falter/sonic-explorers-api/blob/main/docs/USERSTORIES.md). Detailed information on the user stories for the frontend application can be found here: [Sonic Explorers User Stories](docs/USERSTORIES.md).
+
+The following user stories were included in the current scope of the frontend project:
+
+...
+
+### Structure Plane
+
+The planning of the structure plane of the project involved thinking about the different parts of the project and their interactions. Since most of that planning had to be done before implementing the backend part of the project, the process of planning the strucure of the backend (database, models, API endpoints) is documented here: [Sonic Explorers API Design Process](https://github.com/nacht-falter/sonic-explorers-api#design-process).
+
+The structure of the frontend application was guided by the features provided by the backend API. In order to implement all features within the current scope of the project, I planned the frontend application with the following main components:
+
+- Two navigation bars (top and bottom)
+- Pages for user authentication (sign up, sign in)
+- Pages for listing sounds, notifications, and reports
+- Forms for uploading and editing sounds
+- Pages for displaying and editing user profiles
+- A page for displaying sound details
+- A component for displaying a map with all sounds
+- Components for displaying profiles, sound details, comments, notifications, and reports
+- Forms for creating and editing profiles, comments, and reports and for changing usernames and passwords
+- An audio player for listening to sounds
+
+Additional components were added during the development process as needed.
+
+### Skeleton Plane
+
+The layout of the application was designed with a mobile-first approach, since it is intended to be mainly used as a mobile application. But it is also designed to be fully responsive and can be used on all screen sizes.
+
+The user interface of the application consists of three main sections:
+
+- A top navigation bar including the following elements:
+    - The Sonic Explorers logo (and the title on larger screens)
+    - Sign-up and sign-in links for signed-out users
+    - A sound upload button and a user dropdown menu for signed-in users
+- A bottom navigation bar with links to the main pages of the application (Explore, Map, Feed, Favourites, News)
+- A content section for displaying the contents of the current page
+
+Originally, the user interface of the application was planned with a dropdown navigation menu at the top of the page, as can be seen on the wireframes below. During the development process, I decided to use a bottom navigation bar for the main pages of the application to make the application more mobile-friendly and make it feel more like a mobile app rather than a website. This decision is not reflected in the wireframes.
+
+<details>
+
+<summary>Show wireframes for Mobile</summary>
+
+![Wireframes for Mobile](docs/wireframes/wireframes_mobile.png)
+
+</details>
+
+<details>
+
+<summary>Show wireframes for Desktop</summary>
+
+![Wireframes for Desktop](docs/wireframes/wireframes_desktop.png)
+
+</details>
+
+### Surface Plane
+
+#### Logo
+
+The first step of planning for the surface plane was to design a logo for the application. After playing around with different ideas, I settled on a circle divided in two halves by a jagged line, which looks like a soundwave but also like a mountain range, representing the sound aspect as well as the exploratory aspect of the application. I chose pink and yellow as the main colors of the logo. 
+
+![Sonic Explorers Logo](docs/sonic-explorers-logo.webp)
+
+#### Colors
+
+In accordance with the application logo, the main colors of the application used for links, buttons and other elements are pink and yellow.
+
+<!-- Display colors in markdown: https://stackoverflow.com/a/41247934 -->
+![#d939ab](https://placehold.co/100x100/d939ab/d939ab.png) Primary color: #d939ab
+
+![#ffc101](https://placehold.co/100x100/ffc101/ffc101.png) Secondary color: #ffc101
+
+#### Fonts
+
+I chose [Open Sans](https://fonts.google.com/specimen/Open+Sans) as the main font for the application for its clean look and good legibility. It is used for all text elements on the page except for headings.
+
+For headings I chose [Exo 2](https://fonts.google.com/specimen/Exo+2), which has a more playful and futuristic look.
