@@ -238,7 +238,7 @@ function SoundEditForm(props) {
         <Form onSubmit={handleSubmit}>
           <Row>
             <h3 className="mb-4">
-              Update sound
+              Edit sound
               <OverlayTrigger
                 placement="bottom"
                 overlay={
