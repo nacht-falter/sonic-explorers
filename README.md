@@ -471,3 +471,81 @@ Please follow these steps to deploy the application:
     </details>
 
     If everything went well, you should see the *Sonic Explorers* landing page. If you can see the landing page but no content is loaded from the API (i.e. the loading spinner keeps spinning) double check if you have correctly set the `CLIENT_ORIGIN` config variable on your API project [as described here](https://github.com/nacht-falter/sonic-explorers-api#deployment). If you still can't see any content make sure you provided the correct URL for your API as described in step 3 or check the console for error messages.
+
+## Credits
+
+### Inspiration
+
+The idea for this project goes back to a student project initiated by me and other musicology students at the University of Freiburg in 2014. The original project was called *SoundCaching* because it was inspired by [Geocaching](https://en.wikipedia.org/wiki/Geocaching), an outdoor activity where players use GPS to find hidden containers called geocaches. While the original project was never actually realized, the current version of *Sonic Explorers* is strongly influenced by the ideas behind it. 
+
+### Sources
+
+#### Code
+
+The initial setup and the basic structure of the application are based on the instructions from the [Code Institute *Moments* walkthrough project](https://github.com/Code-Institute-Solutions/moments). All code from the walkthrough project has been customized and adapted to the specific circumstances of this project. Since the walkthrough project focuses on uploading and sharing images instead of sounds, all audio-related functionality had to be implemented from scratch. I also added additional features not covered by the walkthrough project, such as geolocation and a tagging system, as well as all functionality revolving around notifications and reports.
+
+During the development of the application, I made extensive use of the following documentation. Documentation pages are referenced in the code, where I used them:
+
+- [React documentation](https://react.dev/)
+- [Bootstrap documentation](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+- [React Bootstrap documentation](https://react-bootstrap.github.io/docs/getting-started/introduction)
+- [Leaflet documentation](https://leafletjs.com/reference.html)
+- [React Leaflet documentation](https://react-leaflet.js.org/)
+- [WaveSurfer.js documentation](https://wavesurfer.xyz/docs/)
+- [Jest documentation](https://jestjs.io/docs/getting-started)
+- [React Testing Library documentation](https://testing-library.com/docs/react-testing-library/intro/)
+
+All other sources used during development are listed below. All code from these sources has been thoroughly reviewed, understood and adapted to the specific circumstances of this project. References to these sources can also be found in the code.
+
+- Instructions for HTML Geolocation API: https://www.w3schools.com/html/html5_geolocation.asp
+- Solution for sending an array of tags with JSON: https://stackoverflow.com/questions/39247160/javascript-formdata-to-array
+- Tag field instructions from: https://blog.logrocket.com/building-a-tag-input-field-component-for-react/
+- Force a component to remount: https://stackoverflow.com/questions/35792275/how-to-force-remounting-on-react-components
+- Instructions for preventing unnecessary component re-renders: https://stackoverflow.com/a/59564675
+- Instructions for mocking useParams: https://stackoverflow.com/a/72053411
+- Mock ResizeObserver required by wavesurfer.js: https://stackoverflow.com/a/67006794
+- Mock HTMLMediaElement prototype methods: https://stackoverflow.com/questions/51829319/how-to-mock-video-pause-function-using-jest
+- Assert that links navigate to new url: https://www.joshmcarthur.com/til/2022/01/19/assert-windowlocation-properties-with-jest.html
+
+#### Images
+
+The following images have been used, either as part of the user interface or as example content for demonstration purposes:
+
+<details>
+
+<summary>Show image sources</summary>
+
+- https://unsplash.com/photos/iphone-with-red-case-wOWgGnf1Gng
+- https://unsplash.com/photos/woman-looking-at-phone-beside-body-of-water-QofjUnxy9LY
+- https://unsplash.com/photos/woman-holding-phone-smiling-UGX2qdjdKkw
+- https://unsplash.com/photos/woman-standing-in-front-of-public-market-center-FnFsXj_vz0g
+- https://en.wikipedia.org/wiki/Santa_Maria_Gloriosa_dei_Frari#/media/File:Facade_of_Santa_Maria_Gloriosa_dei_Frari_(Venice).jpg
+- https://en.wikipedia.org/wiki/San_Giorgio_Maggiore_(church),_Venice#/media/File:Basilica_di_San_Giorgio_Maggiore_(Venice)_-_Campanile_-_Upper_part.jpg
+- https://en.wikipedia.org/wiki/Piazza_San_Marco#/media/File:Venezia_Basilica_di_San_Marco_Campanile_3.jpg
+- https://en.wikipedia.org/wiki/Golden_Gate_(Diocletian%27s_Palace)#/media/File:J32_370_Diokletianspalast,_%C2%BBGoldenes_Tor%C2%AB.jpg
+- https://en.wikipedia.org/wiki/Black_Canyon_of_the_Gunnison_National_Park#/media/File:2009-08-27-06625-00_USA_Colorado_347_BlackCanyonOfTheGunnison_NP_copy.jpg
+- https://commons.wikimedia.org/wiki/Category:Excavators?uselang=de#/media/File:BRNO_-_Vlastimila_Pecha_20191031_153003.jpg
+- https://commons.wikimedia.org/wiki/File:2017-07-28,_Platz_der_Alten_Synagoge_in_Freiburg,_fertiggestellt_aber_noch_nicht_freigegeben_2.jpg?uselang=de
+- https://commons.wikimedia.org/wiki/File:Zion_Free_Shuttle_5479.jpg
+- https://commons.wikimedia.org/wiki/File:San_Francisco_Cable_Car_MC.jpg
+- https://commons.wikimedia.org/wiki/Category:Carpinteria_State_Beach#/media/File:Carpinteria_State_Beach.jpg
+- https://upload.wikimedia.org/wikipedia/en/9/96/Pink_Panther.png
+- https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Saint-Michel_metro_station%2C_Paris_9_April_2014_002.jpg/1024px-Saint-Michel_metro_station%2C_Paris_9_April_2014_002.jpg
+- https://upload.wikimedia.org/wikipedia/commons/b/bc/Hermannplatz1_Berlin_Neukoelln.JPG
+- https://www.flickr.com/photos/linoc/4414071201
+- https://www.flickr.com/photos/worldwide-souvenirs/6794625222/in/album-72157629480074197/
+- https://www.flickr.com/photos/docentjoyce/49840231047/
+- https://pixabay.com/de/photos/g%C3%BCterbahnhof-g%C3%BCterz%C3%BCge-nacht-6973277/
+- https://pixabay.com/photos/plane-flight-take-off-travel-899364/
+
+</details>
+
+#### Sounds
+
+I have recorded most of the sounds that have been uploaded to the platform myself. These sounds have only been uploaded for demonstration purposes. Some sounds have also been uploaded by other users, who have tested the application.
+
+### Acknowledgements
+
+- I would like to thank my Code Institute mentor Mo for his support and constructive advice.
+- I would like to thank the Code Institute tutors for their support.
+- I would like to thank all family members and friends who took the time to test the application for their helpful feedback.
