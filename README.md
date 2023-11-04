@@ -393,3 +393,81 @@ The application was built with [React](https://reactjs.org/), a frontend JavaScr
 - [Neovim](https://neovim.io/) was used for writing code.
 - [Pixelmator Pro](https://www.pixelmator.com/pro/) and [GIMP](https://www.gimp.org/) were used for image editing.
 - https://derlin.github.io/bitdowntoc/ has been used to create the [table of contents](#table-of-contents) in this README.
+
+## Testing
+
+...
+
+## Deployment
+
+The application was deployed to [Heroku](https://heroku.com). A live version of the application can be found at https://sonic-explorers-e821805686e9.herokuapp.com/.
+
+Please follow these steps to deploy the application:
+
+1. Deploy your your own version of the [Sonic Explorers API](https://github.com/nacht-falter/sonic-explorers-api) by following the [deployment instructions for the Sonic Explorers API](https://github.com/nacht-falter/sonic-explorers-api#deployment).
+
+2. Clone or fork this repository. For forking it, go to https://github.com/nacht-falter/sonic-explorers/, click on `Fork` and follow the instructions. For cloning the repository run `git clone https://github.com/nacht-falter/sonic-explorers.git` in your terminal.
+
+    <details>
+
+    <summary>Show image</summary>
+
+    ![Clone or fork repository](docs/deployment/clone-or-fork-repo.png)
+
+    </hr>
+
+3. Go to the repository folder and edit the file `src/api/axiosDefaults.js`. In the file, change the value of `axios.defaults.baseURL` to the URL of your deployed API. You can find the URL by clicking on your API app from the Heroku dashboard and then copying the URL from the `Open app` button.
+
+4. If you haven't done so yet, login to your Heroku account at https://heroku.com. Now start a new app from the [Heroku dashboard](https://dashboard.heroku.com) by clicking on `New` and then on `Create new app`.
+
+    <details>
+
+    <summary>Show image</summary>
+
+    ![Create Heroku app](docs/deployment/create-heroku-app.png)
+
+    </details>
+
+5. Give your app an available name and choose your region (US or Europe).
+
+8. Click on the *Deploy* tab and connect the Heroku app to your GitHub repository.
+
+    <details>
+
+    <summary>Show image</summary>
+
+    ![Connect Heroku app to GitHub repository](docs/deployment/connect-to-repo.png)
+
+    </details>
+
+9. Scroll down and choose the branch you want to deploy in the *Manual deploy* section. Now click on `Deploy Branch` for the first deployment of the application.
+
+    <details>
+
+    <summary>Show image</summary>
+
+    ![Deploy branch](docs/deployment/deploy-branch.png)
+
+    </details>
+
+10. In case you run into any issues while deploying your App you can access Heroku logs by clicking on `More` and then `View logs` or you can check the *Activity* tab for debugging.
+
+    <details>
+
+    <summary>Show image</summary>
+
+    ![Debugging](docs/deployment/debugging.png)
+
+    </details>
+
+11. After successful deployment click on `View` to open your deployed app.
+
+    <details>
+
+    <summary>Show image</summary>
+
+    ![Open app](docs/deployment/open-app.png)
+
+    </details>
+
+    If everything went well, you should see the *Sonic Explorers* landing page. If you can see the landing page but no content is loaded from the API (i.e. the loading spinner keeps spinning) double check if you have correctly set the `CLIENT_ORIGIN` config variable on your API project [as described here](https://github.com/nacht-falter/sonic-explorers-api#deployment). If you still can't see any content make sure you provided the correct URL for your API as described in step 3 or check the console for error messages.
