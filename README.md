@@ -130,9 +130,9 @@ The social interaction features of the application (following other users, likin
 
 ### Scope Plane
 
-For the scope of the project, separate sets of user stories were created for the backend and the frontend part of the application. The user stories for the Sonic Explorers API can be found here: [Sonic Explorers API User Stories](https://github.com/nacht-falter/sonic-explorers-api/blob/main/docs/USERSTORIES.md). Detailed information on the user stories for the frontend application can be found here: [Sonic Explorers User Stories](docs/USERSTORIES.md).
+For the scope of the project, separate sets of user stories were created [for the backend](https://github.com/nacht-falter/sonic-explorers-api/blob/main/docs/USERSTORIES.md) and [for the frontend](docs/USERSTORIES.md) part of the application with the MVP (Minimum Viable Product) in mind.
 
-The following user stories were included in the current scope of the frontend project:
+The following user stories were included in the current scope of the frontend project. User stories for the MVP are marked with the MVP label.
 
 ...
 
@@ -208,3 +208,158 @@ In accordance with the application logo, the main colors of the application used
 I chose [Open Sans](https://fonts.google.com/specimen/Open+Sans) as the main font for the application for its clean look and good legibility. It is used for all text elements on the page except for headings.
 
 For headings I chose [Exo 2](https://fonts.google.com/specimen/Exo+2), which has a more playful and futuristic look.
+
+## Agile Methodology
+
+### GitHub Issues and Projects as Agile Tools
+
+[GitHub Issues](https://docs.github.com/en/issues) and [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects) were used as tools for Agile methodology.
+
+- I used [Issues](https://github.com/nacht-falter/sonic-explorers/issues?q=is%3Aissue+is%3Aclosed) to define user stories and created Assessment Criteria and Tasks for each user story.
+
+- I categorized all user stories by **[Themes](https://github.com/nacht-falter/sonic-explorers/labels?q=THEME)** and **[Epics](https://github.com/nacht-falter/sonic-explorers/labels?q=EPIC)** and used labels to mark user stories accordingly.
+
+- All user stories were prioritized using the MoSCoW prioritization technique with the following project-wide priorities:
+
+  https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Must-Have https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Should-Have https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Could-Have https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Won%27t-Have
+
+- I used **Milestones** for the [Product Backlog](https://github.com/nacht-falter/sonic-explorers/milestone/1) and for adding user stories to [Sprints](https://github.com/nacht-falter/sonic-explorers/milestones?state=closed).
+
+- [Projects](https://github.com/nacht-falter/sonic-explorers/projects?query=is%3Aclosed) were used for tracking user stories within each iteration.
+
+- [Project workflows](https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/adding-items-automatically) were used to automatically add user stories in a sprint to the To-do column of the corresponding project board.
+
+- For sprint-wide prioritization, a [custom priority field](https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields) was created.
+
+### Sprint Planning
+
+The development process for the API project was planned with six timeboxed sprints of three days each. User stories were assigned to sprints with the MVP in mind, while making sure not to assign more than 60% Must-Have user stories to a sprint.
+
+#### Sprint 1 (Sept. 27 to 29 2023)
+
+<details>
+
+<summary>Show sprint details</summary>
+
+##### To-do:
+
+- Initial Setup
+- User registration and authentication
+- Navigation
+- Messages
+
+Finished on Sept. 29 2023, two unfinished items moved back to product backlog.
+
+[Sprint User Stories](https://github.com/nacht-falter/sonic-explorers/milestone/2?closed=1) | [Sprint Project Board](https://github.com/users/nacht-falter/projects/19)
+
+</details>
+
+<hr>
+
+#### Sprint 2 (Oct. 1 to 3 2023)
+
+<details>
+
+<summary>Show sprint details</summary>
+
+##### To-do:
+
+- Sound upload
+- Adding sound details
+- Geolocation data
+- Bugfixes
+
+Finished on Oct. 3 2023, two unfinished items moved back to product backlog.
+
+[Sprint User Stories](https://github.com/nacht-falter/sonic-explorers/milestone/3?closed=1) | [Sprint Project Board](https://github.com/users/nacht-falter/projects/20)
+
+</details>
+
+<hr>
+
+#### Sprint 3 (Oct. 3 to 5 2023)
+
+<details>
+
+<summary>Show sprint details</summary>
+
+##### To-do:
+
+- Audio player
+- Sound lists
+- Infinite scroll
+- Sound detail page
+- Liking and unliking sounds
+- Deleting sounds
+- Bugfixes
+
+Finished on Oct. 5 2023, one unfinished item moved back to product backlog.
+
+[Sprint User Stories](https://github.com/nacht-falter/sonic-explorers/milestone/4?closed=1) | [Sprint Project Board](https://github.com/users/nacht-falter/projects/21)
+
+</details>
+
+<hr>
+
+#### Sprint 4 (Oct. 6 to 9 2023)
+
+<details>
+
+<summary>Show sprint details</summary>
+
+##### To-do:
+
+- Edit sound information
+- Commenting on sounds
+- Editing and deleting comments
+- Follow/unfollow users
+- Profile page
+- Edit profile
+- Reading and deleting notifications
+
+Finished on Oct. 9 2023, two unfinished items moved back to product backlog.
+
+[Sprint User Stories](https://github.com/nacht-falter/sonic-explorers/milestone/5?closed=1) | [Sprint Project Board](https://github.com/users/nacht-falter/projects/22)
+
+</details>
+
+<hr>
+
+#### Sprint 5 (Oct. 10 to 13 2023)
+
+<details>
+
+<summary>Show sprint details</summary>
+
+##### To-do:
+
+- Map view
+- Creating, reading, and deleting reports
+- Responsive layout fixes
+- Testing and Documentation
+
+Finished on Oct. 10 2023, one item re-prioritized as "Won't have" moved back to product backlog.
+
+[Sprint User Stories](https://github.com/nacht-falter/sonic-explorers/milestone/6?closed=1) | [Sprint Project Board](https://github.com/users/nacht-falter/projects/23)
+
+</details>
+
+<hr>
+
+#### Sprint 6 (Oct. 20 to 24)
+
+<details>
+
+<summary>Show sprint details</summary>
+
+##### To-do:
+
+- Testing
+- Bug fixes
+- Documentation
+
+Could not be completed within the planned time frame due to familial obligations. Finished on Nov. 6. 
+
+</details>
+
+<hr>
