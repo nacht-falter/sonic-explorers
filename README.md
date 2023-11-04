@@ -363,3 +363,33 @@ Could not be completed within the planned time frame due to familial obligations
 </details>
 
 <hr>
+
+## Technologies Used
+
+### Frameworks and Languages
+
+The application was built with [React](https://reactjs.org/), a frontend JavaScript library. The react project was initialized with [Create React App](https://create-react-app.dev/).
+
+### Additional Javascript and React Libraries
+
+- [Axios](https://axios-http.com/) for making HTTP requests to the API.
+- [Bootstrap](https://getbootstrap.com/) and [React Bootstrap](https://react-bootstrap.github.io/) for styling and layout.
+- [React Router](https://reactrouter.com/en/main) for routing.
+- [React Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component) for implementing infinite scroll.
+- [JWT Decode](https://www.npmjs.com/package/jwt-decode) for decoding JSON Web Tokens.
+- [Leaflet](https://leafletjs.com/) and [React Leaflet](https://react-leaflet.js.org/) for displaying maps.
+- [WaveSurfer.js](https://wavesurfer.xyz/) for playing audio and generating waveforms.
+- [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for automated testing.
+
+### Other Software
+
+- [GitHub](https://github.com/) is used to store all project files in the [repository](https://github.com/nacht-falter/sonic-explorers)
+- [GitHub Issues](https://docs.github.com/en/issues) have been used for Agile methodology by assigning user stories to issues and using labels to organize user stories.
+- [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects) have been used for Agile sprint planning and task tracking.
+  [The project boards for all sprints can be found here](https://github.com/nacht-falter/sonic-explorers/projects?query=is%3Aclosed).
+- The [GitHub CLI](https://cli.github.com/) was used for creating issues from the terminal.
+- [Git](https://git-scm.com/) was used for version control by committing changes to Git and pushing them to GitHub from the command line.
+- [Heroku](https://heroku.com/) is used to [deploy the application](#deployment).
+- [Neovim](https://neovim.io/) was used for writing code.
+- [Pixelmator Pro](https://www.pixelmator.com/pro/) and [GIMP](https://www.gimp.org/) were used for image editing.
+- https://derlin.github.io/bitdowntoc/ has been used to create the [table of contents](#table-of-contents) in this README.
