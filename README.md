@@ -27,7 +27,28 @@ The deployed application can be found here: [Sonic Explorers](https://sonic-expl
 
 ## Table of Contents
 
-...
+- [Features](#features)
+  - [Existing Features](#existing-features)
+  - [Future Features](#future-features)
+- [Design Process](#design-process)
+  - [Strategy Plane](#strategy-plane)
+  - [Scope Plane](#scope-plane)
+  - [Structure Plane](#structure-plane)
+  - [Skeleton Plane](#skeleton-plane)
+  - [Surface Plane](#surface-plane)
+- [Agile Methodology](#agile-methodology)
+  - [GitHub Issues and Projects as Agile Tools](#github-issues-and-projects-as-agile-tools)
+  - [Sprint Planning](#sprint-planning)
+- [Technologies Used](#technologies-used)
+  - [Frameworks and Languages](#frameworks-and-languages)
+  - [Additional JavaScript and React Libraries](#additional-javascript-and-react-libraries)
+  - [Other Software](#other-software)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Credits](#credits)
+  - [Inspiration](#inspiration)
+  - [Sources](#sources)
+  - [Acknowledgements](#acknowledgements)
 
 ## Features
 
