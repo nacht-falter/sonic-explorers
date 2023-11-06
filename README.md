@@ -36,7 +36,7 @@ The deployed application can be found here: [Sonic Explorers](https://sonic-expl
 - **User authentication and profiles**: Users can create an account, log in and log out. They can customize their profile by adding a profile picture and a short bio.
 - **Sound upload with geolocation**: Users can upload sounds and add location data. They can also edit and delete their sounds.
 - **Tagging system**: Users can add tags to their sounds.
-- **Sound list view with infinite scroll**: Users can see lists of sounds (all sounds, sounds by followed users, liked sounds). For better performance the lists are paginated, and additional sounds are loaded when the user scrolls to the bottom of the page.
+- **Sound list view with infinite scroll**: Users can see lists of sounds (all sounds, sounds by followed users, liked sounds). For better performance, the lists are paginated, and additional sounds are loaded when the user scrolls to the bottom of the page.
 - **Sound search**: Users can search for sounds by title, description, user, or tag.
 - **Sound map view**: Users can view all sounds on a map.
 - **User interactions**: Users can like and comment on sounds. They can also follow other users.
@@ -112,7 +112,7 @@ The following features have not been included in the current scope of the projec
 - Staff users can delete inappropriate content and block users.
 - Gamification features:
     - Challenges for finding and recording specific sounds or going to specific places.
-    - Users can earn badges for certain achievements (e.g. number of sounds uploaded, number of likes, completing challenges).
+    - Users can earn badges for certain achievements (e.g., number of sounds uploaded, number of likes, completing challenges).
 
 ## Design Process
 
@@ -124,7 +124,7 @@ I approached the design process of the *Sonic Explorers* app from a user-centere
 
 The use of geolocation and maps is an essential part of the application. Due to the ephemeral nature of sound, recordings often feel disconnected from the original situation in which they were recorded. Adding location data to a sound can help to link sound recordings to real places and situations, which makes it easier for users to relate to them. At the same time, placing sounds on a map allows users to explore sounds from different places and discover new sounds around them. It also encourages users to get out and explore interesting sounds in the world.
 
-Tagging sounds is another important feature of the application. It allows users to organize and find sounds. It also encourages users to think about the acoustic qualities of the sounds they encounter and to reflect on them. Although it can be quite challenging to find appropriate words to describe a sound, other than the sound's source, thinking about this can be a first step to a more conscious approach to sound.
+Tagging sounds is another important feature of the application. It allows users to organize and find sounds. It also encourages users to think about the acoustic qualities of the sounds they encounter and to reflect on them. Although it can be quite challenging to find appropriate words to describe a sound, other than just naming the sound's source, thinking about this can be a first step to a more conscious approach to sound.
 
 The social interaction features of the application (following other users, liking and commenting on sounds) are intended to encourage users to engage with each other and to create a community of people who are interested in sound.
 
@@ -138,7 +138,7 @@ The following user stories were included in the current scope of the frontend pr
 
 ### Structure Plane
 
-The planning of the structure plane of the project involved thinking about the different parts of the project and their interactions. Since most of that planning had to be done before implementing the backend part of the project, the process of planning the strucure of the backend (database, models, API endpoints) is documented here: [Sonic Explorers API Design Process](https://github.com/nacht-falter/sonic-explorers-api#design-process).
+The planning of the structure plane of the project involved thinking about the different parts of the project and their interactions. Since most of that planning had to be done before implementing the backend part of the project, the process of planning the structure of the backend (database, models, API endpoints) is documented here: [Sonic Explorers API Design Process](https://github.com/nacht-falter/sonic-explorers-api#design-process).
 
 The structure of the frontend application was guided by the features provided by the backend API. In order to implement all features within the current scope of the project, I planned the frontend application with the following main components:
 
@@ -207,7 +207,7 @@ In accordance with the application logo, the main colors of the application used
 
 I chose [Open Sans](https://fonts.google.com/specimen/Open+Sans) as the main font for the application for its clean look and good legibility. It is used for all text elements on the page except for headings.
 
-For headings I chose [Exo 2](https://fonts.google.com/specimen/Exo+2), which has a more playful and futuristic look.
+For headings, I chose [Exo 2](https://fonts.google.com/specimen/Exo+2), which has a more playful and futuristic look.
 
 ## Agile Methodology
 
@@ -291,7 +291,7 @@ Finished on Oct. 3 2023, two unfinished items moved back to product backlog.
 - Sound detail page
 - Liking and unliking sounds
 - Deleting sounds
-- Bugfixes
+- Bug fixes
 
 Finished on Oct. 5 2023, one unfinished item moved back to product backlog.
 
@@ -368,9 +368,9 @@ Could not be completed within the planned time frame due to familial obligations
 
 ### Frameworks and Languages
 
-The application was built with [React](https://reactjs.org/), a frontend JavaScript library. The react project was initialized with [Create React App](https://create-react-app.dev/).
+The application was built with [React](https://reactjs.org/), a frontend JavaScript library. The React project was initialized with [Create React App](https://create-react-app.dev/).
 
-### Additional Javascript and React Libraries
+### Additional JavaScript and React Libraries
 
 - [Axios](https://axios-http.com/) for making HTTP requests to the API.
 - [Bootstrap](https://getbootstrap.com/) and [React Bootstrap](https://react-bootstrap.github.io/) for styling and layout.
@@ -404,9 +404,9 @@ The application was deployed to [Heroku](https://heroku.com). A live version of 
 
 Please follow these steps to deploy the application:
 
-1. Deploy your your own version of the [Sonic Explorers API](https://github.com/nacht-falter/sonic-explorers-api) by following the [deployment instructions for the Sonic Explorers API](https://github.com/nacht-falter/sonic-explorers-api#deployment).
+1. Deploy your own version of the [Sonic Explorers API](https://github.com/nacht-falter/sonic-explorers-api) by following the [deployment instructions for the Sonic Explorers API](https://github.com/nacht-falter/sonic-explorers-api#deployment).
 
-2. Clone or fork this repository. For forking it, go to https://github.com/nacht-falter/sonic-explorers/, click on `Fork` and follow the instructions. For cloning the repository run `git clone https://github.com/nacht-falter/sonic-explorers.git` in your terminal.
+2. Clone or fork this repository. For forking it, go to https://github.com/nacht-falter/sonic-explorers/, click on `Fork` and follow the instructions. For cloning the repository, run `git clone https://github.com/nacht-falter/sonic-explorers.git` in your terminal.
 
     <details>
 
@@ -440,7 +440,7 @@ Please follow these steps to deploy the application:
 
     </details>
 
-9. Scroll down and choose the branch you want to deploy in the *Manual deploy* section. Now click on `Deploy Branch` for the first deployment of the application.
+9. Scroll down and select the branch you want to deploy in the *Manual deploy* section. Now click on `Deploy Branch` for the first deployment of the application.
 
     <details>
 
@@ -460,7 +460,7 @@ Please follow these steps to deploy the application:
 
     </details>
 
-11. After successful deployment click on `View` to open your deployed app.
+11. After successful deployment, click on `View` to open your deployed app.
 
     <details>
 
@@ -470,7 +470,7 @@ Please follow these steps to deploy the application:
 
     </details>
 
-    If everything went well, you should see the *Sonic Explorers* landing page. If you can see the landing page but no content is loaded from the API (i.e. the loading spinner keeps spinning) double check if you have correctly set the `CLIENT_ORIGIN` config variable on your API project [as described here](https://github.com/nacht-falter/sonic-explorers-api#deployment). If you still can't see any content make sure you provided the correct URL for your API as described in step 3 or check the console for error messages.
+    If everything went well, you should see the *Sonic Explorers* landing page. If you can see the landing page but no content is loaded from the API (i.e., the loading spinner keeps spinning) double check if you have correctly set the `CLIENT_ORIGIN` config variable on your API project [as described here](https://github.com/nacht-falter/sonic-explorers-api#deployment). If you still can't see any content, make sure you provided the correct URL for your API as described in step 3 or check the console for error messages.
 
 ## Credits
 
@@ -505,11 +505,11 @@ All other sources used during development are listed below. All code from these 
 - Instructions for mocking useParams: https://stackoverflow.com/a/72053411
 - Mock ResizeObserver required by wavesurfer.js: https://stackoverflow.com/a/67006794
 - Mock HTMLMediaElement prototype methods: https://stackoverflow.com/questions/51829319/how-to-mock-video-pause-function-using-jest
-- Assert that links navigate to new url: https://www.joshmcarthur.com/til/2022/01/19/assert-windowlocation-properties-with-jest.html
+- Assert that links navigate to new URL: https://www.joshmcarthur.com/til/2022/01/19/assert-windowlocation-properties-with-jest.html
 
 #### Images
 
-The following images have been used, either as part of the user interface or as example content for demonstration purposes:
+The following images have been used, either as part of the user interface or as example content, for demonstration purposes:
 
 <details>
 
