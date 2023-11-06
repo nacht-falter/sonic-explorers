@@ -130,11 +130,63 @@ The social interaction features of the application (following other users, likin
 
 ### Scope Plane
 
-For the scope of the project, separate sets of user stories were created [for the backend](https://github.com/nacht-falter/sonic-explorers-api/blob/main/docs/USERSTORIES.md) and [for the frontend](docs/USERSTORIES.md) part of the application with the MVP (Minimum Viable Product) in mind.
+For the scope of the project, separate sets of user stories were created [for the backend](https://github.com/nacht-falter/sonic-explorers-api/blob/main/docs/userstories.md) and [for the frontend](docs/userstories.md) part of the application with the MVP (Minimum Viable Product) in mind.
 
-The following user stories were included in the current scope of the frontend project. User stories for the MVP are marked with the MVP label.
+👉 [Click here for detailed user stories including Themes, Epics, Acceptance Criteria, and Tasks](docs/userstories.md)
 
-...
+#### User Stories Within Project Scope
+
+ℹ️ The following user stories were included in the current scope of the project.
+
+ℹ️ User stories marked with the https://github.com/nacht-falter/sonic-explorers/labels/MVP label make up the Minimum Viable Product.
+
+|ID|User Story|MVP|
+|---|---|---|
+ [#1](https://github.com/nacht-falter/sonic-explorers/issues/1)|As a **new user**, I can **create an account** so that I can **get access to all features of the application**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#2](https://github.com/nacht-falter/sonic-explorers/issues/2)|As a **registered user**, I can **log in** so that I can **access my account**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#3](https://github.com/nacht-falter/sonic-explorers/issues/3)|As a **logged-in user**, I can **log out** so that I can **securely end my session**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#4](https://github.com/nacht-falter/sonic-explorers/issues/4)|As a **registered user**, I can **click on a profile link in the menu** so that I can **review my profile or check out other user's profiles**.||
+ [#5](https://github.com/nacht-falter/sonic-explorers/issues/5)|As a **registered user**, I can **edit my profile** so that I can **update my information**.||
+ [#6](https://github.com/nacht-falter/sonic-explorers/issues/6)|As a **registered user**, I can **upload a sound file** so that I can **share my sounds with other users**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#8](https://github.com/nacht-falter/sonic-explorers/issues/8)|As a **registered user**, I can **add information (title, description, image, tags) to my sound file** so that I can **provide details for my sounds**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#9](https://github.com/nacht-falter/sonic-explorers/issues/9)|As a **registered user**, I can **add geoloaction data to my sound file, either by choosing a location on a map or by allowing the browser to access my location** so that I can **provide location data for my sounds**.||
+ [#10](https://github.com/nacht-falter/sonic-explorers/issues/10)|As a **registered user**, I can **edit information for my sound file** so that I can **update my sound's details**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#11](https://github.com/nacht-falter/sonic-explorers/issues/11)|As a **registered user**, I can **see a list of sound files** so that I can **explore other user's sounds**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#13](https://github.com/nacht-falter/sonic-explorers/issues/13)|As a **registered user**, I can **search for sound files** so that I can **find specific sounds easily**.||
+ [#14](https://github.com/nacht-falter/sonic-explorers/issues/14)|As a **registered user**, I can **see a sounds feed with sounds from followed users** so that I can **discover content from users I follow**.||
+ [#15](https://github.com/nacht-falter/sonic-explorers/issues/15)|As a **registered user**, I can **see a list of sound files I liked** so that I can **access my favourite sounds**.||
+ [#17](https://github.com/nacht-falter/sonic-explorers/issues/17)|As a **registered user**, I can **access a sound detail page with an audio player and the sound's details** so that I can **get more information on a specific sound**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#18](https://github.com/nacht-falter/sonic-explorers/issues/18)|As a **registered user**, I can **see a map with the sound's location on the sound detail page** so that I can **see the sound's location without going to the map view**.||
+ [#19](https://github.com/nacht-falter/sonic-explorers/issues/19)|As a **registered user**, I can **like and unlike sounds** so that I can **express my appreciation for other user's sounds**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#20](https://github.com/nacht-falter/sonic-explorers/issues/20)|As a **registered user**, I can **comment on sounds** so that I can **provide feeback on other user's sounds**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#21](https://github.com/nacht-falter/sonic-explorers/issues/21)|As a **registered user**, I can **edit and delete my comments** so that I can **correct mistakes or withdraw comments**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#22](https://github.com/nacht-falter/sonic-explorers/issues/22)|As a **registered user**, I can **follow and unfollow other users** so that I can **stay updated on their uploaded content**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#23](https://github.com/nacht-falter/sonic-explorers/issues/23)|As a **registered user**, I can **see a widget with a list of the most followed users** so that I can **discover popular users**.||
+ [#24](https://github.com/nacht-falter/sonic-explorers/issues/24)|As a **registered user**, I can **receive notifications for new sounds by followed users** so that I can **stay updated on their content**.||
+ [#25](https://github.com/nacht-falter/sonic-explorers/issues/25)|As a **registered user**, I can **receive notifications for new likes, comments, and followers** so that I can **stay engaged with my followers**.||
+ [#26](https://github.com/nacht-falter/sonic-explorers/issues/26)|As a **staff user**, I can **receive notifications for new reports** so that I can **take appropriate action on flagged content**.||
+ [#27](https://github.com/nacht-falter/sonic-explorers/issues/27)|As a **registered user**, I can **delete notifications** so that I can **manage my notification inbox**.||
+ [#28](https://github.com/nacht-falter/sonic-explorers/issues/28)|As a **registered user**, I can **report sounds** so that I can **flag inappropriate content**.||
+ [#29](https://github.com/nacht-falter/sonic-explorers/issues/29)|As a **staff user**, I can **mark reports as done** so that I can **keep track of which reports still need to be reviewed**.||
+ [#30](https://github.com/nacht-falter/sonic-explorers/issues/30)|As a **staff user**, I can **delete reports** so that I can **get rid of inappropriate reports or reports that are no longer relevant**.||
+ [#31](https://github.com/nacht-falter/sonic-explorers/issues/31)|As a **registered user**, I can **see a map with all uploaded sounds as map markers** so that I can **explore sounds based on their location**.||
+ [#32](https://github.com/nacht-falter/sonic-explorers/issues/32)|As a **registered user**, I can **filter sounds displayed on the map** so that I can **limit the sounds displayed on the map to match specific criteria**.||
+ [#33](https://github.com/nacht-falter/sonic-explorers/issues/33)|As a **user**, I can **navigate through the application intuitively** so that I can **easily find the features I am looking for**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#34](https://github.com/nacht-falter/sonic-explorers/issues/34)|As a **user**, I can **access the application from different devices with a responsive and coherent design** so that I can **have a constistent user experience on all devices**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#35](https://github.com/nacht-falter/sonic-explorers/issues/35)|As a **user** I want to **see messages as feedback for my actions within the application** so that I can **know if my actions were successful**.||
+ [#38](https://github.com/nacht-falter/sonic-explorers/issues/38)|As a **user**, I can **access an audio player** so that I can l**isten to my own and other user's sounds**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+ [#40](https://github.com/nacht-falter/sonic-explorers/issues/40)|As a **user**, I can **scroll down in a list of sounds and see more sounds appear in the list as I continue** so that I can **have short loading times and a smooth user experience**.||
+ [#42](https://github.com/nacht-falter/sonic-explorers/issues/42)|As **the owner of a sound**, I can **delete sounds** so that I can **remove sounds I don't need anymore**.|https://github.com/nacht-falter/sonic-explorers/labels/MVP|
+
+#### User Stories Not Included in Current Scope
+
+ℹ️ The following user stories were not included in the current scope of the project.
+
+|ID|User Story|MVP|
+|---|---|---|
+ [#7](https://github.com/nacht-falter/sonic-explorers/issues/7)|As a **registered user**, I can **record a sound file** so that I can **create and share new sounds on the spot**.||
+ [#12](https://github.com/nacht-falter/sonic-explorers/issues/12)|As a **registered user**, I can **sort and filter the list of sound files** so that I can **easily find specific sounds**.||
+ [#16](https://github.com/nacht-falter/sonic-explorers/issues/16)|As a **registered user**, I can **see a widget with a list of the most popular sounds** so that I can **see which sounds I should listen to**.||
 
 ### Structure Plane
 
