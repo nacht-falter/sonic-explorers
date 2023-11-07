@@ -151,9 +151,9 @@ The **social interaction** features of the application (following other users, l
 
 ### Scope Plane
 
-For the scope of the project, separate sets of user stories were created [for the backend](https://github.com/nacht-falter/sonic-explorers-api/blob/main/docs/userstories.md) and [for the frontend](docs/userstories.md) part of the application with the MVP (Minimum Viable Product) in mind.
+For the scope of the project, separate sets of user stories were created [for the backend](https://github.com/nacht-falter/sonic-explorers-api/blob/main/docs/USERSTORIES.md) and [for the frontend](docs/USERSTORIES.md) part of the application with the MVP (Minimum Viable Product) in mind.
 
-👉 [Click here for detailed user stories including Themes, Epics, Acceptance Criteria, and Tasks](docs/userstories.md)
+👉 [Click here for detailed user stories including Themes, Epics, Acceptance Criteria, and Tasks](docs/USERSTORIES.md)
 
 #### User Stories Within Project Scope
 
