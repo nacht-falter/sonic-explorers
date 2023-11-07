@@ -209,7 +209,6 @@ For the scope of the project, separate sets of user stories were created [for th
  [#12](https://github.com/nacht-falter/sonic-explorers/issues/12)|As a **registered user**, I can **sort and filter the list of sound files** so that I can **easily find specific sounds**.||
  [#16](https://github.com/nacht-falter/sonic-explorers/issues/16)|As a **registered user**, I can **see a widget with a list of the most popular sounds** so that I can **see which sounds I should listen to**.||
 
-
 #### Mapping User Stories to Features
 
 In order to reach the project goals and to make sure all planned features are implemented, all user stories were mapped to the features of the application by using corresponding themes and epics (for more details see [Agile Methodology section](#agile-methodology)). Each user story has been assigned to one of the following themes (Please click on a theme to see a list of all user storys mapped to the corresponding feature):
@@ -548,6 +547,8 @@ The application was built with [React](https://reactjs.org/), a frontend JavaScr
 - [WaveSurfer.js](https://wavesurfer.xyz/) for playing audio and generating waveforms.
 - [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for automated testing.
 
+All used third party libraries contribute important features to the application. Axios, Leaflet, and WaveSurfer.js stand out in particular for their essential role in the project: Axios for providing the connection between the frontend and the backend part of the project, Leaflet for enabling the map/geolocation related features, and WaveSurfer.js for providing advanced audio playback capabilities and for rendering waveforms.
+
 ### Other Software
 
 - [GitHub](https://github.com/) is used to store all project files in the [repository](https://github.com/nacht-falter/sonic-explorers)
@@ -560,6 +561,7 @@ The application was built with [React](https://reactjs.org/), a frontend JavaScr
 - [Neovim](https://neovim.io/) was used for writing code.
 - [Pixelmator Pro](https://www.pixelmator.com/pro/) and [GIMP](https://www.gimp.org/) were used for image editing.
 - https://derlin.github.io/bitdowntoc/ has been used to create the [table of contents](#table-of-contents) in this README.
+- [Chrome Lighthouse](https://developer.chrome.com/docs/lighthouse/) was used to test the performance of the deployed website.
 
 ## Testing
 
