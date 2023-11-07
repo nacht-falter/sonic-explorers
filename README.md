@@ -137,7 +137,7 @@ The following features have not been included in the current scope of the projec
 
 ## Design Process
 
-I approached the design process of the *Sonic Explorers* app from a user-centered perspective, following the five planes of user experience. The design process of the frontend application had to go hand in hand with the design process of the backend API, which is documented here: [Sonic Explorers API Design Process](https://github.com/sonic-explorers/sonic-explorers-api#design-process).
+I approached the design process of the *Sonic Explorers* app from a user-centered perspective, following the five planes of user experience. The design process of the frontend application had to go hand in hand with the design process of the backend API, which is documented here: [Sonic Explorers API Design Process](https://github.com/sonic-explorers-api#design-process).
 
 ### Strategy Plane
 
@@ -209,24 +209,118 @@ For the scope of the project, separate sets of user stories were created [for th
  [#12](https://github.com/nacht-falter/sonic-explorers/issues/12)|As a **registered user**, I can **sort and filter the list of sound files** so that I can **easily find specific sounds**.||
  [#16](https://github.com/nacht-falter/sonic-explorers/issues/16)|As a **registered user**, I can **see a widget with a list of the most popular sounds** so that I can **see which sounds I should listen to**.||
 
+
+#### Mapping User Stories to Features
+
+In order to reach the project goals and to make sure all planned features are implemented, all user stories were mapped to the features of the application by using corresponding themes and epics (for more details see [Agile Methodology section](#agile-methodology)). Each user story has been assigned to one of the following themes (Please click on a theme to see a list of all user storys mapped to the corresponding feature):
+
+- [User Authentication and Profile Management](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+User+Authentication+and+Profile+Management%22+is%3Aclosed)
+- [Sound Management](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+Sound+Management%22+is%3Aclosed)
+- [Discovering Sounds](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+User+Interaction%22+is%3Aclosed)
+- [Geolocation](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+Geolocation%22+is%3Aclosed)
+- [User Interaction](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+User+Interaction%22+is%3Aclosed)
+- [Reports and Notifications](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+Reports+and+Notifications%22+is%3Aclosed)
+- [User Experience](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+User+Experience%22+is%3Aclosed)
+
 ### Structure Plane
 
 The planning of the structure plane of the project involved thinking about the different parts of the project and their interactions. Since most of that planning had to be done before implementing the backend part of the project, the process of planning the structure of the backend (database, models, API endpoints) is documented here: [Sonic Explorers API Design Process](https://github.com/nacht-falter/sonic-explorers-api#design-process).
 
-The structure of the frontend application was guided by the features provided by the backend API. In order to implement all features within the current scope of the project, I planned the frontend application with the following main components:
+#### Main components
 
-- Two navigation bars (top and bottom)
-- Pages for user authentication (sign up, sign in)
-- Pages for listing sounds, notifications, and reports
-- Forms for uploading and editing sounds
-- Pages for displaying and editing user profiles
-- A page for displaying sound details
-- A component for displaying a map with all sounds
-- Components for displaying profiles, sound details, comments, notifications, and reports
-- Forms for creating and editing profiles, comments, and reports and for changing usernames and passwords
-- An audio player for listening to sounds
+In order to implement all [features](#existing-features) within the current scope of the project, I planned the frontend application with the following main components:
 
-Additional components were added during the development process as needed.
+##### Navigation bars
+
+Two navigation bar components have been implemented in the application:
+
+- `src/components/TopNavBar` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/33))
+- `src/components/BottomNavBar` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/33))
+
+##### Pages for user authentication (sign up, sign in)
+
+Two pages for user authentication have been implemented in the application:
+
+- `src/pages/auth/SignUpForm.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/1))
+- `src/pages/auth/SignInForm.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/2))
+
+##### Pages for listing sounds
+
+A sound list component has been created which is used for listing different sets of sounds:
+
+- `src/pages/sounds/SoundListPage.js`
+
+([User story for Sound List](https://github.com/nacht-falter/sonic-explorers/issues/11) | [User story for Sound Feed](https://github.com/nacht-falter/sonic-explorers/issues/14) | [User story for Favourites](https://github.com/nacht-falter/sonic-explorers/issues/15))
+
+##### Forms for uploading and editing sounds
+
+The following components used for uploading and editing sounds have been implemented in the application:
+
+- `src/components/sounds/SoundCreateForm.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/6))
+- `src/components/sounds/SoundEditForm.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/10))
+
+##### A page for displaying sound details
+
+The following components have been implemented to display sound details:
+
+- `src/pages/sounds/SoundPage.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/17))
+- `src/pages/sounds/SoundDetail.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/17))
+
+
+##### Pages for displaying and editing user profiles
+
+The following components have been created to display and edit user profiles:
+
+- `src/pages/profiles/Profile.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/4))
+- `src/pages/profiles/ProfilePage.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/4))
+- `src/pages/profiles/ProfileEditForm` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/5))
+- `src/pages/profiles/UsernameForm.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/5))
+- `src/pages/profiles/PasswordForm.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/5))
+
+##### A page for displaying a map with all sounds
+
+The following components have been implemented to display sound on a map:
+
+- `src/pages/map/Map.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/31))
+- `src/pages/map/MapPopup.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/31))
+
+
+##### Components for displaying, creating, and editing comments
+
+The following components have been implemented to display, create and edit comments:
+
+- `src/pages/comments/Comment.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/20))
+- `src/pages/comments/CommentCreateForm.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/20))
+- `src/pages/comments/CommentEditForm.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/21))
+
+##### A page for displaying notifications:
+
+The following components have been created to display notifications
+
+- `src/pages/notifications/Notification.js`
+- `src/pages/notifications/NotificationPage.js`
+
+([User story for Like, Comment, and Follow Notifications](https://github.com/nacht-falter/sonic-explorers/issues/24) | [User story for Report Notifications](https://github.com/nacht-falter/sonic-explorers/issues/26) | [User story for Sound Notifications](https://github.com/nacht-falter/sonic-explorers/issues/24))
+
+##### Components for creating and displaying reports:
+
+The following components have been created to create and display reports:
+
+- `src/pages/reports/Report.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/29))
+- `src/pages/reports/ReportPage.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/29))
+- `src/pages/reports/ReportCreateForm.js` ([User story](https://github.com/nacht-falter/sonic-explorers/issues/28))
+
+#### Reusable components
+
+The following resuable components have been included for use on multiple pages:
+
+- An Avatar component for displaying profile images on several pages/within several components
+- An Asset component for displaying images or icons on multiple pages/components
+- An Audio Player component for playing audio on multiple pages/components
+- A confirmation modal component for displaying confirmation dialogues to the user for confirming actions such as deleting items
+- A message component for displaying messages as feedback to user actions
+- A component to show warnings to logged-out users trying to access pages requiring authentication
+- Field components to be re-used in the forms for uploading and editing sounds
 
 ### Skeleton Plane
 
