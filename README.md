@@ -314,13 +314,13 @@ The following components have been created to create and display reports:
 
 The following resuable components have been included for use on multiple pages:
 
-- An Avatar component for displaying profile images on several pages/within several components
-- An Asset component for displaying images or icons on multiple pages/components
-- An Audio Player component for playing audio on multiple pages/components
-- A confirmation modal component for displaying confirmation dialogues to the user for confirming actions such as deleting items
-- A message component for displaying messages as feedback to user actions
-- A component to show warnings to logged-out users trying to access pages requiring authentication
-- Field components to be re-used in the forms for uploading and editing sounds
+- An Avatar component for displaying profile images on several pages/within several components: `src/components/Avatar.js`
+- An Asset component for displaying images or icons on multiple pages/components: `src/components/Asset.js`
+- An Audio Player component for playing audio on multiple pages/components: `src/components/AudioPlayer.js`
+- A confirmation modal component for displaying confirmation dialogues to the user for confirming actions such as deleting items: `src/components/ConfirmationModal.js`
+- A message component for displaying messages as feedback to user actions: `src/components/Message.js`
+- A component to show warnings to logged-out users trying to access pages requiring authentication: `src/components/LoggedOutMessage.js`
+- Field components to be re-used in the forms for uploading and editing sounds: `src/components/AudioField.js` `src/components/ImageField.js` `src/components/LocationField.js` `src/components/TagField.js`
 
 ### Skeleton Plane
 
