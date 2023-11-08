@@ -42,28 +42,30 @@ function SoundEditForm(props) {
 
   useEffect(() => {
     const handleMount = async () => {
-      try {
-        const { data } = await axiosRequest.get(`/sounds/${id}`);
-        setHasLoaded(true);
-        const { title, description, audio_file, latitude, longitude, image, tags, is_owner } = data;
+      if (!hasLoaded) {
+        try {
+          const { data } = await axiosRequest.get(`/sounds/${id}`);
+          setHasLoaded(true);
+          const { title, description, audio_file, latitude, longitude, image, tags, is_owner } = data;
 
-        is_owner
-          ? setSoundData({
-              title: title,
-              description: description,
-              audio: audio_file,
-              location: [latitude, longitude],
-              image: image,
-              tags: tags,
-            })
-          : history.push("/");
-      } catch (err) {
-        // console.log(err);
+          is_owner
+            ? setSoundData({
+                title: title,
+                description: description,
+                audio: audio_file,
+                location: [latitude, longitude],
+                image: image,
+                tags: tags,
+              })
+            : history.push("/");
+        } catch (err) {
+          // console.log(err);
+        }
       }
     };
 
     handleMount();
-  }, [history, id, showMessage, soundData]);
+  }, [history, id, showMessage, soundData, hasLoaded]);
 
   // Method for getting audio from AudioField component
   const setAudio = (audio) => {
