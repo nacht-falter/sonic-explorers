@@ -326,7 +326,7 @@ https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Must-Have
 
 #### EPIC: Listing Sounds
 
-✅ https://github.com/nacht-falter/sonic-explorers/labels/MVP As a **registered user**, I can **see a list of sound files** so that I can **explore other user's sounds**. [(#11)](https://github.com/nacht-falter/sonic-explorers/issues/11)
+✅ https://github.com/nacht-falter/sonic-explorers/labels/MVP As a **user**, I can **see a list of sound files** so that I can **explore other user's sounds**. [(#11)](https://github.com/nacht-falter/sonic-explorers/issues/11)
 
  <details>
 
@@ -417,7 +417,7 @@ https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Must-Have
 
 </details>
 
-✅ As a **registered user**, I can **see a list of sound files I liked** so that I can **access my favourite sounds**. [(#15)](https://github.com/nacht-falter/sonic-explorers/issues/15)
+✅ As a **user**, I can **see a list of sound files I liked** so that I can **access my favourite sounds**. [(#15)](https://github.com/nacht-falter/sonic-explorers/issues/15)
 
  <details>
 
@@ -450,7 +450,7 @@ https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Must-Have
 
 #### EPIC: Sound Detail
 
-✅ https://github.com/nacht-falter/sonic-explorers/labels/MVP As a **registered user**, I can **access a sound detail page with an audio player and the sound's details** so that I can **get more information on a specific sound**. [(#17)](https://github.com/nacht-falter/sonic-explorers/issues/17)
+✅ https://github.com/nacht-falter/sonic-explorers/labels/MVP As a **user**, I can **access a sound detail page with an audio player and the sound's details** so that I can **get more information on a specific sound**. [(#17)](https://github.com/nacht-falter/sonic-explorers/issues/17)
 
  <details>
 
@@ -482,7 +482,7 @@ https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Must-Have
 
 </details>
 
-✅ As a **registered user**, I can **see a map with the sound's location on the sound detail page** so that I can **see the sound's location without going to the map view**. [(#18)](https://github.com/nacht-falter/sonic-explorers/issues/18)
+✅ As a **user**, I can **see a map with the sound's location on the sound detail page** so that I can **see the sound's location without going to the map view**. [(#18)](https://github.com/nacht-falter/sonic-explorers/issues/18)
 
  <details>
 
@@ -639,7 +639,7 @@ https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Must-Have
 
 </details>
 
-✅ As a **registered user**, I can **see a widget with a list of the most followed users** so that I can **discover popular users**. [(#23)](https://github.com/nacht-falter/sonic-explorers/issues/23)
+✅ As a **user**, I can **see a widget with a list of the most followed users** so that I can **discover popular users**. [(#23)](https://github.com/nacht-falter/sonic-explorers/issues/23)
 
  <details>
 
@@ -881,7 +881,7 @@ https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Should-Have
 
 #### EPIC: Map view
 
-✅ As a **registered user**, I can **see a map with all uploaded sounds as map markers** so that I can **explore sounds based on their location**. [(#31)](https://github.com/nacht-falter/sonic-explorers/issues/31)
+✅ As a **user**, I can **see a map with all uploaded sounds as map markers** so that I can **explore sounds based on their location**. [(#31)](https://github.com/nacht-falter/sonic-explorers/issues/31)
 
  <details>
 
@@ -911,7 +911,7 @@ https://github.com/nacht-falter/sonic-explorers/labels/PRIORITY%3A%20Could-Have
 
 </details>
 
-✅ As a **registered user**, I can **filter sounds displayed on the map** so that I can **limit the sounds displayed on the map to match specific criteria**. [(#32)](https://github.com/nacht-falter/sonic-explorers/issues/32)
+✅ As a **user**, I can **filter sounds displayed on the map** so that I can **limit the sounds displayed on the map to match specific criteria**. [(#32)](https://github.com/nacht-falter/sonic-explorers/issues/32)
 
  <details>
 
