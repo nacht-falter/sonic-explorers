@@ -51,6 +51,7 @@ const LocationField = ({ sendLocation, previousLocation, showMessage, setButtonD
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLocation([position.coords.latitude, position.coords.longitude]);
+          showMessage("success", "Location data retrieved successfully.");
           setLocationChanged(true);
           setShowTooltip(false);
           setButtonDisabled(false);
