@@ -565,7 +565,7 @@ All used third party libraries contribute important features to the application.
 
 ## Testing
 
-...
+All Testing procedures for the application have been documented here: [Testing Documentation](docs/TESTING.md)
 
 ## Deployment
 
