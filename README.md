@@ -215,7 +215,7 @@ In order to reach the project goals and to make sure all planned features are im
 
 - [User Authentication and Profile Management](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+User+Authentication+and+Profile+Management%22+is%3Aclosed)
 - [Sound Management](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+Sound+Management%22+is%3Aclosed)
-- [Discovering Sounds](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+User+Interaction%22+is%3Aclosed)
+- [Discovering Sounds](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+Discovering+Sounds%22+is%3Aclosed)
 - [Geolocation](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+Geolocation%22+is%3Aclosed)
 - [User Interaction](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+User+Interaction%22+is%3Aclosed)
 - [Reports and Notifications](https://github.com/nacht-falter/sonic-explorers/issues?q=label%3A%22THEME%3A+Reports+and+Notifications%22+is%3Aclosed)
