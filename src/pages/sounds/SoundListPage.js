@@ -57,7 +57,7 @@ function SoundListPage({ heading, message, filter = "" }) {
         <Container>
           <PopularProfiles mobile />
           <i className={`fas fa-search ${styles.SearchIcon}`} />
-          <Form className={styles.SearchBar} onSubmit={(event) => event.preventDefault()}>
+          <Form className={styles.SearchBar} id="searchBar" onSubmit={(event) => event.preventDefault()}>
             <Form.Control
               value={query}
               onChange={(e) => setQuery(e.target.value)}
