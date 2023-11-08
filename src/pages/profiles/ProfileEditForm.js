@@ -88,6 +88,7 @@ const ProfileEditForm = ({ showMessage }) => {
         profile_avatar: data.avatar,
       }));
       history.goBack();
+      showMessage("success", "Profile updated successfully.");
     } catch (err) {
       // console.log(err);
       setErrors(err.response?.data);
