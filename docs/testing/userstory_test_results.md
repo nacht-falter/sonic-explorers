@@ -1113,7 +1113,7 @@ All user stories for the API have been manually tested with the following result
 
 **Test for [User Story #33](https://github.com/nacht-falter/sonic-explorers/issues/33)**
 
-**User Story:** As a **user**, I can **navigate through the application intuitively** so that I can **easily find the features I am looking for.
+**User Story:** As a **user**, I can **navigate through the application intuitively** so that I can **easily find the features I am looking for**.
 
 **Result:** Passed ✅ | Completed in [Sprint 1](https://github.com/nacht-falter/sonic-explorers/milestone/2?closed=1)
 
@@ -1194,7 +1194,7 @@ All user stories for the API have been manually tested with the following result
 
 **Test for [User Story #35](https://github.com/nacht-falter/sonic-explorers/issues/35)**
 
-**User Story:** As a **user**, I want to **see messages as feedback for my actions within the application** so that I can **know if my actions were successful.
+**User Story:** As a **user**, I want to **see messages as feedback for my actions within the application** so that I can **know if my actions were successful**.
 
 **Result:** Passed ✅ | Completed in [Sprint 1](https://github.com/nacht-falter/sonic-explorers/milestone/2?closed=1)
 
