@@ -1,0 +1,134 @@
+/* Base styles for TopNavBar component */
+.TopNavBar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+  box-shadow: 0 0 5px 0 #e6e6e6;
+  z-index: 2;
+}
+
+.Logo {
+  height: 2.5rem;
+}
+
+.Title {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.Title:hover {
+  color: #d939ab;
+}
+
+/* Responsive styles */
+@media (max-width: 450px) {
+  .Logo {
+    height: 4rem;
+  }
+  .Title {
+    display: none !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .Logo {
+    height: 4rem;
+  }
+  .Title {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .Logo {
+    height: 5rem;
+  }
+  .Title {
+    font-size: 2rem;
+    margin-left: 1.5rem;
+  }
+}
+
+.Dropdown > * {
+  font-size: 0.8rem;
+  color: #000000;
+}
+
+.Dropdown :nth-child(2) {
+  top: 130%;
+}
+
+.Dropdown > a {
+  vertical-align: middle;
+  display: inline-block;
+  padding: 2px 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.Dropdown > a:hover {
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.Dropdown > div > span:hover,
+.Dropdown > div > span:active {
+  background-color: #f0f0f0;
+}
+
+/* Button styles */
+.SignUpButton {
+  font-size: 0.8rem;
+  margin: 0 0.75rem;
+}
+
+.SignUpButton:hover {
+  background-color: #d939ab;
+  border-color: #d939ab;
+}
+
+.SignInButton {
+  font-size: 0.8rem;
+  vertical-align: middle;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.SignInButton:hover,
+.SignInButton:active {
+  background-color: #fafafa !important;
+  box-shadow: inset 0 0 3px 0 #e6e6e6;
+  color: #d939ab !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Active link styles */
+.ActiveDropdownItem {
+  color: #d939ab;
+}
+
+.ActiveDropdownItem:hover {
+  color: #d939ab !important;
+}
+
+.ActiveSignUpButton Button {
+  background-color: #d939ab;
+  border-color: #d939ab;
+}
+
+.ActiveSignUpButton Button:hover {
+  background-color: #a21078;
+  border-color: #a21078;
+}
+
+.ActiveSignInButton Button {
+  background-color: #fafafa !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #d939ab;
+}
+
+.ActiveSignInButton Button:hover,
+.ActiveSignInButton Button:active {
+  background-color: #f0f0f0 !important;
+  box-shadow: inset 0 0 3px 0 #e6e6e6;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}

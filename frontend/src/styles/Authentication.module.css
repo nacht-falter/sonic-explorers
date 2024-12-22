@@ -1,0 +1,17 @@
+.Input {
+  margin: 10px 0;
+}
+
+.Link {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.Link span {
+  color: #d939ab;
+}
+
+.Alert {
+  font-size: 80%;
+}

@@ -1,0 +1,40 @@
+.PlayerContainer {
+  background-color: #333;
+}
+
+.AudioPlayer {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.WaveForm {
+  flex-basis: 90%;
+  z-index: 1;
+}
+
+.WaveForm:hover {
+  cursor: pointer;
+}
+
+.Controls {
+  font-size: 2.2rem;
+  margin-right: 0.5rem;
+  width: 2.2rem;
+  color: #ffffff;
+}
+
+.Controls:hover {
+  cursor: pointer;
+  color: #d939ab;
+}
+
+.ControlsSmall {
+  font-size: 1.8rem;
+  margin-right: 0.5rem;
+  width: 1.8rem;
+}
+
+.Time {
+  font-size: 0.8rem;
+}
