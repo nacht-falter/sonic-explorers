@@ -1,0 +1,53 @@
+/* Base styles for BottomNavBar component */
+.BottomNavBar {
+  background-color: #ffffff;
+  border-top: 1px solid #e6e6e6;
+  box-shadow: 0 0 5px 0 #e6e6e6;
+  padding: 0;
+  z-index: 2;
+}
+
+.BottomNavBar a {
+  padding: 6px 0 3px;
+  width: 100%;
+  text-decoration: none;
+  transition: all 0.1s ease-in-out;
+  font-weight: 100;
+}
+
+.BottomNavBar a:hover {
+  background: linear-gradient(-45deg, #f0f0f0, #fafafa);
+  box-shadow: inset 0 0 3px 0 #e6e6e6;
+}
+
+.Active {
+  color: #d939ab;
+  background: linear-gradient(-45deg, #efefef, #f2f2f2);
+  box-shadow: inset 0 0 4px 0 #e6e6e6;
+}
+
+.NavItemText {
+  margin-top: 0.2rem;
+  font-size: 0.7rem;
+}
+
+.BottomNavBar i {
+  font-size: 1.1rem;
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  .BottomNavBar {
+    font-size: 0.8rem;
+  }
+  .Container {
+    max-width: 1000px;
+  }
+  .BottomNavBar i {
+    font-size: 1.4rem;
+  }
+  .NavItemText {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+  }
+}

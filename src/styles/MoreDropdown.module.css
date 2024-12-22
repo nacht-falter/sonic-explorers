@@ -1,0 +1,8 @@
+.DropdownIcon:hover {
+  color: #d939ab;
+}
+
+.DropdownItem:active, DropdownItem:hover {
+  background-color: #f1f2f3;
+  color: #000000;
+}

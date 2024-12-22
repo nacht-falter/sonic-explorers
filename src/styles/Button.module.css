@@ -1,0 +1,52 @@
+.Button {
+  background-color: #d939ab;
+  border-color: #d939ab;
+  min-width: 9rem;
+}
+
+.Button:hover,
+.Button:active {
+  background-color: #a21078 !important;
+  border-color: #a21078 !important;
+}
+
+.Button:disabled {
+  background-color: #d939ab;
+  border-color: #d939ab;
+  opacity: 0.7;
+  min-width: 9rem;
+}
+
+.YellowButton {
+  background-color: #ffc101;
+  border-color: #ffc101;
+  color: #000000;
+  min-width: 9rem;
+}
+
+.YellowButton:hover,
+.YellowButton:active {
+  background-color: #ffac00 !important;
+  border-color: #ffac00 !important;
+  color: #000000 !important;
+}
+
+.YellowButton:disabled {
+  background-color: lightgrey;
+  border-color: lightgrey;
+  color: #333333;
+  opacity: 0.7;
+  min-width: 9rem;
+}
+
+.Wide {
+  width: 100%;
+}
+
+.Small {
+  font-size: 0.8rem;
+}
+
+.Narrow {
+  min-width: 3rem;
+}

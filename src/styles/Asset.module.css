@@ -1,0 +1,29 @@
+.Asset {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  margin-bottom: 0.5rem;
+  padding: 3rem;
+  font-size: 90%;
+  transition: all 0.1s ease-in-out;
+}
+
+.Asset img {
+  width: 40%;
+  max-width: 250px;
+  margin-right: 1rem;
+}
+
+.Asset i {
+  font-size: 8rem;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
+}

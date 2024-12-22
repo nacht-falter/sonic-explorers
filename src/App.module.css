@@ -1,0 +1,97 @@
+/* Global styles */
+@font-face {
+  font-family: "Exo 2";
+  src: url("./assets/fonts/Exo2-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("./assets/fonts/OpenSans-VariableFont_wght.ttf");
+}
+
+.App {
+  font-family: "OpenSans", sans-serif;
+  background-color: #fbfbfb;
+  min-height: 100vh;
+}
+
+.Main {
+  min-height: 80vh;
+  padding-top: 6.5rem;
+  margin-bottom: 4rem;
+}
+
+.ComponentContainer {
+  border-radius: 10px;
+  border: 1px solid darkgrey;
+}
+
+.MessageCard {
+  width: 100%;
+}
+
+@media (min-width: 450px) {
+  .Main {
+    padding-top: 4.5rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .Main {
+    padding-top: 6.5rem;
+  }
+
+  .MessageCard {
+    width: 75%;
+  }
+}
+
+@media (min-width: 768px) {
+  .Main {
+    padding-top: 7.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .MessageCard {
+    width: 50%;
+  }
+}
+
+/* Instructions for hiding scrollbars:
+https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+  transition: all 0.1s ease-in-out;
+}
+
+a:hover {
+  color: #d939ab;
+}
+
+.SmallText {
+  font-size: 80%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Exo 2", sans-serif;
+}
+
+input,
+textarea {
+  font-size: 90% !important;
+}
