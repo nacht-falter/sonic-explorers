@@ -63,11 +63,13 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = development
 
-ALLOWED_HOSTS = [
-    os.environ.get("ALLOWED_HOSTS"),
-    "127.0.0.1",
-    "localhost",
-]
+allowed_hosts_env = os.environ.get("ALLOWED_HOSTS")
+
+ALLOWED_HOSTS = []
+
+if allowed_hosts_env:
+    ALLOWED_HOSTS += allowed_hosts_env.split(',')
+
 # Mail Settings:
 if development:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
