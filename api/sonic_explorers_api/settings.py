@@ -45,7 +45,7 @@ REST_USE_JWT = True
 JWT_AUTH_SECURE = not development
 JWT_AUTH_COOKIE = "se-api-auth"
 JWT_AUTH_REFRESH_COOKIE = "se-api-refresh-token"
-JWT_AUTH_SAMESITE = "None"
+JWT_AUTH_SAMESITE = "Strict"
 
 REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "sonic_explorers_api.serializers.CurrentUserSerializer"
@@ -127,7 +127,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = []
+CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
 
 if "CLIENT_ORIGIN" in os.environ:
     CORS_ALLOWED_ORIGINS.append(os.environ.get("CLIENT_ORIGIN"))
@@ -160,18 +160,9 @@ WSGI_APPLICATION = "sonic_explorers_api.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-if development:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
-else:
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
-    }
+DATABASES = {
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
 
 
 # Password validation
