@@ -1,2 +1,3 @@
 *.lzo
+*.sql
 *.env
